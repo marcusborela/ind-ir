@@ -10,8 +10,64 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 
+from haystack.nodes import EmbeddingRetriever, BM25Retriever
+from haystack import Pipeline
+from haystack.pipelines import DocumentSearchPipeline
+from haystack.nodes import SentenceTransformersRankerLimit
+from haystack.nodes import MonoT5RankerLimit
+from haystack.document_stores import ElasticsearchDocumentStore
+
+import logging
+logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
+
 MAIOR_INTEIRO = sys.maxsize
 
+
+def return_pipeline_bm25(parm_index):
+    retriever_bm25 = BM25Retriever(document_store=parm_index,all_terms_must_match=False)
+    return DocumentSearchPipeline(retriever_bm25)
+
+def return_pipeline_sts(parm_index:ElasticsearchDocumentStore, parm_path_model:str):
+    retriever_sts = EmbeddingRetriever(
+        document_store=parm_index,
+        embedding_model=parm_path_model,
+        model_format="sentence_transformers",
+        pooling_strategy = 'cls_token',
+        progress_bar = False
+    )
+    return DocumentSearchPipeline(retriever_sts)
+
+def return_pipeline_bm25_reranker(parm_index:ElasticsearchDocumentStore, parm_ranker_type:str, parm_path_model_ranker:str, parm_limit_query_size:int=350):
+    pipe_bm25_ranker = Pipeline()
+    pipe_bm25_ranker.add_node(component= BM25Retriever(document_store=parm_index,all_terms_must_match=False), name="Retriever", inputs=["Query"])
+    if parm_ranker_type == 'MONOT5':
+        pipe_bm25_ranker.add_node(component=MonoT5RankerLimit(model_name_or_path=parm_path_model_ranker, limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["Retriever"])  # "Retriever" é o nome do nó anterior
+    elif parm_ranker_type == 'MINILM':
+        pipe_bm25_ranker.add_node(component=SentenceTransformersRankerLimit(model_name_or_path=parm_path_model_ranker, limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["Retriever"])  # "Retriever" é o nome do nó anterior
+    else:
+        raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
+    return pipe_bm25_ranker
+
+def return_pipeline_sts_reranker(parm_index:ElasticsearchDocumentStore, parm_ranker_type:str, parm_path_model_ranker:str,  parm_path_model_sts:str, parm_limit_query_size:int=350):
+    pipe_sts_ranker = Pipeline()
+    pipe_sts_ranker.add_node(component= EmbeddingRetriever(
+                                                            document_store=parm_index,
+                                                            embedding_model=parm_path_model_sts,
+                                                            model_format="sentence_transformers",
+                                                            pooling_strategy = 'cls_token',
+                                                            progress_bar = False),
+                             name="Retriever", inputs=["Query"])
+    if parm_ranker_type == 'MONOT5':
+        pipe_sts_ranker.add_node(component=MonoT5RankerLimit(model_name_or_path=parm_path_model_ranker, limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["Retriever"])  # "Retriever" é o nome do nó anterior
+    elif parm_ranker_type == 'MINILM':
+        pipe_sts_ranker.add_node(component=SentenceTransformersRankerLimit(model_name_or_path=parm_path_model_ranker, limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["Retriever"])  # "Retriever" é o nome do nó anterior
+    else:
+        raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
+    return pipe_sts_ranker
 
 def detail_document_found(parm_doc_returned):
     if 'params' in parm_doc_returned:
