@@ -1,7 +1,12 @@
 import requests
 from elasticsearch import Elasticsearch
 from haystack.document_stores import ElasticsearchDocumentStore
-from haystack.nodes import EmbeddingRetriever
+from haystack.nodes import EmbeddingRetriever, BM25Retriever
+from haystack import Pipeline
+from haystack.pipelines import DocumentSearchPipeline
+
+import logging
+logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
 
 def return_indexes(parm_index_begin_name='indir', parm_print:bool=False):
     es = Elasticsearch()
@@ -43,6 +48,25 @@ def return_indexes(parm_index_begin_name='indir', parm_print:bool=False):
 
     return index_dict
 
+def return_index(parm_index_name:str,  parm_embedding_dim:int=1024):
+
+
+    doc_store = ElasticsearchDocumentStore(
+        host='localhost',
+        username='', password='',
+        index=parm_index_name,
+        similarity='dot_product',
+        search_fields="content",
+        content_field = "content",
+        embedding_field = "embedding",
+        embedding_dim = parm_embedding_dim,
+        duplicate_documents='fail',
+        return_embedding=False,
+    )
+    print(f"\nQtd de documentos {doc_store.get_document_count()}")
+    print(f"\nQtd de embeddings {doc_store.get_embedding_count()}")
+    print(f"\nDocumento.id=1: {doc_store.get_document_by_id('1')}")
+    return doc_store
 
 
 def create_index(parm_index_name:str, parm_data_carga_json:list,  parm_embedding_dim:int=1024):
@@ -92,3 +116,18 @@ def update_index_embedding_sts(parm_index, parm_path_model:str):
     )
 
     return parm_index.update_embeddings(retriever=retriever_sts)
+
+def return_pipeline_bm25(parm_index):
+    retriever_bm25 = BM25Retriever(document_store=parm_index,all_terms_must_match=False)
+    return DocumentSearchPipeline(retriever_bm25)
+
+def return_pipeline_sts(parm_index, parm_path_model:str):
+    retriever_sts = EmbeddingRetriever(
+        document_store=parm_index,
+        embedding_model=parm_path_model,
+        model_format="sentence_transformers",
+        # pooling_strategy = 'cls_token',
+        progress_bar = False
+    )
+
+    return DocumentSearchPipeline(retriever_sts)
