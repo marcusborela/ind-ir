@@ -35,12 +35,18 @@ def return_indexes(parm_index_begin_name='indir', parm_print:bool=False):
             index_dict[index_entry['index']] = index_entry
 
     if parm_print:
+        found_index = False
+
         for index_name, index_data in index_dict.items():
-            print(f"Index: {index_name}")
-            print(index_data)
-            print()
-        else:
-            print(f"There are no index with name {parm_index_begin_name}%")
+            if index_name.startswith(parm_index_begin_name):
+                print(f"Index: {index_name}")
+                print(index_data)
+                print()
+                found_index = True
+
+        if not found_index:
+            print(f"There are no indexes with name starting with {parm_index_begin_name}")
+
 
     return index_dict
 
