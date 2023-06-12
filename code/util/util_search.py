@@ -369,4 +369,4 @@ dict_criterio = {
 
 dict_idcg_relevance_fixed = generate_dict_idcg(15, 1)
 
-print('dict_idcg_relevance_fixed', dict_idcg_relevance_fixed)
+# print('dict_idcg_relevance_fixed', dict_idcg_relevance_fixed)
