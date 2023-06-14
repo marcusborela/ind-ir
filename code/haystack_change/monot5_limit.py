@@ -211,6 +211,7 @@ def get_prediction_tokens(pretrained_model_name_or_path: str, # pylint: disable=
         token_true_id  = tokenizer.tokenizer.get_vocab()[token_true]
         return token_false_id, token_true_id
 
+
 class MonoT5RankerLimit(BaseRanker):
     """
     Sentence Transformer based pre-trained Cross-Encoder model for Document Re-ranking (https://huggingface.co/cross-encoder).
@@ -294,7 +295,6 @@ class MonoT5RankerLimit(BaseRanker):
         assert limit_query_size is not None, f"limit_query_size must be set, not None!"
         self.limit_query_size = limit_query_size
         self.use_amp = use_amp
-
         self.token_false_id, self.token_true_id = get_prediction_tokens(pretrained_model_name_or_path=model_name_or_path, tokenizer=self.tokenizer, token_false=token_false, token_true=token_true)
 
 
@@ -348,6 +348,7 @@ class MonoT5RankerLimit(BaseRanker):
                 batch_scores = batch_scores[:, [self.token_false_id, self.token_true_id]]
                 batch_scores = torch.nn.functional.log_softmax(batch_scores, dim=1)
                 batch_log_probs = batch_scores[:, 1].tolist()
+
             for doc, score in zip(batch.documents, batch_log_probs):
                 doc.score = score
 

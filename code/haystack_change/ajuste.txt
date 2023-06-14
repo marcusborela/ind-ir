@@ -1,0 +1,14 @@
+Adjustment in haystack to limit the number of tokens in reranking.
+
+In /home/borela/miniconda3/envs/relevar-busca/lib/python3.7/site-packages/haystack/nodes/ranker, you should do the following:
+
+Copy the files in the current directory sentence_transformer_limit.py and monot5_limit.py to this directory.
+
+In the __init__.py file in the same directory, add the following lines:
+from haystack.nodes.ranker.sentence_transformers_limit import SentenceTransformersRankerLimit
+from haystack.nodes.ranker.monot5_limit import MonoT5RankerLimit
+
+In the __init__.py file of the parent directory (haystack/nodes), add the following lines:
+from haystack.nodes.ranker import BaseRanker, SentenceTransformersRanker, SentenceTransformersRankerLimit, MonoT5RankerLimit
+
+By performing these steps, you will include the modified ranker classes (SentenceTransformersRankerLimit and MonoT5RankerLimit) with token limit functionality in the haystack package.
