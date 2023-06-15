@@ -1,20 +1,47 @@
-# Projeto indIR - Datasets e outros arquivos preparados durante o projeto
+# IndIR - Datasets e outros arquivos preparados
 
 ## [JURIS_TCU](/data/juris_tcu/)
 Base de enunciados da [Jurisprudência Selecionada do Tribunal de Contas da União](https://portal.tcu.gov.br/jurisprudencia/).
+
+Arquivos:
 * [doc.csv](juris_tcu/doc.csv) - cada documento contém um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/).
-* query.csv - ![WIP](../docs/image/work-in-progress-thumbnail.png)
-* qrel.csv - ![WIP](../docs/image/work-in-progress-thumbnail.png)
+* query.csv  ...![WIP](../docs/image/work-in-progress-thumbnail.png)
+* qrel.csv  ...![WIP](../docs/image/work-in-progress-thumbnail.png)
 
 ## [JURIS_TCU_INDEX](/data/juris_tcu_index/)
 Base de indexação dos enunciados da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [Vocabulário de Controle Externo do Tribunal de Contas da União (VCE)](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm).
-* [doc.csv](juris_tcu_index/doc.csv) - cada documento contém a definição de um termo do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm)
-* [query.csv](data/juris_tcu_index/query.csv) - cada query é um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/).
-* [qrel.csv](data/juris_tcu_index/qrel.csv) - cada registro corresponde a uma indexação de um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por um termo do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm). Essa indexação foi realizada por operadores do sistema de Jurisprudência, e pode ser observada na [Pesquisa Integrada do TCU - base de Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada)
 
-## Outros arquivos produzidos
-* [log_juris_tcu](/data/log_juris_tcu/) - arquivos elaborados a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/), base de [Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada)
-* [search](/data/search/) - resultados dos experimentos de busca realizados
+Arquivos:
+* [doc.csv](juris_tcu_index/doc.csv) - cada documento contém a definição de um termo do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm).
+* [query.csv](data/juris_tcu_index/query.csv) - cada query é um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/).
+* [qrel.csv](data/juris_tcu_index/qrel.csv) - cada registro corresponde a uma indexação de um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por um termo do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm). Essa indexação foi realizada por operadores do sistema de Jurisprudência, e pode ser observada na [Pesquisa Integrada do TCU - base de Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada).
+
+## Dados de acesso à pesquisa da Jurisprudência
+Elaborados a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/), entre junho/2022 a maio/2023.
+
+Apenas consultas específicas à base de [Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada), sem o uso de [operadores de proximidade](https://portal.tcu.gov.br/data/files/F4/F4/F0/B2/223648102DFE0FF7F18818A8/Manual_Resumido_Pesquisa_Jurisprudencia_TCU.pdf).
+
+Arquivos:
+* [query.csv](log_juris_tcu/query.csv) - buscas efetuadas, em ordem decrescente de quantidade de execuções.
+  * Contém a expressão de busca (query), a quantidade de execuções (count), e a média de documentos retornados (#docs).
+* [doc-hits.csv](log_juris_tcu/doc-hits.csv) - documentos acessados, em ordem decrescente de quantidade de acessos.
+  * Contém identificador (ID), chave de pesquisa (KEY), quantidade de acessos (COUNT) e posição média nos resultados das buscas (AVG_POSITION).
+  * O documento pode ser encontrado na [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/) pela chave, exemplo: [JURISPRUDENCIA-SELECIONADA-2845](https://pesquisa.apps.tcu.gov.br/resultado/jurisprudencia-selecionada/JURISPRUDENCIA-SELECIONADA-2845.KEY)
+* [query-doc-hits.csv](log_juris_tcu/query-doc-hits.csv) - cruzamento dos documentos com as expressões de busca utilizadas.
+  * Contém identificador (ID), chave de pesquisa (KEY), quantidade de acessos ao documento a partir da consulta (COUNT) e a expressão de busca (QUERY).
+  
+## Preparação de queries para o Dataset [JURIS_TCU](/data/juris_tcu/)
+Arquivos intermediários para formação das queries para o dataset [JURIS_TCU](/data/juris_tcu/).
+
+Arquivos:
+* [query_log.txt](log_juris_tcu/query_log.txt) - 50 queries candidatas geradas a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/) (arquivo [query.csv](log_juris_tcu/query.csv))
+* [query_llm.txt](log_juris_tcu/query_llm.txt) - perguntas produzidas pelo [ChatGPT](https://openai.com/chatgpt) a partir dos enunciados mais acessados da [Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada)
+* [query_llm_selecionada.txt](log_juris_tcu/query_llm_selecionada.txt) - curadoria manual realizada a partir do arquivo anterior, cada registro contém 2 versões de queries:
+  * uma pergunta completa
+  * uma expressão de pesquisa
+
+## Resultados dos experimentos de busca realizados
+* Indexação da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm): [JURIS_TCU_INDEX](/data/search/juris_tcu_index/).
 
 ## Outros links
 [Página principal do projeto](/README.md)
