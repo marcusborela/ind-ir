@@ -1,3 +1,5 @@
+prompt = f'Elabore até 5 perguntas curtas e diretas que possam ser respondidas a partir do enunciado a seguir: \n\n{texto_enunciado}'
+---------------------
 #2845
 Em regra, o pregão é a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos, com critério de julgamento pela maior oferta em lances sucessivos. 
 1. Qual é a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos?
@@ -401,4 +403,3 @@ A mera comparação dos valores constantes em ata de registro de preços com os obt
 3. O que é considerado um fato superveniente à celebração do contrato?
 4. Qual a importância do interesse público na realização de um aditamento contratual?
 5. O que pode acontecer se uma alteração contratual for feita sem cumprir os requisitos mencionados no enunciado?
----------------------
