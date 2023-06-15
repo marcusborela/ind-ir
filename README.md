@@ -5,15 +5,15 @@ IndIR   -  Indexing Improving Information Retrieval in the Juris Dataset (Jurisp
 IA368DD - Deep Learning applied to Information Retrieval (IA368 - Tópicos em Engenharia de Computação V - 1S/2023)
 
 **Authors:** Leonardo Augusto da Silva Pacheco e  Marcus Vinícius Borela de Castro
-[Project Image](https://github.com/marcusborela/ind-ir/blob/main/docs/image/Ind-IR-imagem.png)
+[Project Image](docs/image/Ind-IR-imagem.png)
 
 ## Documentação do projeto
-* [Initial presentation](https://github.com/marcusborela/ind-ir/blob/main/docs/presentation/Apresenta%C3%A7%C3%A3o%20inicial%2020230525.pdf)
-
-* [Schedule](https://github.com/marcusborela/ind-ir/blob/main/docs/schedule/cronograma.xlsx)
+* [Initial presentation](docs/presentation/Presentation_20230525.pdf)
+* [Presentation - 15/06/2023](docs/presentation/Presentation_20230615.pdf)
+* [Schedule](docs/schedule/cronograma.xlsx)
 
 ## References:
-1. [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](https://github.com/marcusborela/ind-ir/blob/main/docs/references/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
+1. [Pretrained Transformers for Text Ranking: BERT and Beyond. Jimmy Lin, Rodrigo Nogueira, and Andrew Yates](https://arxiv.org/abs/2010.06467) ([anotações](docs/references/Pretrained%20Transformers%20for%20Text%20Ranking%20-%20BERT%20and%20Beyond.pdf))
 
 
 ## Other links :
