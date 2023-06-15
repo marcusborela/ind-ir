@@ -9,3 +9,4 @@ pylint-report.txt
 *.pyc
 temp.properties
 coverage_html_report/
+docs/schedule/~$cronograma.xlsx
