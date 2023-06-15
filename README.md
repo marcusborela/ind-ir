@@ -1,13 +1,13 @@
-# ind-e
+# indIR
 IndIR   -  Indexing Improving Information Retrieval in the Juris Dataset (Jurisprudence Statements and Thesaurus of the Brazil Federal Court of Accounts - TCU)
 
-**Final Project at Discipline**
+**Final Project of Course**
 IA368DD - Deep Learning applied to Information Retrieval (IA368 - Tópicos em Engenharia de Computação V - 1S/2023)
 
-**Authors:** Leonardo Augusto da Silva Pacheco e  Marcus Vinícius Borela de Castro
+**Authors:** Leonardo Augusto da Silva Pacheco and Marcus Vinícius Borela de Castro
 [Project Image](docs/image/Ind-IR-imagem.png)
 
-## Documentação do projeto
+## Project Documentation
 * [Initial presentation](docs/presentation/Presentation_20230525.pdf)
 * [Presentation - 15/06/2023](docs/presentation/Presentation_20230615.pdf)
 * [Schedule](docs/schedule/cronograma.xlsx)
