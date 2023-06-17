@@ -1,0 +1,103 @@
+components:
+- name: ElasticsearchDocumentStore
+  params:
+    analyzer: standard
+    api_key: null
+    api_key_id: null
+    aws4auth: null
+    ca_certs: null
+    content_field: content
+    create_index: true
+    custom_mapping: null
+    duplicate_documents: fail
+    embedding_dim: 1024
+    embedding_field: embedding
+    excluded_meta_data: null
+    host: localhost
+    index: indir_juris_tcu_index
+    index_type: flat
+    label_index: label
+    name_field: name
+    password: ''
+    port: 9200
+    recreate_index: false
+    refresh_type: wait_for
+    return_embedding: false
+    scheme: http
+    scroll: 1d
+    search_fields: content
+    similarity: dot_product
+    skip_missing_embeddings: true
+    synonym_type: synonym
+    synonyms: null
+    timeout: 30
+    use_system_proxy: false
+    username: ''
+    verify_certs: true
+  type: ElasticsearchDocumentStore
+- name: Bm25Retriever
+  params:
+    all_terms_must_match: false
+    custom_query: null
+    document_store: ElasticsearchDocumentStore
+    scale_score: true
+    top_k: 10
+  type: BM25Retriever
+- name: StsRetriever
+  params:
+    api_key: null
+    batch_size: 32
+    devices: null
+    document_store: ElasticsearchDocumentStore
+    emb_extraction_layer: -1
+    embed_meta_fields: []
+    embedding_model: /home/borela/fontes/relevar-busca/modelo/rufimelo/Legal-BERTimbau-sts-large-ma-v3
+    max_seq_len: 512
+    model_format: sentence_transformers
+    model_version: null
+    pooling_strategy: cls_token
+    progress_bar: false
+    scale_score: true
+    top_k: 10
+    use_auth_token: null
+    use_gpu: true
+  type: EmbeddingRetriever
+- name: JoinResults
+  params:
+    join_mode: concatenate
+    sort_by_score: true
+    top_k_join: null
+    weights: null
+  type: JoinDocuments
+- name: Ranker
+  params:
+    batch_size: 16
+    devices: null
+    limit_query_size: 350
+    model_name_or_path: /home/borela/fontes/relevar-busca/modelo/unicamp-dl/mt5-3B-mmarco-en-pt
+    model_version: null
+    progress_bar: true
+    token_false: null
+    token_true: null
+    top_k: 10
+    use_amp: false
+    use_auth_token: null
+    use_gpu: true
+  type: MonoT5RankerLimit
+pipelines:
+- name: query
+  nodes:
+  - inputs:
+    - Query
+    name: Bm25Retriever
+  - inputs:
+    - Query
+    name: StsRetriever
+  - inputs:
+    - Bm25Retriever
+    - StsRetriever
+    name: JoinResults
+  - inputs:
+    - JoinResults
+    name: Ranker
+version: 1.13.0
