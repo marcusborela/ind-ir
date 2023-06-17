@@ -44,7 +44,7 @@ def return_consolidate_result(parm_dataset):
     # calculate redundant fields
     df_result['COUNT_DOCTO_RELEVANT_FOUND'] = df_result['LIST_RANK'].apply(len)
     df_result['PERCENT_DOCTO_RELEVANT_FOUND'] = round(100 * df_result['COUNT_DOCTO_RELEVANT_FOUND']  / df_result['COUNT_DOCTO_RELEVANT'], 2)
-    df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monott5' if 'mt5' in x else 'minilm')
+    df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if 'mt5' in x else 'minilm')
 
     return df_result
 

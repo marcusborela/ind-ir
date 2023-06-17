@@ -202,10 +202,12 @@ def get_prediction_tokens(pretrained_model_name_or_path: str, # pylint: disable=
             token_false, token_true = prediction_tokens[model_name]
             token_false_id = tokenizer.tokenizer.get_vocab()[token_false]
             token_true_id  = tokenizer.tokenizer.get_vocab()[token_true]
-            return token_false_id, token_true_id
-            # token_true_id_extra1  = tokenizer.tokenizer.get_vocab()['▁yes']
-            # token_true_id_extra2  = tokenizer.tokenizer.get_vocab()['▁sim']
-            # return token_false_id, token_true_id, token_true_id_extra1, token_true_id_extra2
+            # return token_false_id, token_true_id
+            token_true_id_extra1  = tokenizer.tokenizer.get_vocab()['▁yes']
+            token_true_id_extra2  = tokenizer.tokenizer.get_vocab()['▁sim']
+            token_false_id_extra1  = tokenizer.tokenizer.get_vocab()['▁não']
+            token_false_id_extra2  = tokenizer.tokenizer.get_vocab()['▁no']
+            return token_false_id, token_true_id, token_true_id_extra1, token_true_id_extra2, token_false_id_extra1, token_false_id_extra2
         else:
             raise Exception("We don't know the indexes for the non-relevant/relevant tokens for\
                     the checkpoint {model_name} and you did not provide any.")
@@ -301,8 +303,8 @@ class MonoT5RankerLimit(BaseRanker):
         assert limit_query_size is not None, f"limit_query_size must be set, not None!"
         self.limit_query_size = limit_query_size
         self.use_amp = use_amp
-        self.token_false_id, self.token_true_id = get_prediction_tokens(pretrained_model_name_or_path=model_name_or_path, tokenizer=self.tokenizer, token_false=token_false, token_true=token_true)
-        # self.token_false_id, self.token_true_id, self.token_true_id_extra1, self.token_true_id_extra2 = get_prediction_tokens(pretrained_model_name_or_path=model_name_or_path, tokenizer=self.tokenizer, token_false=token_false, token_true=token_true)
+        # self.token_false_id, self.token_true_id = get_prediction_tokens(pretrained_model_name_or_path=model_name_or_path, tokenizer=self.tokenizer, token_false=token_false, token_true=token_true)
+        self.token_false_id, self.token_true_id, self.token_true_id_extra1, self.token_true_id_extra2, self.token_false_id_extra1, self.token_false_id_extra2 = get_prediction_tokens(pretrained_model_name_or_path=model_name_or_path, tokenizer=self.tokenizer, token_false=token_false, token_true=token_true)
 
 
     def return_num_token(self, parm_texto:str):
@@ -352,11 +354,11 @@ class MonoT5RankerLimit(BaseRanker):
                                                 attention_mask=attn_mask,
                                                 return_last_logits=True)
 
-                batch_scores = batch_scores[:, [self.token_false_id, self.token_true_id]]
-                # batch_scores = batch_scores[:, [self.token_false_id, self.token_true_id, self.token_true_id_extra1, self.token_true_id_extra2]]
+                # batch_scores = batch_scores[:, [self.token_false_id, self.token_true_id]]
+                batch_scores = batch_scores[:, [self.token_false_id,  self.token_false_id_extra1, self.token_false_id_extra2,  self.token_true_id, self.token_true_id_extra1, self.token_true_id_extra2]]
                 batch_scores = torch.nn.functional.log_softmax(batch_scores, dim=1)
-                batch_log_probs = batch_scores[:, 1].tolist()
-                # batch_log_probs = torch.sum(batch_scores[:, 1:4], dim=1).tolist()
+                #batch_log_probs = batch_scores[:, 1].tolist()
+                batch_log_probs = torch.sum(batch_scores[:, 3:6], dim=1).tolist()
 
             for doc, score in zip(batch.documents, batch_log_probs):
                 doc.score = score

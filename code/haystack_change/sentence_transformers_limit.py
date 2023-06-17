@@ -44,13 +44,14 @@ class SentenceTransformersRankerLimit(BaseRanker):
         self,
         model_name_or_path: Union[str, Path],
         model_version: Optional[str] = None,
-        top_k: int = 10,
+        top_k: Optional[int] = 0, # todos são retornados
         use_gpu: bool = True,
         devices: Optional[List[Union[str, torch.device]]] = None,
         batch_size: int = 16,
         scale_score: bool = True,
         progress_bar: bool = True,
         use_auth_token: Optional[Union[str, bool]] = None,
+        limit_query_size:int=350
     ):
         """
         :param model_name_or_path: Directory of a saved model or the name of a public model e.g.
@@ -76,7 +77,10 @@ class SentenceTransformersRankerLimit(BaseRanker):
         """
         super().__init__()
 
-        self.top_k = top_k
+        if top_k is None:
+            self.top_K = 0
+        else:
+            self.top_k = top_k
 
         self.devices, _ = initialize_device_settings(devices=devices, use_cuda=use_gpu, multi_gpu=True)
 
@@ -89,6 +93,8 @@ class SentenceTransformersRankerLimit(BaseRanker):
             pretrained_model_name_or_path=model_name_or_path, revision=model_version, use_auth_token=use_auth_token
         )
         self.transformer_model.eval()
+        assert limit_query_size is not None, f"limit_query_size must be set, not None!"
+        self.limit_query_size = limit_query_size
 
         # we use sigmoid activation function to scale the score in case there is only a single label
         # we do not apply any scaling when scale_score is set to False
@@ -141,7 +147,7 @@ class SentenceTransformersRankerLimit(BaseRanker):
             return text_limited
 
 
-    def predict(self, query: str, documents: List[Document], top_k: Optional[int] = None) -> List[Document]:
+    def predict(self, query: str, documents: List[Document], top_k: Optional[int] = 0) -> List[Document]:
         """
         Use loaded ranker model to re-rank the supplied list of Document.
 
@@ -152,17 +158,17 @@ class SentenceTransformersRankerLimit(BaseRanker):
         :param top_k: The maximum number of documents to return
         :return: List of Document
         """
-        limit_query_size = 350
+        # self.limit_query_size = 350
         if top_k is None:
             top_k = self.top_k
 
         num_tokens_query = self.return_num_token(query)
-        if num_tokens_query > limit_query_size:
-            query_limited = self.return_text_limited_num_token_ultima_pontuacao(query, limit_query_size)
-            # print(f"Query passed limit in {num_tokens_query - limit_query_size} tokens")
+        if num_tokens_query > self.limit_query_size:
+            query_limited = self.return_text_limited_num_token_ultima_pontuacao(query, self.limit_query_size)
+            # print(f"Query passed limit in {num_tokens_query - self.limit_query_size} tokens")
             # print(f"Before:  {query}")
             # print(f"Now:  {query_limited}")
-            num_tokens_query = limit_query_size
+            num_tokens_query = self.limit_query_size
         else:
             query_limited = query
 
@@ -207,8 +213,10 @@ class SentenceTransformersRankerLimit(BaseRanker):
         )
 
         # add normalized scores to documents
-        sorted_documents = self._add_scores_to_documents(sorted_scores_and_documents[:top_k], logits_dim)
-
+        if top_k == 0:
+            sorted_documents = self._add_scores_to_documents(sorted_scores_and_documents, logits_dim)
+        else:
+            sorted_documents = self._add_scores_to_documents(sorted_scores_and_documents[:top_k], logits_dim)
         return sorted_documents
 
     def _add_scores_to_documents(
@@ -239,141 +247,4 @@ class SentenceTransformersRankerLimit(BaseRanker):
         top_k: Optional[int] = None,
         batch_size: Optional[int] = None,
     ) -> Union[List[Document], List[List[Document]]]:
-        """
-        Use loaded ranker model to re-rank the supplied lists of Documents.
-
-        Returns lists of Documents sorted by (desc.) similarity with the corresponding queries.
-
-
-        - If you provide a list containing a single query...
-
-            - ... and a single list of Documents, the single list of Documents will be re-ranked based on the
-              supplied query.
-            - ... and a list of lists of Documents, each list of Documents will be re-ranked individually based on the
-              supplied query.
-
-
-        - If you provide a list of multiple queries...
-
-            - ... you need to provide a list of lists of Documents. Each list of Documents will be re-ranked based on
-              its corresponding query.
-
-        :param queries: Single query string or list of queries
-        :param documents: Single list of Documents or list of lists of Documents to be reranked.
-        :param top_k: The maximum number of documents to return per Document list.
-        :param batch_size: Number of Documents to process at a time.
-        """
-        raise Exception("It lacks limit size tokens in predict_batch")
-        if top_k is None:
-            top_k = self.top_k
-
-        if batch_size is None:
-            batch_size = self.batch_size
-
-        number_of_docs, all_queries, all_docs, single_list_of_docs = self._preprocess_batch_queries_and_docs(
-            queries=queries, documents=documents
-        )
-
-        batches = self._get_batches(all_queries=all_queries, all_docs=all_docs, batch_size=batch_size)
-        pb = tqdm(total=len(all_docs), disable=not self.progress_bar, desc="Ranking")
-        preds = []
-        for cur_queries, cur_docs in batches:
-            features = self.transformer_tokenizer(
-                cur_queries, [doc.content for doc in cur_docs], padding=True, truncation=True, return_tensors="pt"
-            ).to(self.devices[0])
-
-            with torch.inference_mode():
-                similarity_scores = self.transformer_model(**features).logits
-                preds.extend(similarity_scores)
-            pb.update(len(cur_docs))
-        pb.close()
-
-        logits_dim = similarity_scores.shape[1]  # [batch_size, logits_dim]
-        if single_list_of_docs:
-            sorted_scores_and_documents = sorted(
-                zip(similarity_scores, documents),
-                key=lambda similarity_document_tuple:
-                # assume the last element in logits represents the `has_answer` label
-                similarity_document_tuple[0][-1] if logits_dim >= 2 else similarity_document_tuple[0],
-                reverse=True,
-            )
-
-            # is this step needed?
-            sorted_documents = [(score, doc) for score, doc in sorted_scores_and_documents if isinstance(doc, Document)]
-            sorted_documents_with_scores = self._add_scores_to_documents(sorted_documents[:top_k], logits_dim)
-
-            return sorted_documents_with_scores
-        else:
-            # Group predictions together
-            grouped_predictions = []
-            left_idx = 0
-            right_idx = 0
-            for number in number_of_docs:
-                right_idx = left_idx + number
-                grouped_predictions.append(similarity_scores[left_idx:right_idx])
-                left_idx = right_idx
-
-            result = []
-            for pred_group, doc_group in zip(grouped_predictions, documents):
-                sorted_scores_and_documents = sorted(
-                    zip(pred_group, doc_group),  # type: ignore
-                    key=lambda similarity_document_tuple:
-                    # assume the last element in logits represents the `has_answer` label
-                    similarity_document_tuple[0][-1] if logits_dim >= 2 else similarity_document_tuple[0],
-                    reverse=True,
-                )
-
-                # rank documents according to scores
-                sorted_documents = [
-                    (score, doc) for score, doc in sorted_scores_and_documents if isinstance(doc, Document)
-                ]
-                sorted_documents_with_scores = self._add_scores_to_documents(sorted_documents[:top_k], logits_dim)
-
-                result.append(sorted_documents_with_scores)
-
-            return result
-
-    def _preprocess_batch_queries_and_docs(
-        self, queries: List[str], documents: Union[List[Document], List[List[Document]]]
-    ) -> Tuple[List[int], List[str], List[Document], bool]:
-        number_of_docs = []
-        all_queries = []
-        all_docs: List[Document] = []
-        single_list_of_docs = False
-
-        # Docs case 1: single list of Documents -> rerank single list of Documents based on single query
-        if len(documents) > 0 and isinstance(documents[0], Document):
-            if len(queries) != 1:
-                raise HaystackError("Number of queries must be 1 if a single list of Documents is provided.")
-            query = queries[0]
-            number_of_docs = [len(documents)]
-            all_queries = [query] * len(documents)
-            all_docs = documents  # type: ignore
-            single_list_of_docs = True
-
-        # Docs case 2: list of lists of Documents -> rerank each list of Documents based on corresponding query
-        # If queries contains a single query, apply it to each list of Documents
-        if len(documents) > 0 and isinstance(documents[0], list):
-            if len(queries) == 1:
-                queries = queries * len(documents)
-            if len(queries) != len(documents):
-                raise HaystackError("Number of queries must be equal to number of provided Document lists.")
-            for query, cur_docs in zip(queries, documents):
-                if not isinstance(cur_docs, list):
-                    raise HaystackError(f"cur_docs was of type {type(cur_docs)}, but expected a list of Documents.")
-                number_of_docs.append(len(cur_docs))
-                all_queries.extend([query] * len(cur_docs))
-                all_docs.extend(cur_docs)
-
-        return number_of_docs, all_queries, all_docs, single_list_of_docs
-
-    @staticmethod
-    def _get_batches(
-        all_queries: List[str], all_docs: List[Document], batch_size: Optional[int]
-    ) -> Iterator[Tuple[List[str], List[Document]]]:
-        if batch_size is None:
-            yield all_queries, all_docs
-            return
-        else:
-            for index in range(0, len(all_queries), batch_size):
-                yield all_queries[index : index + batch_size], all_docs[index : index + batch_size]
+        raise Exception('It is not coded!')

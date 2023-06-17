@@ -240,7 +240,7 @@ class MonoT5RankerLimit(BaseRanker):
         self,
         model_name_or_path: Union[str, Path],
         model_version: Optional[str] = None,
-        top_k: int = 10,
+        top_k: Optional[int] = 0,
         use_gpu: bool = True,
         devices: Optional[List[Union[str, torch.device]]] = None,
         batch_size: int = 16,
@@ -274,8 +274,10 @@ class MonoT5RankerLimit(BaseRanker):
                         parameter is not used and a single cpu device is used for inference.
         """
         super().__init__()
-
-        self.top_k = top_k
+        if top_k is None:
+            self.top_k = 0
+        else:
+            self.top_k = top_k
 
         self.devices, _ = initialize_device_settings(devices=devices, use_cuda=use_gpu, multi_gpu=True)
 
@@ -355,7 +357,7 @@ class MonoT5RankerLimit(BaseRanker):
 
         return texts
 
-    def predict(self, query: str, documents: List[Document], top_k: Optional[int] = None) -> List[Document]:
+    def predict(self, query: str, documents: List[Document], top_k: Optional[int] = 0) -> List[Document]:
         """
         Use loaded ranker model to re-rank the supplied list of Document.
 
@@ -400,7 +402,10 @@ class MonoT5RankerLimit(BaseRanker):
 
         """Sorts a list of texts
         """
-        return sorted(self.rescore(query_obj, documents_limited_size), key=lambda x: x.score, reverse=True)
+        if top_k == 0:
+            return sorted(self.rescore(query_obj, documents_limited_size), key=lambda x: x.score, reverse=True)
+        else:
+            return sorted(self.rescore(query_obj, documents_limited_size), key=lambda x: x.score, reverse=True)[:top_k]
 
     def predict_batch(
         self,
