@@ -183,7 +183,10 @@ def detail_document_found(parm_doc_returned):
         print(f'Primeiro docto:\n{parm_doc_returned["documents"][0]}\n\nÚltimo ({len(parm_doc_returned["documents"])}):\n{parm_doc_returned["documents"][-1]}')
 
         print(f'Seguem os nomes dos termos recuperados em ordem de score')
-        doctos_dict = {ndx:[docto.meta['name'],docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
+        if 'name' in parm_doc_returned['documents'][0].meta: # juris_tcu_index
+            doctos_dict = {ndx:[docto.meta['name'],docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
+        else: # juris_tcu_index
+            doctos_dict = {ndx:[docto.id,docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
         for key, value in doctos_dict.items():
             print(key, ":", value)
     else: # retorno de reranking traz lista com documentos
