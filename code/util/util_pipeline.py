@@ -132,7 +132,7 @@ def return_pipeline_sts_multihop_reranker(parm_index:ElasticsearchDocumentStore,
         raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
     return pipe_sts_multihop_ranker
 
-def return_pipeline_join_reranker(parm_index:ElasticsearchDocumentStore,
+def return_pipeline_join_bm25_sts_reranker(parm_index:ElasticsearchDocumentStore,
                                   parm_ranker_type:str,
                                   parm_limit_query_size:int=350):
     pipe_join_ranker = Pipeline()
@@ -157,7 +157,7 @@ def return_pipeline_join_reranker(parm_index:ElasticsearchDocumentStore,
         raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
     return pipe_join_ranker
 
-def return_pipeline_join(parm_index:ElasticsearchDocumentStore):
+def return_pipeline_join_bm25_sts(parm_index:ElasticsearchDocumentStore):
     pipe_join = Pipeline()
     pipe_join.add_node(component= BM25Retriever(document_store=parm_index,
                                                        all_terms_must_match=False),
@@ -174,6 +174,50 @@ def return_pipeline_join(parm_index:ElasticsearchDocumentStore):
                               inputs=["Bm25Retriever", "StsRetriever"])
 
     return pipe_join
+
+def return_pipeline_join_bm25_sts_multihop_reranker(parm_index:ElasticsearchDocumentStore,
+                                  parm_ranker_type:str,
+                                  parm_limit_query_size:int=350):
+    pipe_join_ranker = Pipeline()
+    pipe_join_ranker.add_node(component= BM25Retriever(document_store=parm_index,
+                                                       all_terms_must_match=False),
+                              name="Bm25Retriever", inputs=["Query"])
+    pipe_join_ranker.add_node(component= MultihopEmbeddingRetriever(
+                                                            document_store=parm_index,
+                                                            embedding_model=nome_caminho_modelo_sts,
+                                                            model_format="sentence_transformers",
+                                                            pooling_strategy = 'cls_token',
+                                                            progress_bar = False),
+                             name="StsRetriever", inputs=["Query"])
+    pipe_join_ranker.add_node(component=JoinDocuments(join_mode="concatenate"),
+                              name="JoinResults",
+                              inputs=["Bm25Retriever", "StsRetriever"])
+
+    if parm_ranker_type == 'MONOT5':
+        pipe_join_ranker.add_node(component=return_ranker_monot5_3b(parm_limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["JoinResults"])
+    else:
+        raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
+    return pipe_join_ranker
+
+def return_pipeline_join_bm25_sts_multihop(parm_index:ElasticsearchDocumentStore):
+    pipe_join = Pipeline()
+    pipe_join.add_node(component= BM25Retriever(document_store=parm_index,
+                                                       all_terms_must_match=False),
+                              name="Bm25Retriever", inputs=["Query"])
+    pipe_join.add_node(component= MultihopEmbeddingRetriever(
+                                                            document_store=parm_index,
+                                                            embedding_model=nome_caminho_modelo_sts,
+                                                            model_format="sentence_transformers",
+                                                            pooling_strategy = 'cls_token',
+                                                            progress_bar = False),
+                             name="StsRetriever", inputs=["Query"])
+    pipe_join.add_node(component=JoinDocuments(join_mode="concatenate"),
+                              name="JoinResults",
+                              inputs=["Bm25Retriever", "StsRetriever"])
+
+    return pipe_join
+
 
 def detail_document_found(parm_doc_returned):
     if 'params' in parm_doc_returned:

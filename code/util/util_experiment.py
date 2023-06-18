@@ -8,6 +8,10 @@ import time
 import pandas as pd
 from tqdm import tqdm
 import math
+import numpy as np
+import tempfile
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 import logging
 logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
@@ -93,23 +97,20 @@ def calculate_list_rank_query_result (list_id_doc_returned, dict_doc_relevant:di
 
 def build_search_parameter(parm_experiment, query_data):
     dict_param_busca = {}
-    if parm_experiment['PIPE']['RETRIEVER_TYPE'] == 'join':
-        dict_param_busca = {"Bm25Retriever":{"top_k": 300, "filters": {"count_index_total": {"$gte": 1}}},
-                            "StsRetriever":{"top_k": 100}, "filters": {"count_index_total": {"$gte": 5}}}
+    criteria_type = dict_criterio[parm_experiment['CRITERIA']]['type']
+    criteria_value = dict_criterio[parm_experiment['CRITERIA']]['value']
+    if  'join' in parm_experiment['PIPE']['RETRIEVER_TYPE']:
+        dict_param_busca = {"Bm25Retriever":{"top_k": np.int(parm_experiment['TOPK_RETRIEVER']/2), "filters": criteria_value},
+                            "StsRetriever": {"top_k": np.int(parm_experiment['TOPK_RETRIEVER']/2), "filters": criteria_value}}
     elif parm_experiment['PIPE']['RETRIEVER_TYPE'] in ['bm25','sts','sts_multihop']:
-        if parm_experiment['CRITERIA'] is None:
-            dict_param_busca = {"Retriever":{"top_k": parm_experiment['TOPK_RETRIEVER']}}
+        if criteria_type == "static":
+            dict_param_busca = {"Retriever":{"top_k": parm_experiment['TOPK_RETRIEVER'], "filters": criteria_value}}
         else:
-            criteria_type = dict_criterio[parm_experiment['CRITERIA']]['type']
-            criteria_value = dict_criterio[parm_experiment['CRITERIA']]['value']
-            if criteria_type == "static":
-                dict_param_busca = {"Retriever":{"top_k": parm_experiment['TOPK_RETRIEVER'], "filters": criteria_value}}
-            else:
-                raise Exception (f"Invalid criteria_type  {criteria_type} in build_search_parameter")
-        if 'TOPK_RANKER' in parm_experiment and parm_experiment['TOPK_RANKER'] > 0:
-            dict_param_busca.update({"Ranker":{"top_k": parm_experiment['TOPK_RANKER']}})
+            raise Exception (f"Invalid criteria_type  {criteria_type} in build_search_parameter")
     else:
         raise Exception (f"Invalid parm_experiment['PIPE']['RETRIEVER_TYPE']  {parm_experiment['PIPE']['RETRIEVER_TYPE'] }")
+    if 'TOPK_RANKER' in parm_experiment and parm_experiment['TOPK_RANKER'] > 0:
+        dict_param_busca.update({"Ranker":{"top_k": parm_experiment['TOPK_RANKER']}})
     return dict_param_busca
 
 def search_docto_for_experiment(parm_experiment, query_data):
@@ -241,6 +242,49 @@ def experiment_run(parm_df,  parm_experiment,
     return result_search_run
 
 
+def del_experiment_value_column(column_name, column_value, parm_dataset):
+    # Load the dataframes
+
+    path_search_experiment =  f'../data/search/{parm_dataset}/search_experiment_{parm_dataset}.csv'
+    path_search_result =  f'../data/search/{parm_dataset}/search_experiment_result_{parm_dataset}.csv'
+
+
+    df_experiment = pd.read_csv(path_search_experiment)
+    df_experiment_result = pd.read_csv(path_search_result)
+
+    # Count the records with a value equal to column_value in the column_name
+    count_filtered_experiment = df_experiment[df_experiment[column_name] == column_value].shape[0]
+
+
+    # Count the records with a value equal to column_value in the column_name and also in the TIME column
+    # Get the values of the TIME column to be deleted from df_experiment
+    time_values_to_delete = df_experiment[df_experiment[column_name] == column_value]['TIME'].tolist()
+    count_filtered_experiment_result = df_experiment_result[df_experiment_result['TIME'].isin(time_values_to_delete)].shape[0]
+
+    # Check if there are records to be deleted
+    if count_filtered_experiment == 0 and count_filtered_experiment_result == 0:
+        print("There are no records to be deleted.")
+        return
+
+    # Display the records to be deleted
+    print(f"Records to be deleted in df_experiment: {count_filtered_experiment}")
+    print(f"Records to be deleted in df_experiment_result: {count_filtered_experiment_result}")
+
+    # Ask for user confirmation
+    confirmation = input("Do you really want to delete the records? (y/n): ")
+    if confirmation.lower() != 'y':
+        print("Operation canceled by the user.")
+        return
+
+    # Delete the records
+    df_experiment = df_experiment[df_experiment[column_name] != column_value]
+    df_experiment_result = df_experiment_result[~df_experiment_result['TIME'].isin(time_values_to_delete)]
+
+    df_experiment.to_csv(path_search_experiment, sep=',', index=False)
+    df_experiment_result.to_csv(path_search_result, sep=',', index=False)
+
+    print("Records successfully deleted.")
+
 def del_experiment_result(time_key, parm_dataset):
     # Load the dataframes
 
@@ -362,3 +406,21 @@ dict_criterio = {
 dict_idcg_relevance_fixed = generate_dict_idcg(15)
 
 # print('dict_idcg_relevance_fixed', dict_idcg_relevance_fixed)
+
+
+
+def imprime_pipe(parm_pipe):
+    # Criar um arquivo temporário para salvar a imagem
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as temp_file:
+        # Salvar o pipe no arquivo temporário
+        parm_pipe.draw(temp_file.name)
+
+        # Exibir a imagem no Jupyter Notebook
+        img = mpimg.imread(temp_file.name)
+        plt.imshow(img)
+        plt.axis('off')
+        plt.show()
+# more commands
+# from pathlib import Path
+# pipe_join_ranker_monot5_3b.save_to_yaml(Path("pipe_join_ranker_monot5_3b.yahml"), return_defaults = True)
+# pipe_join_ranker_monot5_3b.get_config(return_defaults=True)
