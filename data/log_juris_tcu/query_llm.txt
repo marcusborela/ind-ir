@@ -403,3 +403,65 @@ A mera comparação dos valores constantes em ata de registro de preços com os obt
 3. O que é considerado um fato superveniente à celebração do contrato?
 4. Qual a importância do interesse público na realização de um aditamento contratual?
 5. O que pode acontecer se uma alteração contratual for feita sem cumprir os requisitos mencionados no enunciado?
+---------------------
+#452
+A observância das normas e das disposições do edital, consoante o art. 41, caput, da Lei 8.666/93, deve ser aplicada mediante a consideração dos princípios basilares que norteiam o procedimento licitatório, dentre eles os da eficiência e da seleção da proposta mais vantajosa. Diante do caso concreto, e a fim de melhor viabilizar a concretização do interesse público, pode o princípio da legalidade estrita ser afastado frente a outros princípios.
+1. Quais são os princípios basilares que norteiam o procedimento licitatório?
+2. O princípio da legalidade estrita pode ser afastado em favor de outros princípios no caso concreto?
+3. Quais são os critérios para a seleção da proposta mais vantajosa em uma licitação?
+4. Qual é a legislação que estabelece as normas e disposições para o procedimento licitatório?
+5. Como a observância das normas do edital contribui para a concretização do interesse público?
+---------------------
+#43880
+Na demonstração da vantajosidade de eventual renovação de contrato de serviços de natureza continuada, deve ser realizada ampla pesquisa de preços, priorizando-se consultas a portais de compras governamentais e a contratações similares de outros entes públicos, utilizando-se apenas subsidiariamente a pesquisa com fornecedores.
+1. Quais são os critérios utilizados na demonstração da vantajosidade da renovação de contrato de serviços de natureza continuada?
+2. Quais fontes devem ser prioritárias na pesquisa de preços para a renovação do contrato?
+3. Quais são os portais de compras governamentais recomendados para a consulta de preços?
+4. Em relação à pesquisa de preços, qual é a importância das contratações similares de outros entes públicos?
+5. Em que circunstâncias a pesquisa com fornecedores pode ser utilizada como subsidiária na demonstração da vantajosidade da renovação do contrato de serviços?
+---------------------
+#43098
+É irregular, nas licitações de técnica e preço, atribuir pontuação para empresa licitante simplesmente por possuir, em seu quadro permanente, por determinado tempo, certos tipos de profissionais, o que pode vir a inibir o caráter competitivo do certame e privilegiar empresas de grande porte, além de não garantir que os mesmos profissionais sejam alocados na execução do objeto.
+1. É permitido atribuir pontuação a uma empresa licitante nas licitações de técnica e preço com base na posse de determinados tipos de profissionais em seu quadro permanente?
+2. A atribuição de pontuação com base na posse de profissionais em um quadro permanente por determinado tempo nas licitações de técnica e preço pode prejudicar o caráter competitivo do certame?
+3. Essa prática de atribuição de pontuação com base em profissionais no quadro permanente pode favorecer empresas de grande porte nas licitações de técnica e preço?
+4. A pontuação baseada na posse de determinados profissionais garante que esses mesmos profissionais sejam alocados na execução do objeto da licitação?
+5. A atribuição de pontuação com base na posse de profissionais em um quadro permanente por determinado tempo nas licitações de técnica e preço está de acordo com as normas e princípios que regem as licitações públicas?
+---------------------
+#42820
+Ainda que a Administração tenha aplicado o reajuste previsto no contrato, justifica-se a aplicação da recomposição sempre que se verificar a presença de seus pressupostos, uma vez que o reajuste e a recomposição possuem fundamentos distintos. O reajuste, previsto nos arts. 40, inciso XI, e 55, inciso III, da Lei 8.666/1993, visa remediar os efeitos da inflação. A recomposição, prevista no art. 65, inciso II, alínea d, da Lei 8.666/1993, tem como fim manter equilibrada a relação jurídica entre o particular e a Administração Pública quando houver desequilíbrio advindo de fato imprevisível ou previsível com consequências incalculáveis.  
+1. Qual é a finalidade do reajuste previsto nos artigos 40 e 55 da Lei 8.666/1993?
+2. Qual é a finalidade da recomposição prevista no artigo 65, inciso II, alínea d, da Lei 8.666/1993?
+3. Quais são os pressupostos para a aplicação da recomposição?
+4. O reajuste e a recomposição possuem fundamentos distintos?
+5. Por que a recomposição é aplicada mesmo após a aplicação do reajuste previsto no contrato?
+---------------------
+#64928
+Nas contratações de <i>software</i> fundadas no art. 25, inciso I, da Lei 8.666/1993, não devem ser aceitas cartas de exclusividade emitidas pelos próprios fabricantes, porquanto são válidos apenas os atestados emitidos pelos entes mencionados no referido dispositivo.
+1. Quais contratações de software são fundamentadas no art. 25, inciso I, da Lei 8.666/1993?
+2. Por que as cartas de exclusividade emitidas pelos próprios fabricantes não devem ser aceitas nessas contratações?
+3. Quais são os atestados válidos para as contratações de software conforme o dispositivo mencionado?
+4. Quem emite os atestados mencionados no art. 25, inciso I, da Lei 8.666/1993 para as contratações de software?
+5. Quais são as razões para não aceitar as cartas de exclusividade emitidas pelos fabricantes nos casos mencionados?
+---------------------
+#17892
+A contratação de entidade para prestação de serviços de assistência médica a servidores deve, em regra, ser precedida de licitação, sob pena de afronta ao disposto no art. 2º da Lei 8.666/1993.
+1. De acordo com o enunciado, qual é a regra geral para a contratação de entidades para prestação de serviços de assistência médica a servidores?
+2. Qual é a consequência em caso de não realização de licitação para a contratação de entidade de assistência médica a servidores, conforme o art. 2º da Lei 8.666/1993?
+3. Qual é o dispositivo legal mencionado no enunciado que estabelece a obrigatoriedade da licitação na contratação de serviços de assistência médica a servidores?
+4. Quem é responsável pela prestação de serviços de assistência médica aos servidores, de acordo com o enunciado?
+5. Quais são os critérios que devem ser observados durante o processo de licitação para a contratação de entidades de assistência médica a servidores, conforme a Lei 8.666/1993?
+---------------------
+#129357
+A exigência de comprovação da execução de quantitativos mínimos em obras ou serviços com características semelhantes, para fins de atestar a capacidade técnico-operacional, deve guardar proporção com a dimensão e a complexidade do objeto e recair, simultaneamente, sobre as parcelas de maior relevância e valor significativo. Como regra, os quantitativos mínimos exigidos não devem ultrapassar 50% do previsto no orçamento base, salvo em condições especiais e devidamente justificadas no processo de licitação.
+1. Quais critérios devem ser considerados ao exigir comprovação da execução de quantitativos mínimos em obras ou serviços semelhantes?
+2. É necessário que a comprovação da execução de quantitativos mínimos seja proporcional à dimensão e complexidade do objeto?
+3. Em relação aos quantitativos mínimos exigidos, qual é a regra geral em relação ao valor previsto no orçamento base?
+4. Sob quais condições especiais os quantitativos mínimos exigidos podem ultrapassar 50% do previsto no orçamento base?
+5. É obrigatório que a comprovação da execução de quantitativos mínimos recaia sobre as parcelas de maior relevância e valor significativo?
+---------------------
+=====================
+ 35654: 'Cada ato de prorrogação equivale a uma renovação contratual, motivo pelo qual a decisão pela prorrogação de contratação direta deve ser devidamente planejada e motivada, principalmente mediante a indicação da hipótese legal ensejadora da dispensa ou da inexigibilidade de licitação, válida no momento do ato de prorrogação contratual.',
+ 115176: 'A revogação ou a anulação da licitação, após a instauração e a consumação do contraditório, conduz à perda de objeto da cautelar que determinou a suspensão do certame, mas não da representação em si, tornando necessário o exame de mérito do processo com o objetivo de evitar a repetição de procedimento licitatório com as mesmas irregularidades verificadas.',
+ 72433: 'O fiscal do contrato não pode ser responsabilizado caso não lhe sejam oferecidas condições apropriadas para o desempenho de suas atribuições. Na interpretação das normas de gestão pública, deverão ser considerados os obstáculos e as dificuldades reais do gestor e as exigências das políticas públicas a seu cargo (art. 22, <i>caput</i>, do Decreto-lei 4.657/1942 - Lei de Introdução às Normas do Direito Brasileiro) .'}
+ 
