@@ -16,6 +16,11 @@ Não viola o art. 31, § 2º, da Lei 8.666/1993 o edital da licitação exigir c
 A prestação de garantia contratual é permitida juntamente com a exigência de patrimônio líquido mínimo?
 garantia contratual patrimônio líquido mínimo
 ---------------------
+#25757
+A exigência de garantia de participação na licitação, concomitantemente com a de patrimônio líquido mínimo ou de capital social mínimo, afronta o disposto no art. 31, § 2º, da Lei 8.666/1993, ainda que a prestação de garantia seja exigida como requisito autônomo de habilitação, deslocada no edital das exigências de qualificação econômico-financeira. 
+A exigência de garantia de participação é permitida juntamente com a exigência de patrimônio líquido mínimo?
+garantia de participação patrimônio líquido mínimo
+---------------------
 #19451
 A realização de despesas sem cobertura contratual é irregularidade grave, que justifica a aplicação de multa aos responsáveis, bem como julgamento pela irregularidade de suas contas
 Quais são as consequências para os responsáveis que realizam despesas sem cobertura contratual?
@@ -51,316 +56,186 @@ Os serviços técnicos necessários à estruturação de projeto de parceria pú
 Qual é a modalidade de licitação utilizada para contratar serviços técnicos necessários à estruturação de projeto de parceria público-privada relativo a infraestrutura de rede de iluminação pública?
 projeto de parceria público-privada modalidade
 ---------------------
-
 #13694
 Para fins de habilitação jurídica nas licitações, faz-se necessária a compatibilidade entre o objeto do certame e as atividades previstas no contrato social das empresas licitantes. 
-1. Qual é a relação entre a habilitação jurídica e o objeto do certame nas licitações?
-2. Por que a compatibilidade entre o objeto do certame e as atividades previstas no contrato social é importante nas licitações?
-3. O que acontece se uma empresa licitante não tiver compatibilidade entre o objeto do certame e as atividades previstas no contrato social?
-4. Como as empresas podem garantir a compatibilidade entre o objeto do certame e as atividades previstas no contrato social?
-5. Quais são as possíveis consequências para as empresas que não cumprem esse requisito de compatibilidade nas licitações?
+O que acontece se não houver compatibilidade entre o objeto do certame e as atividades previstas no contrato social da empresa licitante?
+objeto do certame contrato social licitante
 ---------------------
 #13583
 A responsabilidade pela gestão dos recursos do Fundo Municipal de Saúde é do secretário de saúde (art. 9º, inciso III, da Lei 8.080/1990) . Independentemente da participação de outros agentes na prática de determinados atos de administração dos recursos, remanesce para o secretário a responsabilidade primeira pela correta aplicação dos recursos e pelo alcance dos objetivos estabelecidos no Sistema Único de Saúde. 
-1. Quem é responsável pela gestão dos recursos do Fundo Municipal de Saúde, de acordo com a Lei 8.080/1990?
-2. A responsabilidade pela correta aplicação dos recursos do Fundo Municipal de Saúde pode ser compartilhada com outros agentes?
-3. Qual é a principal responsabilidade do secretário de saúde em relação ao Fundo Municipal de Saúde?
-4. Os objetivos estabelecidos no Sistema Único de Saúde estão relacionados à gestão dos recursos do Fundo Municipal de Saúde?
-5. A participação de outros agentes na administração dos recursos do Fundo Municipal de Saúde afeta a responsabilidade do secretário de saúde?
+Quem é responsável pela gestão dos recursos do Fundo Municipal de Saúde?
+responsabilidade gestão dos recursos Fundo Municipal de Saúde
 ---------------------
 #31629
 Quando da elaboração do orçamento-base da licitação, deve ser realizada ampla pesquisa de mercado para a formação dos preços orçados, utilizando-se de fontes oficiais ou de orçamentos emitidos por, no mínimo, três fornecedores, quando houver, a qual deverá necessariamente estar documentada no processo licitatório.
-1. Qual é o objetivo da pesquisa de mercado na elaboração do orçamento-base da licitação?
-2. Quantos fornecedores, no mínimo, devem ser consultados para a formação dos preços orçados?
-3. Quais tipos de fontes podem ser utilizadas na pesquisa de mercado para a formação dos preços?
-4. A documentação da pesquisa de mercado é obrigatória no processo licitatório?
-5. O que acontece se não houver três fornecedores disponíveis para consulta na pesquisa de mercado?
+É obrigatória pesquisa de mercado na elaboração do orçamento-base da licitação?
+pesquisa de mercado orçamento fornecedores
 ---------------------
 #52912
 A mera comparação dos valores constantes em ata de registro de preços com os obtidos junto a empresas consultadas na fase interna de licitação não é suficiente para configurar a vantajosidade da adesão à ata, haja vista que os preços informados nas consultas, por vezes superestimados, não serão, em regra, os efetivamente contratados. Deve o órgão não participante ("carona") , com o intuito de aferir a adequação dos preços praticados na ata, se socorrer de outras fontes, a exemplo de licitações e contratos similares realizados no âmbito da Administração Pública.
-1. Quais são os problemas na comparação dos valores constantes em ata de registro de preços com os obtidos junto a empresas consultadas na fase interna de licitação?
-2. Por que os preços informados nas consultas podem ser superestimados?
-3. O que deve fazer o órgão não participante ("carona") para aferir a adequação dos preços praticados na ata?
-4. Que outras fontes podem ser utilizadas para verificar a vantajosidade da adesão à ata?
-5. Por que é importante analisar licitações e contratos similares realizados no âmbito da Administração Pública?
+O que fazer para verificar a vantajosidade da adesão à ata?
+vantajosidade adesão à ata
 ---------------------
 #10089
 Como regra geral, para atendimento dos limites definidos no art. 65, §§ 1º e 2º, da Lei 8.666/1993, os acréscimos ou supressões nos montantes dos contratos firmados pelos órgãos e entidades da Administração Pública devem ser considerados de forma isolada, sendo calculados sobre o valor original do contrato, vedada a compensação entre acréscimos e supressões. 
-1. Qual é o artigo e os parágrafos mencionados na Lei 8.666/1993 que tratam dos limites de acréscimos e supressões nos contratos públicos?
-2. Como os acréscimos e supressões devem ser considerados nos contratos firmados pela Administração Pública?
-3. É permitida a compensação entre acréscimos e supressões nos contratos públicos?
-4. Sobre qual valor os acréscimos e supressões devem ser calculados nos contratos públicos?
-5. A regra geral se aplica a todos os órgãos e entidades da Administração Pública?
+#134594
+As reduções ou supressões de quantitativos decorrentes de alteração contratual devem ser consideradas de forma isolada, ou seja, o conjunto de reduções e o conjunto de acréscimos devem ser sempre calculados sobre o valor original do contrato, aplicando-se a cada um desses conjuntos, individualmente e sem nenhum tipo de compensação entre eles, os limites de alteração estabelecidos no art. 65, § 1º, da Lei 8.666/1993.
+É permitida a compensação entre acréscimos e supressões nos contratos administrativos?
+compensação entre acréscimos e supressões contratos administrativos
+---------------------
 ---------------------
 #34132
 Em licitações para aquisição de tonalizadores e cartuchos de tinta para impressoras ou outros produtos análogos, a Administração deve evitar a indicação de preferência por marcas, ante a falta de amparo legal, salvo na hipótese em que fique demonstrado tecnicamente que só determinada marca atenderá à necessidade da Administração, situação devidamente justificada e demonstrada no processo.
-1. A Administração pode indicar preferência por marcas em licitações para aquisição de tonalizadores e cartuchos de tinta?
-2. Em que situação é permitido indicar preferência por uma marca específica?
-3. O que deve ser feito para justificar a preferência por uma marca em particular?
-4. A falta de amparo legal se aplica a todos os produtos análogos, como impressoras e outros?
-5. Como a necessidade da Administração deve ser demonstrada tecnicamente para permitir a indicação de preferência por uma marca?
+#13633
+Não se admite, como regra, a especificação de marca para aquisição de cartuchos para impressoras. No entanto, o Tribunal aceita esse tipo de exigência quando os equipamentos em que os cartuchos serão utilizados estiverem em período de garantia e os termos de garantia previrem que ela somente se aplicará caso os produtos neles utilizados forem originais. 
+A Administração pode indicar preferência por marcas em licitações para aquisição de cartuchos de tinta?
+marca aquisição cartuchos
+---------------------
 ---------------------
 #13553
 Os recursos repassados pela União, no âmbito do Sistema Único de Saúde, aos estados, ao Distrito Federal e aos municípios constituem recursos federais. Estão sujeitos à fiscalização do TCU as ações e os serviços de saúde pagos à conta desses recursos, quer sejam transferidos mediante convênio, quer sejam repassados com base em outro instrumento ou ato legal. 
-1. Quais entidades recebem recursos repassados pela União no âmbito do Sistema Único de Saúde?
-2. Os recursos repassados são considerados recursos federais?
-3. O TCU é responsável pela fiscalização das ações e serviços de saúde pagos com esses recursos?
-4. Os recursos podem ser transferidos mediante convênio ou outro instrumento legal?
-5. A fiscalização do TCU abrange tanto recursos transferidos por convênios quanto por outros instrumentos legais?
+O TCU é responsável pela fiscalização das ações e serviços de saúde pagos com recursos repassados pela União no âmbito do Sistema Único de Saúde?
+SUS recursos União competência do TCU
 ---------------------
 #22165
 No caso de não ser possível obter preços referenciais nos sistemas oficiais para a estimativa de custos em processos licitatórios, deve ser realizada pesquisa de preços contendo o mínimo de três cotações de empresas/fornecedores distintos, fazendo constar do respectivo processo a documentação comprobatória pertinente aos levantamentos e estudos que fundamentaram o preço estimado. Caso não seja possível obter esse número de cotações, deve ser elaborada justificativa circunstanciada.
-1. Em quais situações não é possível obter preços referenciais nos sistemas oficiais para estimativa de custos em processos licitatórios?
-2. Quantas cotações de empresas/fornecedores distintos são necessárias ao realizar uma pesquisa de preços?
-3. Que tipo de documentação comprobatória deve ser incluída no processo para fundamentar o preço estimado?
-4. O que deve ser feito se não for possível obter o número mínimo de cotações exigido?
-5. O que é uma justificativa circunstanciada e quando ela deve ser elaborada?
----------------------
+O que deve ser feito se não for possível obter preços referenciais nos sistemas oficiais para estimativa de custos em processos licitatórios?
+preços referenciais sistemas oficiais estimativa de custos
 #21159
 A adoção, em licitação do tipo técnica e preço, de peso excessivamente elevado para a pontuação técnica em relação à de preço, sem justificativa plausível, e de critérios subjetivos de julgamento das propostas contraria o disposto nos arts. 3º, 40, inciso VII, 44, § 1º, e 45, da Lei 8.666/1993.
-1. Qual é a proporção adequada entre a pontuação técnica e a de preço em uma licitação do tipo técnica e preço?
-2. Quais são as implicações legais de atribuir um peso excessivamente elevado à pontuação técnica sem justificativa plausível?
-3. Como a Lei 8.666/1993 define critérios subjetivos de julgamento das propostas?
-4. Quais são os principais objetivos dos artigos 3º, 40, inciso VII, 44, § 1º, e 45 da Lei 8.666/1993?
-5. Como garantir a conformidade com a Lei 8.666/1993 ao estabelecer critérios de julgamento em licitações do tipo técnica e preço?
+É necessária ponderação entre a pontuação técnica e a de preço em uma licitação do tipo técnica e preço?
+ponderação técnica e preço
 ---------------------
-#693
-Em regra a prorrogação do contrato administrativo deve ser efetuada antes do término do prazo de vigência, mediante termo aditivo, para que não se opere a extinção do ajuste. Entretanto, excepcionalmente e para evitar prejuízo ao interesse público, nos contratos de escopo, diante da inércia do agente em formalizar tempestivamente o devido aditamento, é possível considerar os períodos de paralisação das obras por iniciativa da Administração contratante como períodos de suspensão da contagem do prazo de vigência do ajuste.
-1. Qual é o procedimento padrão para prorrogar um contrato administrativo?
-2. Em que momento deve ser efetuada a prorrogação do contrato administrativo?
-3. Em que situação excepcional é possível considerar períodos de paralisação das obras como suspensão da contagem do prazo de vigência do contrato?
-4. Quais são as consequências da inércia do agente em formalizar o aditamento tempestivamente?
-5. Qual é o objetivo de permitir a suspensão da contagem do prazo de vigência do contrato em casos excepcionais?
----------------------
-#133563
-Em licitações do tipo técnica e preço, o edital deve definir critérios objetivos para a gradação das notas a serem dadas a cada quesito da avaliação técnica, assim como distribuir a pontuação técnica de modo proporcional à relevância de cada quesito para a execução do objeto contratual, de forma a permitir o julgamento objetivo das propostas e evitar o estabelecimento de pontuação desarrazoada, limitadora da competitividade.
-1. Quais são os critérios objetivos que o edital deve definir para a gradação das notas na avaliação técnica?
-2. Como a pontuação técnica deve ser distribuída proporcionalmente à relevância de cada quesito?
-3. Qual é o objetivo do julgamento objetivo das propostas em licitações do tipo técnica e preço?
-4. Como a pontuação desarrazoada pode limitar a competitividade nas licitações?
-5. De que forma o edital pode garantir a execução adequada do objeto contratual?
----------------------
-#105994
-Na contratação de serviços advocatícios por conselho de fiscalização profissional, é excessiva a exigência de apresentação de atestado de capacidade técnica emitido por pessoa jurídica de conselho de classe, pois não se vislumbra, como regra, a necessidade de expertise na prestação de serviços jurídicos a tais entidades.
-1. Qual é o problema na exigência de atestado de capacidade técnica emitido por pessoa jurídica de conselho de classe na contratação de serviços advocatícios?
-2. Por que a expertise na prestação de serviços jurídicos não é vista como necessária para conselhos de fiscalização profissional?
-3. Qual seria uma alternativa mais adequada para avaliar a capacidade técnica de um advogado ao prestar serviços a conselhos de fiscalização profissional?
-4. Como essa exigência excessiva pode afetar a contratação de serviços advocatícios por conselhos de fiscalização profissional?
-5. Existe alguma situação em que a exigência de atestado de capacidade técnica possa ser considerada adequada na contratação de serviços advocatícios para conselhos de fiscalização profissional?
----------------------
-#29832
-É dispensável a reposição de importâncias indevidamente percebidas, de boa-fé, por servidores ativos e inativos, e pensionistas, em virtude de erro escusável de interpretação de lei por parte do órgão/entidade.
-1. O que significa "importâncias indevidamente percebidas" no contexto deste enunciado?
-2. Como é definido "erro escusável de interpretação de lei"?
-3. Quem são os beneficiários dessa dispensa de reposição?
-4. O que caracteriza uma situação de "boa-fé" nesse caso?
-5. A dispensa de reposição se aplica a todos os órgãos/entidades?
----------------------
-#134594
-As reduções ou supressões de quantitativos decorrentes de alteração contratual devem ser consideradas de forma isolada, ou seja, o conjunto de reduções e o conjunto de acréscimos devem ser sempre calculados sobre o valor original do contrato, aplicando-se a cada um desses conjuntos, individualmente e sem nenhum tipo de compensação entre eles, os limites de alteração estabelecidos no art. 65, § 1º, da Lei 8.666/1993.
-1. Quais são os dois conjuntos mencionados no enunciado que devem ser calculados sobre o valor original do contrato?
-2. Qual é o artigo e parágrafo da Lei 8.666/1993 que estabelece os limites de alteração?
-3. As reduções e supressões de quantitativos devem ser consideradas juntas ou de forma isolada?
-4. É permitido algum tipo de compensação entre os conjuntos de reduções e acréscimos?
-5. Qual é o objetivo de calcular os conjuntos de reduções e acréscimos de forma isolada?
----------------------
-#17105
-O dano reverso decorrente da falta de produto ou serviço que possa colocar em risco a saúde de pessoas se mostra muito mais gravoso do que o potencial dano ao erário decorrente da aquisição direta para remediar a situação, não podendo ser cobrada do gestor a prática de conduta diversa.
-1. Qual é o principal dano causado pela falta de produto ou serviço que pode afetar a saúde das pessoas?
-2. Como a aquisição direta pode ajudar a remediar a situação?
-3. O dano ao erário é maior ou menor que o dano à saúde das pessoas?
-4. O gestor pode ser responsabilizado por não tomar uma ação diferente?
-5. A aquisição direta é justificável nesse contexto?
----------------------
-#71456
-Nos pregões para aquisição de medicamentos, a divulgação dos preços estimados da contratação no edital do certame prejudica a obtenção da proposta mais vantajosa para a Administração.
-1. Quais são os principais fatores que levam à divulgação dos preços estimados prejudicar a obtenção da proposta mais vantajosa?
-2. Como a divulgação dos preços estimados no edital afeta a concorrência entre os fornecedores de medicamentos?
-3. Existem alternativas para a divulgação dos preços estimados que possam beneficiar a Administração na obtenção de propostas vantajosas?
-4. Qual é o impacto dessa divulgação no processo de aquisição de medicamentos para a Administração?
-5. Há exemplos de pregões onde a divulgação dos preços estimados resultou em propostas menos vantajosas para a Administração?
----------------------
-#31507
-As contratações de professores, conferencistas ou instrutores para ministrar cursos de treinamento ou aperfeiçoamento de pessoal enquadram-se na hipótese de inexigibilidade de licitação prevista no inciso II do art. 25, combinado com o inciso VI do art. 13 da Lei 8.666/1993.
-1. Qual é a hipótese de inexigibilidade de licitação mencionada no enunciado?
-2. Em quais casos a contratação de professores, conferencistas ou instrutores se enquadra na inexigibilidade de licitação?
-3. Quais artigos da Lei 8.666/1993 são mencionados no enunciado?
-4. Para quais finalidades podem ser contratados professores, conferencistas ou instrutores sem a necessidade de licitação?
-5. O que é a Lei 8.666/1993 e qual é sua relação com a contratação de profissionais para treinamento e aperfeiçoamento de pessoal?
----------------------
-#31108
-Reequilíbrio econômico é o reestabelecimento da relação contratual inicialmente ajustada pelas partes, por conta da ocorrência de álea extraordinária, superveniente ao originalmente contratado. O reajuste de preços é a reposição da perda do poder aquisitivo da moeda por meio do emprego de índices de preços prefixados no contrato administrativo. A repactuação, referente a contratos de serviços contínuos, ocorre a partir da variação dos componentes dos custos do contrato, devendo ser demonstrada analiticamente, de acordo com a Planilha de Custos e Formação de Preços.
-1. O que é reequilíbrio econômico e em que situações ele ocorre?
-2. Qual é a diferença entre reajuste de preços e reequilíbrio econômico?
-3. O que é repactuação e em que tipo de contratos ela se aplica?
-4. Como é calculada a variação dos componentes dos custos do contrato na repactuação?
-5. O que é a Planilha de Custos e Formação de Preços e qual sua função no processo de repactuação?
----------------------
-#31104
-A diferença entre repactuação e reajuste é que este é automático e realizado periodicamente, mediante aplicação de índice de preço que, dentro do possível, deve refletir os custos setoriais. Enquanto que naquela, de periodicidade anual, não há automatismo, pois é necessário demonstrar a variação dos custos do serviço. Para que ocorra a repactuação, com base na variação dos custos do serviço contratado, deve ser observado o prazo mínimo de um ano, mediante a demonstração analítica da variação dos componentes dos custos, devidamente justificada, não sendo admissível repactuação com base na variação do IGPM.
-1. Qual é a principal diferença entre repactuação e reajuste?
-2. Como é determinado o índice de preço utilizado no reajuste?
-3. Qual é a periodicidade da repactuação?
-4. Quais são os requisitos para que ocorra uma repactuação?
-5. É possível realizar repactuação com base na variação do IGPM?
----------------------
-#17220
-A perda da regularidade fiscal, inclusive quanto à seguridade social, no curso de contratos de execução continuada ou parcelada justifica a imposição de sanções à contratada, mas não autoriza a retenção de pagamentos por serviços prestados.
-1. Qual é o motivo para a imposição de sanções à contratada em caso de perda da regularidade fiscal?
-2. A retenção de pagamentos é permitida em caso de perda da regularidade fiscal?
-3. Quais são as consequências para a contratada em caso de perda da regularidade fiscal quanto à seguridade social?
-4. Como a perda da regularidade fiscal afeta contratos de execução continuada ou parcelada?
-5. Quais medidas podem ser tomadas para garantir a regularidade fiscal durante a execução de contratos continuados ou parcelados?
----------------------
-#104455
-O restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual amparado no art. 65, §§ 1º e 2º, da Lei 8.666/1993, em razão de restrições orçamentárias, desde que observadas as mesmas condições e preços iniciais pactuados, não configura a compensação vedada pela jurisprudência do TCU, consubstanciada nos <acordao_decisao_tcu colegiado="Plenário" numero="1536" ano="2016" >acórdãos 1.536/2016-Plenário</acordao_decisao_tcu> e 2.554/2017-Plenário, visto que o objeto licitado fica inalterado, sendo possível, portanto, além do restabelecimento, novos acréscimos sobre o valor original do contrato, observados os limites estabelecidos no art. 65, § 1º, da Lei 8.666/1993.
-1. Qual é o objetivo do restabelecimento total ou parcial de um item suprimido por aditivo contratual amparado na Lei 8.666/1993?
-2. Quais são as condições para que o restabelecimento não configure compensação vedada pela jurisprudência do TCU?
-3. Quais são os acórdãos mencionados que tratam da compensação vedada pelo TCU?
-4. É possível realizar novos acréscimos sobre o valor original do contrato após o restabelecimento?
-5. Quais são os limites estabelecidos no art. 65, § 1º, da Lei 8.666/1993 para acréscimos no contrato?
----------------------
-#13633
-Não se admite, como regra, a especificação de marca para aquisição de cartuchos para impressoras. No entanto, o Tribunal aceita esse tipo de exigência quando os equipamentos em que os cartuchos serão utilizados estiverem em período de garantia e os termos de garantia previrem que ela somente se aplicará caso os produtos neles utilizados forem originais. 
-1. Em quais situações a especificação de marca para aquisição de cartuchos é aceita pelo Tribunal?
-2. Qual é a condição para que a garantia dos equipamentos seja aplicada?
-3. A garantia dos equipamentos se aplica caso sejam utilizados cartuchos não originais?
-4. Por que, como regra, não se admite a especificação de marca para aquisição de cartuchos?
-5. O que deve constar nos termos de garantia para que a exigência de cartuchos originais seja aceita?
----------------------
-#33081
-São irregulares os quesitos de pontuação técnica para cujo atendimento as empresas licitantes tenham de incorrer em despesas que sejam desnecessárias e anteriores à celebração do contrato ou frustrem o caráter competitivo do certame, a exemplo da pontuação para licitantes que possuírem, já na abertura da licitação, determinado quadro de pessoal com técnicos certificados e qualificados; a existência de plataforma de treinamento à distância para os funcionários da licitante; ambiente próprio de help desk para suporte remoto aos profissionais do contrato.
-1. Quais são os exemplos de quesitos de pontuação técnica considerados irregulares?
-2. Por que despesas desnecessárias e anteriores à celebração do contrato são consideradas irregulares?
-3. Como a pontuação para licitantes com técnicos certificados e qualificados na abertura da licitação pode afetar o caráter competitivo do certame?
-4. Qual é o problema em exigir a existência de uma plataforma de treinamento à distância para os funcionários da licitante?
-5. Por que exigir um ambiente próprio de help desk para suporte remoto aos profissionais do contrato é considerado irregular?
----------------------
-#85586
-A mera existência de erro material ou de omissão na planilha de custos e de formação de preços da licitante não enseja, necessariamente, a desclassificação antecipada da sua proposta, devendo a Administração promover diligência junto ao interessado para a correção das falhas, sem permitir, contudo, a alteração do valor global originalmente proposto.
-1. Um erro material ou omissão na planilha de custos pode levar à desclassificação antecipada da proposta?
-2. Qual é o papel da Administração ao identificar erros ou omissões na planilha de custos?
-3. A correção das falhas na planilha pode resultar em alteração do valor global originalmente proposto?
-4. Em que circunstâncias a Administração deve promover diligência junto ao interessado?
-5. A correção das falhas na planilha de custos é obrigatória para a continuidade da proposta?
----------------------
-#122028
-A vedação à inclusão de novo documento, prevista no art. 43, § 3º, da Lei 8.666/1993 e no art. 64 da Lei 14.133/2021 (nova Lei de Licitações e Contratos Administrativos) , não alcança documento destinado a atestar condição de habilitação preexistente à abertura da sessão pública, apresentado em sede de diligência.
-1. Qual é o objetivo da vedação à inclusão de novo documento nas leis mencionadas?
-2. O que é considerado um documento destinado a atestar condição de habilitação preexistente?
-3. Em que momento pode ser apresentado um documento de habilitação preexistente?
-4. Como a nova Lei de Licitações e Contratos Administrativos (Lei 14.133/2021) se relaciona com a Lei 8.666/1993?
-5. O que é uma diligência no contexto de licitações e contratos administrativos?
----------------------
-#21864
-É obrigatória, nos processos de licitação, dispensa ou inexigibilidade, a consulta dos preços correntes no mercado, dos fixados por órgão oficial competente ou, ainda, dos constantes em sistema de registro de preços. A ausência de pesquisa de preços configura descumprimento de exigência legal.
-1. Em quais processos a consulta de preços correntes no mercado é obrigatória?
-2. Quais são as outras fontes de consulta de preços além do mercado?
-3. O que acontece se a pesquisa de preços não for realizada?
-4. O que é um sistema de registro de preços?
-5. Qual é a consequência do descumprimento dessa exigência legal?
----------------------
-#22780
-SÚMULA TCU 263: Para a comprovação da capacidade técnico-operacional das licitantes, e desde que limitada, simultaneamente, às parcelas de maior relevância e valor significativo do objeto a ser contratado, é legal a exigência de comprovação da execução de quantitativos mínimos em obras ou serviços com características semelhantes, devendo essa exigência guardar proporção com a dimensão e a complexidade do objeto a ser executado.
-1. Qual é o objetivo da Súmula TCU 263 no contexto de licitações?
-2. Quais são os critérios para comprovar a capacidade técnico-operacional das licitantes?
-3. Como a exigência de comprovação de quantitativos mínimos deve ser aplicada?
-4. O que significa "parcelas de maior relevância e valor significativo" no enunciado?
-5. Como a proporção entre a exigência e a dimensão e complexidade do objeto deve ser determinada?
----------------------
-#98454
-Os efeitos da sanção de impedimento de licitar e contratar prevista no art. 7º da Lei 10.520/2002 se estendem a toda a esfera de governo do órgão ou da entidade que aplicou a penalidade, incluindo as empresas estatais.
-1. Qual é a penalidade prevista no art. 7º da Lei 10.520/2002?
-2. A sanção de impedimento de licitar e contratar se aplica a todas as esferas de governo?
-3. As empresas estatais estão incluídas na aplicação dessa penalidade?
-4. Qual órgão ou entidade é responsável por aplicar a sanção de impedimento de licitar e contratar?
-5. A extensão da penalidade se aplica apenas ao órgão ou entidade que aplicou a sanção, ou também a outros órgãos e entidades?
----------------------
-#22841
-A exigência de quadro de pessoal técnico pré-existente e ligado à licitante por vínculo trabalhista ou societário privilegia empresas de grande porte e levam as licitantes a efetuar despesas com a contratação de pessoal simplesmente com a finalidade de participar do certame licitatório.
-1. Qual é o impacto da exigência de quadro de pessoal técnico pré-existente nas empresas de pequeno porte?
-2. Como o vínculo trabalhista ou societário afeta a competitividade das licitantes no certame licitatório?
-3. Por que essa exigência privilegia empresas de grande porte?
-4. Quais são as despesas adicionais que as licitantes enfrentam ao contratar pessoal para participar do certame licitatório?
-5. Existem alternativas para tornar o processo licitatório mais inclusivo para empresas de diferentes portes?
----------------------
-#25757
-A exigência de garantia de participação na licitação, concomitantemente com a de patrimônio líquido mínimo ou de capital social mínimo, afronta o disposto no art. 31, § 2º, da Lei 8.666/1993, ainda que a prestação de garantia seja exigida como requisito autônomo de habilitação, deslocada no edital das exigências de qualificação econômico-financeira. 
-1. A exigência de garantia de participação na licitação é permitida de acordo com a Lei 8.666/1993?
-2. O que o art. 31, § 2º, da Lei 8.666/1993 estabelece sobre patrimônio líquido mínimo ou capital social mínimo?
-3. É possível exigir garantia de participação e patrimônio líquido mínimo simultaneamente na licitação?
-4. Como a prestação de garantia pode ser exigida no edital de licitação?
-5. Qual é o impacto da exigência de garantia de participação na qualificação econômico-financeira dos licitantes?
----------------------
-#79794
-Para fins de habilitação técnico-operacional em certames visando à contratação de obras e serviços de engenharia, devem ser exigidos atestados emitidos em nome da licitante, podendo ser solicitadas as certidões de acervo técnico (CAT) ou anotações/registros de responsabilidade técnica (ART/RRT) emitidas pelo conselho de fiscalização profissional competente em nome dos profissionais vinculados aos referidos atestados, como forma de conferir autenticidade e veracidade às informações constantes nos documentos emitidos em nome das licitantes.
-1. Quais documentos são exigidos para habilitação técnico-operacional em certames de obras e serviços de engenharia?
-2. O que são certidões de acervo técnico (CAT) e anotações/registros de responsabilidade técnica (ART/RRT)?
-3. Por que é importante solicitar CAT ou ART/RRT dos profissionais vinculados aos atestados?
-4. Qual é o objetivo de conferir autenticidade e veracidade às informações nos documentos emitidos em nome das licitantes?
-5. Quem emite as certidões de acervo técnico (CAT) ou anotações/registros de responsabilidade técnica (ART/RRT)?
----------------------
-#110879
-Cabe ao órgão gerenciador da ata de registro de preços o controle das autorizações de adesão, a fim de que os quantitativos de cada item registrado contratados pelos caronas não superem os limites previstos no art. 22, §§ 3º, 4º e 4º-A, do Decreto 7.892/2013.
-1. Qual é a função do órgão gerenciador da ata de registro de preços?
-2. O que são as autorizações de adesão?
-3. Qual é o objetivo do controle das autorizações de adesão?
-4. Quais são os limites estabelecidos no art. 22, §§ 3º, 4º e 4º-A, do Decreto 7.892/2013?
-5. O que acontece se os quantitativos contratados pelos caronas ultrapassarem os limites previstos?
 ---------------------
 #21229
 O estabelecimento de critério de pontuação técnica, em licitação do tipo técnica e preço, que valoriza excessivamente determinado quesito, em detrimento do preço, restringe o caráter competitivo do certame e compromete a obtenção da proposta mais vantajosa para a Administração.
-1. Qual é o impacto de valorizar excessivamente um quesito na licitação do tipo técnica e preço?
-2. Como a restrição do caráter competitivo afeta a obtenção da proposta mais vantajosa?
-3. De que forma o equilíbrio entre critérios técnicos e preço pode ser mantido em uma licitação?
-4. Quais são as consequências negativas para a Administração ao comprometer a obtenção da proposta mais vantajosa?
-5. Como evitar a valorização excessiva de um quesito em detrimento do preço em licitações?
+Qual é o impacto de valorizar excessivamente um quesito na licitação do tipo técnica e preço?
+---------------------
+#693
+Em regra a prorrogação do contrato administrativo deve ser efetuada antes do término do prazo de vigência, mediante termo aditivo, para que não se opere a extinção do ajuste. Entretanto, excepcionalmente e para evitar prejuízo ao interesse público, nos contratos de escopo, diante da inércia do agente em formalizar tempestivamente o devido aditamento, é possível considerar os períodos de paralisação das obras por iniciativa da Administração contratante como períodos de suspensão da contagem do prazo de vigência do ajuste.
+É possível prorrogar um contrato administrativo fora do término do prazo de vigência?
+prorrogação de contrato administrativo término prazo de vigência
+---------------------
+#133563
+Em licitações do tipo técnica e preço, o edital deve definir critérios objetivos para a gradação das notas a serem dadas a cada quesito da avaliação técnica, assim como distribuir a pontuação técnica de modo proporcional à relevância de cada quesito para a execução do objeto contratual, de forma a permitir o julgamento objetivo das propostas e evitar o estabelecimento de pontuação desarrazoada, limitadora da competitividade.
+Como a pontuação desarrazoada pode limitar a competitividade nas licitações do tipo técnica e preço?
+pontuação desarrazoada licitações técnica e preço
+---------------------
+#105994
+Na contratação de serviços advocatícios por conselho de fiscalização profissional, é excessiva a exigência de apresentação de atestado de capacidade técnica emitido por pessoa jurídica de conselho de classe, pois não se vislumbra, como regra, a necessidade de expertise na prestação de serviços jurídicos a tais entidades.
+Qual é o problema na exigência de atestado de capacidade técnica para contratação de serviços advocatícios por conselho de fiscalização profissional?
+atestado de capacidade técnica serviços advocatícios conselho de fiscalização profissional
+---------------------
+#29832
+É dispensável a reposição de importâncias indevidamente percebidas, de boa-fé, por servidores ativos e inativos, e pensionistas, em virtude de erro escusável de interpretação de lei por parte do órgão/entidade.
+É necessária reposição de importâncias indevidamente percebidas, de boa-fé, por servidores, em virtude de erro escusável de interpretação de lei por parte do órgão/entidade?
+reposição de importâncias indevidamente percebidas boa-fé servidores erro escusável por órgão/entidade
+---------------------
+#17105
+O dano reverso decorrente da falta de produto ou serviço que possa colocar em risco a saúde de pessoas se mostra muito mais gravoso do que o potencial dano ao erário decorrente da aquisição direta para remediar a situação, não podendo ser cobrada do gestor a prática de conduta diversa.
+É possível aquisição direta quando a falta de produto ou serviço pode colocar em risco a saúde das pessoas?
+aquisição direta risco a saúde
+---------------------
+#71456
+Nos pregões para aquisição de medicamentos, a divulgação dos preços estimados da contratação no edital do certame prejudica a obtenção da proposta mais vantajosa para a Administração.
+É obrigatória a divulgação dos preços estimados no edital nos pregões para aquisição de medicamentos?
+pregão divulgação dos preços estimados no edital
+---------------------
+#31507
+As contratações de professores, conferencistas ou instrutores para ministrar cursos de treinamento ou aperfeiçoamento de pessoal enquadram-se na hipótese de inexigibilidade de licitação prevista no inciso II do art. 25, combinado com o inciso VI do art. 13 da Lei 8.666/1993.
+A contratação de professores, conferencistas ou instrutores para ministrar cursos de treinamento ou aperfeiçoamento de pessoal se enquadra na inexigibilidade de licitação?
+instrutor treinamento inexigibilidade de licitação
+---------------------
+#31108
+Reequilíbrio econômico é o reestabelecimento da relação contratual inicialmente ajustada pelas partes, por conta da ocorrência de álea extraordinária, superveniente ao originalmente contratado. O reajuste de preços é a reposição da perda do poder aquisitivo da moeda por meio do emprego de índices de preços prefixados no contrato administrativo. A repactuação, referente a contratos de serviços contínuos, ocorre a partir da variação dos componentes dos custos do contrato, devendo ser demonstrada analiticamente, de acordo com a Planilha de Custos e Formação de Preços.
+#31104
+A diferença entre repactuação e reajuste é que este é automático e realizado periodicamente, mediante aplicação de índice de preço que, dentro do possível, deve refletir os custos setoriais. Enquanto que naquela, de periodicidade anual, não há automatismo, pois é necessário demonstrar a variação dos custos do serviço. Para que ocorra a repactuação, com base na variação dos custos do serviço contratado, deve ser observado o prazo mínimo de um ano, mediante a demonstração analítica da variação dos componentes dos custos, devidamente justificada, não sendo admissível repactuação com base na variação do IGPM.
+Qual é a diferença entre reajuste de preços e repactuação?
+reajuste de preços e repactuação
+---------------------
+---------------------
+#17220
+A perda da regularidade fiscal, inclusive quanto à seguridade social, no curso de contratos de execução continuada ou parcelada justifica a imposição de sanções à contratada, mas não autoriza a retenção de pagamentos por serviços prestados.
+A retenção de pagamentos é permitida em caso de perda da regularidade fiscal?
+retenção de pagamentos perda da regularidade fiscal
+---------------------
+#104455
+O restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual amparado no art. 65, §§ 1º e 2º, da Lei 8.666/1993, em razão de restrições orçamentárias, desde que observadas as mesmas condições e preços iniciais pactuados, não configura a compensação vedada pela jurisprudência do TCU, consubstanciada nos <acordao_decisao_tcu colegiado="Plenário" numero="1536" ano="2016" >acórdãos 1.536/2016-Plenário</acordao_decisao_tcu> e 2.554/2017-Plenário, visto que o objeto licitado fica inalterado, sendo possível, portanto, além do restabelecimento, novos acréscimos sobre o valor original do contrato, observados os limites estabelecidos no art. 65, § 1º, da Lei 8.666/1993.
+Quais são as condições para que o restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual não configure compensação vedada pela jurisprudência do TCU?
+vedado restabelecimento item suprimido
+---------------------
+#33081
+São irregulares os quesitos de pontuação técnica para cujo atendimento as empresas licitantes tenham de incorrer em despesas que sejam desnecessárias e anteriores à celebração do contrato ou frustrem o caráter competitivo do certame, a exemplo da pontuação para licitantes que possuírem, já na abertura da licitação, determinado quadro de pessoal com técnicos certificados e qualificados; a existência de plataforma de treinamento à distância para os funcionários da licitante; ambiente próprio de help desk para suporte remoto aos profissionais do contrato.
+Por que despesas desnecessárias e anteriores à celebração do contrato são consideradas irregulares?
+irregulares despesas desnecessárias e anteriores à celebração do contrato
+---------------------
+#22841
+A exigência de quadro de pessoal técnico pré-existente e ligado à licitante por vínculo trabalhista ou societário privilegia empresas de grande porte e levam as licitantes a efetuar despesas com a contratação de pessoal simplesmente com a finalidade de participar do certame licitatório.
+Como o vínculo trabalhista ou societário pré-existente afeta a competitividade das licitantes no certame licitatório?
+vínculo trabalhista ou societário pré-existente competitividade das licitantes
+---------------------
+#85586
+A mera existência de erro material ou de omissão na planilha de custos e de formação de preços da licitante não enseja, necessariamente, a desclassificação antecipada da sua proposta, devendo a Administração promover diligência junto ao interessado para a correção das falhas, sem permitir, contudo, a alteração do valor global originalmente proposto.
+Um erro material deve levar à desclassificação antecipada da proposta?
+erro material desclassificação da proposta
+---------------------
+#122028
+A vedação à inclusão de novo documento, prevista no art. 43, § 3º, da Lei 8.666/1993 e no art. 64 da Lei 14.133/2021 (nova Lei de Licitações e Contratos Administrativos) , não alcança documento destinado a atestar condição de habilitação preexistente à abertura da sessão pública, apresentado em sede de diligência.
+Há vedação à inclusão de novo documento destinado a atestar condição de habilitação preexistente em sede de diligência?
+vedação à inclusão documento habilitação diligência
+---------------------
+#21864
+É obrigatória, nos processos de licitação, dispensa ou inexigibilidade, a consulta dos preços correntes no mercado, dos fixados por órgão oficial competente ou, ainda, dos constantes em sistema de registro de preços. A ausência de pesquisa de preços configura descumprimento de exigência legal.
+A pesquisa de preços correntes no mercado é obrigatória em licitações?
+pesquisa de preços obrigatória em licitações
+---------------------
+#22780
+SÚMULA TCU 263: Para a comprovação da capacidade técnico-operacional das licitantes, e desde que limitada, simultaneamente, às parcelas de maior relevância e valor significativo do objeto a ser contratado, é legal a exigência de comprovação da execução de quantitativos mínimos em obras ou serviços com características semelhantes, devendo essa exigência guardar proporção com a dimensão e a complexidade do objeto a ser executado.
+A exigência de comprovação de quantitativos mínimos em obras ou serviços com características semelhantes é legal?
+exigência comprovação de quantitativos mínimos características semelhantes
+---------------------
+#98454
+Os efeitos da sanção de impedimento de licitar e contratar prevista no art. 7º da Lei 10.520/2002 se estendem a toda a esfera de governo do órgão ou da entidade que aplicou a penalidade, incluindo as empresas estatais.
+Qual a extensão da sanção de impedimento de licitar e contratar?
+extensão sanção de impedimento de licitar e contratar
+---------------------
+#79794
+Para fins de habilitação técnico-operacional em certames visando à contratação de obras e serviços de engenharia, devem ser exigidos atestados emitidos em nome da licitante, podendo ser solicitadas as certidões de acervo técnico (CAT) ou anotações/registros de responsabilidade técnica (ART/RRT) emitidas pelo conselho de fiscalização profissional competente em nome dos profissionais vinculados aos referidos atestados, como forma de conferir autenticidade e veracidade às informações constantes nos documentos emitidos em nome das licitantes.
+Quais documentos são exigidos para habilitação técnico-operacional em certames de obras e serviços de engenharia?
+habilitação técnico-operacional obras e serviços de engenharia
+---------------------
+#110879
+Cabe ao órgão gerenciador da ata de registro de preços o controle das autorizações de adesão, a fim de que os quantitativos de cada item registrado contratados pelos caronas não superem os limites previstos no art. 22, §§ 3º, 4º e 4º-A, do Decreto 7.892/2013.
+Qual a finalidade do controle das autorizações de adesão?
+controle adesão
 ---------------------
 #45379
 Para fins de habilitação jurídica, é vedada a exigência de apresentação de alvará de funcionamento sem a demonstração de que o documento constitui exigência do Poder Público para o funcionamento da licitante, o que deve ser evidenciado mediante indicação expressa da norma de regência no edital da licitação.
-1. Qual é o objetivo da proibição de exigir alvará de funcionamento sem demonstração de exigência do Poder Público?
-2. Como deve ser evidenciada a exigência do alvará de funcionamento por parte do Poder Público?
-3. O que deve constar no edital da licitação para comprovar a necessidade do alvará de funcionamento?
-4. Em que situações a apresentação do alvará de funcionamento é permitida na habilitação jurídica?
-5. Qual a importância da indicação expressa da norma de regência no edital da licitação?
+Em que situações a apresentação do alvará de funcionamento é permitida na habilitação jurídica?
+alvará de funcionamento habilitação jurídica
 ---------------------
 #20797
 O cargo de secretário municipal, por ter natureza política, não pode ser considerado cargo técnico ou científico, pois não exige o domínio de conhecimentos especializados. Contudo, é regular sua acumulação com o cargo de professor, se neste o servidor estiver em licença para tratar de interesse particular, não se aplicando a Súmula 246 do TCU.
-1. Qual é a natureza do cargo de secretário municipal?
-2. O cargo de secretário municipal pode ser considerado técnico ou científico?
-3. É permitida a acumulação do cargo de secretário municipal com o cargo de professor?
-4. Em que condição o servidor pode acumular os cargos de secretário municipal e professor?
-5. A Súmula 246 do TCU se aplica à acumulação desses cargos?
+É permitida a acumulação do cargo de secretário municipal com o cargo de professor?
+acumulação de cargo secretário municipal professor
 ---------------------
 #135564
 Em processo de prestação ou tomada de contas ordinária ou extraordinária, a inexistência de débito e a simultânea prescrição da pretensão punitiva do TCU não impedem o julgamento pela irregularidade das contas.
-1. Qual é a diferença entre prestação e tomada de contas ordinária e extraordinária?
-2. A prescrição da pretensão punitiva do TCU afeta o julgamento das contas?
-3. O que caracteriza a irregularidade das contas no contexto deste enunciado?
-4. Quais são as possíveis consequências do julgamento pela irregularidade das contas?
-5. Em que situações a inexistência de débito pode ser considerada no julgamento das contas?
+A prescrição da pretensão punitiva do TCU afeta o julgamento das contas?
+prescrição da pretensão punitiva julgamento das contas
 ---------------------
 #86727
 É válida a utilização do Banco de Preços em Saúde do Ministério da Saúde (BPS) como referência de preços para aquisição de medicamentos e, consequentemente, para fins de quantificação de superfaturamento e sobrepreço, desde que balizada por critérios adequados, que aproximem a pesquisa à contratação analisada.
-1. O Banco de Preços em Saúde (BPS) é uma referência válida para a aquisição de medicamentos?
-2. Quais critérios adequados devem ser considerados ao utilizar o BPS como referência de preços?
-3. Como o BPS pode ajudar na identificação de superfaturamento e sobrepreço?
-4. De que forma a pesquisa no BPS deve ser balizada para se aproximar da contratação analisada?
-5. Quais são as vantagens de utilizar o BPS como referência de preços na aquisição de medicamentos?
+O Banco de Preços em Saúde é uma referência de preços válida para a aquisição de medicamentos?
+Banco de Preços em Saúde referência medicamentos
 ---------------------
 #147727
 A mera comparação dos valores constantes em ata de registro de preços com os obtidos junto a empresas consultadas na fase interna de licitação não é suficiente para configurar a vantajosidade da adesão à ata, haja vista que os preços informados nas consultas, por vezes superestimados, não serão, em regra, os efetivamente contratados. Deve o órgão não participante ("carona") , com o intuito de aferir a adequação dos preços praticados na ata, se socorrer de outras fontes, a exemplo de licitações e contratos similares realizados no âmbito da Administração Pública.
-1. Quais fatores podem levar à superestimação dos preços informados nas consultas durante a fase interna de licitação?
-2. Por que a comparação dos valores constantes em ata de registro de preços não é suficiente para determinar a vantajosidade da adesão à ata?
-3. Como o órgão não participante ("carona") pode aferir a adequação dos preços praticados na ata de registro de preços?
-4. Quais outras fontes podem ser utilizadas para verificar a vantajosidade da adesão à ata de registro de preços?
-5. Qual a importância de analisar licitações e contratos similares realizados no âmbito da Administração Pública ao avaliar a adesão à ata de registro de preços?
+Quais fontes podem ser utilizadas para verificar a vantajosidade da adesão à ata de registro de preços?
+vantajosidade adesão à ata de registro de preços
 ---------------------
 #72668
 É irregular alteração contratual para incluir, no instrumento pactuado, serviços já previstos no edital como obrigação da futura contratada, mas que foram omitidos na planilha orçamentária da obra. Só se admite alteração, quantitativa ou qualitativa, decorrente de fato superveniente à celebração do contrato, e desde que haja interesse público no aditamento.
-1. A inclusão de serviços já previstos no edital em uma alteração contratual é considerada irregular?
-2. Quais são as condições para admitir uma alteração quantitativa ou qualitativa no contrato?
-3. O que é considerado um fato superveniente à celebração do contrato?
-4. Qual a importância do interesse público na realização de um aditamento contratual?
-5. O que pode acontecer se uma alteração contratual for feita sem cumprir os requisitos mencionados no enunciado?
+É possível a inclusão de serviços já previstos no edital em uma alteração contratual
+alteração contratual serviços já previstos no edital 
 ---------------------
