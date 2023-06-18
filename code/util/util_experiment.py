@@ -9,9 +9,7 @@ import pandas as pd
 from tqdm import tqdm
 import math
 import numpy as np
-import tempfile
-import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
+
 
 import logging
 logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
@@ -408,19 +406,3 @@ dict_idcg_relevance_fixed = generate_dict_idcg(15)
 # print('dict_idcg_relevance_fixed', dict_idcg_relevance_fixed)
 
 
-
-def imprime_pipe(parm_pipe):
-    # Criar um arquivo temporário para salvar a imagem
-    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as temp_file:
-        # Salvar o pipe no arquivo temporário
-        parm_pipe.draw(temp_file.name)
-
-        # Exibir a imagem no Jupyter Notebook
-        img = mpimg.imread(temp_file.name)
-        plt.imshow(img)
-        plt.axis('off')
-        plt.show()
-# more commands
-# from pathlib import Path
-# pipe_join_ranker_monot5_3b.save_to_yaml(Path("pipe_join_ranker_monot5_3b.yahml"), return_defaults = True)
-# pipe_join_ranker_monot5_3b.get_config(return_defaults=True)

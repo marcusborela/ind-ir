@@ -3,6 +3,9 @@
 rotinas de cálculo de métrica
 """
 import os
+import tempfile
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 from haystack.nodes import EmbeddingRetriever, BM25Retriever, \
                             MonoT5RankerLimit, SentenceTransformersRankerLimit
 from haystack.nodes import MultihopEmbeddingRetriever, JoinDocuments
@@ -237,6 +240,26 @@ def detail_document_found(parm_doc_returned):
         for docto in parm_doc_returned:
             print(docto.id, docto.score, docto.meta['name'])
 
+
+
+def print_pipe_image(parm_pipe):
+    # Criar um arquivo temporário para salvar a imagem
+    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as temp_file:
+        # Salvar o pipe no arquivo temporário
+        parm_pipe.draw(temp_file.name)
+
+        # Exibir a imagem no Jupyter Notebook
+        img = mpimg.imread(temp_file.name)
+        plt.imshow(img)
+        plt.axis('off')
+        plt.show()
+
+
+
+# more commands
+# from pathlib import Path
+# ? pip.get_config(return_defaults=parm_return_defaults)
+# pipe_join_ranker_monot5_3b.save_to_yaml(Path("pipe_join_ranker_monot5_3b.yahml"), return_defaults = True)
 
 nome_modelo_monot5_3b = 'unicamp-dl/mt5-3B-mmarco-en-pt'
 # "A mono-ptT5 reranker model (850 mb) pretrained in the BrWac corpus, finetuned for 100k steps on Portuguese translated version of MS MARCO passage dataset. The portuguese dataset was translated using Google Translate.")
