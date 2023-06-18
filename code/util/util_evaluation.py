@@ -44,8 +44,11 @@ def return_consolidate_result(parm_dataset):
     # calculate redundant fields
     df_result['COUNT_DOCTO_RELEVANT_FOUND'] = df_result['LIST_RANK'].apply(len)
     df_result['PERCENT_DOCTO_RELEVANT_FOUND'] = round(100 * df_result['COUNT_DOCTO_RELEVANT_FOUND']  / df_result['COUNT_DOCTO_RELEVANT'], 2)
-    df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if 'mt5' in x else 'minilm')
-
+    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if 'mt5' in x else 'minilm')
+    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if 'mt5' in x else 'minilm' if 'minilm' in x else 'none' if x is None else 'unknown')
+    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if isinstance(x, str) and 'mt5' in x else 'minilm' if isinstance(x, str) and 'minilm' in x else 'none' if x is None else 'none')
+    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if isinstance(x, str) and 'mt5' in x else 'minilm' if isinstance(x, str) and 'minilm' in x else 'none' if pd.isnull(x) else 'none' if x=="" else 'unknown')
+    df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
     return df_result
 
 def consolidate_result(parm_dataset):
