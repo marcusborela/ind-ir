@@ -124,3 +124,17 @@ TIME,RETRIEVER_TYPE,COUNT_QUERY_RUN,TOPK_RETRIEVER,TOPK_RANKER,RANK1_MEAN,NDCG_M
 2023-Jun-18 12:08:49,join_sts_multihop_bm25,100,300,0.0,4.13,20.461,12,0.062,total_gte_5,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
 2023-Jun-18 12:08:53,join_sts_bm25,100,300,0.0,3.47,21.538,12,0.032,total_gte_5,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
 2023-Jun-18 12:16:51,join_sts_bm25,100,300,0.0,3.75,62.094,12,0.721,area,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 12:42:10,join_sts_bm25,100,300,0.0,21.031,52.294,12,15.185,theme,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 13:10:11,join_sts_bm25,100,300,0.0,19.38,35.174,12,16.809,subtheme,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 13:39:54,join_sts_bm25,100,300,0.0,16.193,25.648,12,17.829,extra,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 14:10:22,join_sts_bm25,100,300,0.0,4.838,36.702,12,18.276,total,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 14:11:42,join_sts_bm25,100,300,0.0,3.63,21.767,12,0.792,total_gte_5,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 15:08:50,join_sts_multihop_bm25,100,300,0.0,3.75,62.094,12,0.748,area,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 15:34:36,join_sts_multihop_bm25,100,300,0.0,20.379,54.29,12,15.452,theme,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 16:03:20,join_sts_multihop_bm25,100,300,0.0,15.727,35.042,12,17.236,subtheme,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 16:22:30,join_sts_multihop_bm25,100,300,0.0,17.529,12.793,12,11.495,extra,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 16:40:17,join_sts_multihop_bm25,100,300,0.0,4.48,37.018,12,10.667,total,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 16:41:34,join_sts_multihop_bm25,100,300,0.0,3.63,21.767,12,0.771,total_gte_5,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 19:11:32,join_sts_bm25,100,600,0.0,3.62,61.063,12,0.043,area,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
+2023-Jun-18 19:12:48,join_sts_bm25,100,600,0.0,3.75,62.094,12,0.751,area,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-18 19:13:25,join_sts_bm25,100,600,0.0,55.6,17.263,12,0.36,theme,rufimelo/Legal-BERTimbau-sts-large-ma-v3,

@@ -67,7 +67,7 @@ def return_index(parm_index_name:str,  parm_embedding_dim:int=1024):
     )
     print(f"\nQtd de documentos {doc_store.get_document_count()}")
     print(f"\nQtd de embeddings {doc_store.get_embedding_count()}")
-    print(f"\nDocumento.id=1: {doc_store.get_document_by_id('1')}")
+    print(f"\nDocumento.id=5: {doc_store.get_document_by_id('5')}")
     return doc_store
 
 

@@ -14,6 +14,10 @@ import numpy as np
 import logging
 logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
 
+
+# interesting links
+#     https://docs.haystack.deepset.ai/docs/metadata-filtering#filtering-logic
+
 GREATEST_INTEGER = sys.maxsize
 
 def generate_dict_idcg(count_qrel_max: int = 15):
@@ -48,7 +52,6 @@ def generate_dict_idcg(count_qrel_max: int = 15):
         dict_idcg_relevance_fixed[i] = idcg
 
     return dict_idcg_relevance_fixed
-
 
 def calculate_ndcg_query_result (list_id_doc_returned, dict_doc_relevant:dict, position:int)->list:
     """
@@ -122,20 +125,19 @@ def search_docto_for_experiment(parm_experiment, query_data):
     # print(f"search_parameter: {search_parameter} ")
     search_text =  query_data['TEXT'][:limit_size_text_first_stage]
     docto_found = parm_experiment['PIPE']['PIPE_OBJECT'].run(query=search_text, params=search_parameter)
-    if 'documents' in docto_found: # search with ranker
+    if 'documents' in docto_found: # search with pipe
         if len(docto_found['documents']) > 0:
-            if isinstance(docto_found['documents'][0], dict):
-                list_id_doc_returned = [int(docto['id']) for docto in docto_found['documents']]
-            else:
-                list_id_doc_returned = [int(docto.id) for docto in docto_found['documents']]
+            #if isinstance(docto_found['documents'][0], dict):
+            #    list_id_doc_returned = [int(docto['id']) for docto in docto_found['documents']]
+            #else:
+            list_id_doc_returned = [docto.meta['id'] for docto in docto_found['documents']]
             return list_id_doc_returned #, search_parameter
-    elif len(docto_found) > 0: # search without ranker
-        if isinstance(docto_found[0], dict):
-            list_id_doc_returned = [int(docto['id']) for docto in docto_found]
-        else:
-            list_id_doc_returned = [int(docto.id) for docto in docto_found]
+    elif len(docto_found) > 0: # search with retriever
+        #if isinstance(docto_found[0], dict):
+        #    list_id_doc_returned = [int(docto['id']) for docto in docto_found]
+        #else:
+        list_id_doc_returned = [docto.meta['id'] for docto in docto_found]
         return list_id_doc_returned # , search_parameter
-
     else:
         return None
 
@@ -238,7 +240,6 @@ def experiment_run(parm_df,  parm_experiment,
             print(f"{key:>8}: {result_search_run[key]}")
 
     return result_search_run
-
 
 def del_experiment_value_column(column_name, column_value, parm_dataset):
     # Load the dataframes
