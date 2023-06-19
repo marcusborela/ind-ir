@@ -37,7 +37,7 @@ for line in open('data/llm_juris_tcu/query_llm_selecionada.txt', encoding='Utf-8
         assert(False)
 print('questions:', len(questions), 'expressions:', len(expressions), 'statements:', total_statements)
 with open('data/juris_tcu/query2.csv', 'w') as f_out2:
-    f_out2.write('id;text\n')    
+    f_out2.write('QUERY_ID;QUERY_TEXT\n')    
     for i, expression in enumerate(expressions[:50]):
         f_out2.write(str(51 + i) + ';' + expression + '\n')
 with open('data/juris_tcu/query3.csv', 'w') as f_out3:
