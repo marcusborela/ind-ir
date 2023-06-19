@@ -117,18 +117,17 @@ preços referenciais sistemas oficiais estimativa de custos
 ---------------------
 #21159
 A adoção, em licitação do tipo técnica e preço, de peso excessivamente elevado para a pontuação técnica em relação à de preço, sem justificativa plausível, e de critérios subjetivos de julgamento das propostas contraria o disposto nos arts. 3º, 40, inciso VII, 44, § 1º, e 45, da Lei 8.666/1993.
-É necessária ponderação entre a pontuação técnica e a de preço em uma licitação do tipo técnica e preço?
-ponderação técnica e preço
----------------------
 #21229
 O estabelecimento de critério de pontuação técnica, em licitação do tipo técnica e preço, que valoriza excessivamente determinado quesito, em detrimento do preço, restringe o caráter competitivo do certame e compromete a obtenção da proposta mais vantajosa para a Administração.
-Qual é o impacto de valorizar excessivamente um quesito na licitação do tipo técnica e preço?
----------------------
+É necessária ponderação entre a pontuação técnica e a de preço em uma licitação do tipo técnica e preço?
+ponderação técnica e preço
+---------------------Qual é o impacto de valorizar excessivamente um quesito na licitação do tipo técnica e preço?
+-------------------==
 #133563
 Em licitações do tipo técnica e preço, o edital deve definir critérios objetivos para a gradação das notas a serem dadas a cada quesito da avaliação técnica, assim como distribuir a pontuação técnica de modo proporcional à relevância de cada quesito para a execução do objeto contratual, de forma a permitir o julgamento objetivo das propostas e evitar o estabelecimento de pontuação desarrazoada, limitadora da competitividade.
 Como a pontuação desarrazoada pode limitar a competitividade nas licitações do tipo técnica e preço?
 pontuação desarrazoada licitações técnica e preço
-------------------===
+---------------------
 #693
 Em regra a prorrogação do contrato administrativo deve ser efetuada antes do término do prazo de vigência, mediante termo aditivo, para que não se opere a extinção do ajuste. Entretanto, excepcionalmente e para evitar prejuízo ao interesse público, nos contratos de escopo, diante da inércia do agente em formalizar tempestivamente o devido aditamento, é possível considerar os períodos de paralisação das obras por iniciativa da Administração contratante como períodos de suspensão da contagem do prazo de vigência do ajuste.
 É possível prorrogar um contrato administrativo fora do término do prazo de vigência?
