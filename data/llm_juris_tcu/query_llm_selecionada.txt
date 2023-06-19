@@ -91,12 +91,12 @@ As reduções ou supressões de quantitativos decorrentes de alteração contrat
 É permitida a compensação entre acréscimos e supressões nos contratos administrativos?
 compensação entre acréscimos e supressões contratos administrativos
 ---------------------
+-------------------==
 #104455
 O restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual amparado no art. 65, §§ 1º e 2º, da Lei 8.666/1993, em razão de restrições orçamentárias, desde que observadas as mesmas condições e preços iniciais pactuados, não configura a compensação vedada pela jurisprudência do TCU, consubstanciada nos <acordao_decisao_tcu colegiado="Plenário" numero="1536" ano="2016" >acórdãos 1.536/2016-Plenário</acordao_decisao_tcu> e 2.554/2017-Plenário, visto que o objeto licitado fica inalterado, sendo possível, portanto, além do restabelecimento, novos acréscimos sobre o valor original do contrato, observados os limites estabelecidos no art. 65, § 1º, da Lei 8.666/1993.
 Quais são as condições para que o restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual não configure compensação vedada pela jurisprudência do TCU?
 vedado restabelecimento item suprimido
 ---------------------
-------------------===
 #34132
 Em licitações para aquisição de tonalizadores e cartuchos de tinta para impressoras ou outros produtos análogos, a Administração deve evitar a indicação de preferência por marcas, ante a falta de amparo legal, salvo na hipótese em que fique demonstrado tecnicamente que só determinada marca atenderá à necessidade da Administração, situação devidamente justificada e demonstrada no processo.
 #13633
