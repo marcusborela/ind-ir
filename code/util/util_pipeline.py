@@ -23,7 +23,7 @@ def return_ranker_minilm(parm_limit_query_size:int=350):
     if parm_limit_query_size != 350:
         raise Exception (f"Invalid parm_limit_query_size {parm_limit_query_size}. Precisa mudar singleton!")
     if ranker_minilm is None:
-        ranker_minilm = SentenceTransformersRankerLimit(model_name_or_path=parm_path_model_ranker, limit_query_size=parm_limit_query_size)
+        ranker_minilm = SentenceTransformersRankerLimit(model_name_or_path=nome_caminho_modelo_minilm, limit_query_size=parm_limit_query_size)
     return ranker_minilm
 
 def return_ranker_monot5_3b(parm_limit_query_size:int=350):
@@ -36,7 +36,22 @@ def return_ranker_monot5_3b(parm_limit_query_size:int=350):
                                              limit_query_size=parm_limit_query_size)
     return ranker_monot5_3b
 
-def return_pipeline_bm25(parm_index):
+def return_multihop_embedding_retriever(parm_index:ElasticsearchDocumentStore):
+    index_name = parm_index.index
+    if index_name not in dict_multihop_embedding_retriever:
+        raise Exception (f"Invalid parm_index {parm_index} em return_multihop_embedding_retriever. Precisa mudar singleton!")
+    else:
+        if dict_multihop_embedding_retriever[index_name] is None:
+            dict_multihop_embedding_retriever[index_name] = MultihopEmbeddingRetriever(
+                    document_store=parm_index,
+                    embedding_model=nome_caminho_modelo_sts,
+                    model_format="sentence_transformers",
+                    pooling_strategy = 'cls_token',
+                    progress_bar = False
+                )
+    return dict_multihop_embedding_retriever[index_name]
+
+def return_pipeline_bm25(parm_index:ElasticsearchDocumentStore):
     retriever_bm25 = BM25Retriever(document_store=parm_index,all_terms_must_match=False)
     return DocumentSearchPipeline(retriever_bm25)
 
@@ -51,13 +66,7 @@ def return_pipeline_sts(parm_index:ElasticsearchDocumentStore, parm_path_model:s
     return DocumentSearchPipeline(retriever_sts)
 
 def return_pipeline_sts_multihop(parm_index:ElasticsearchDocumentStore):
-    retriever_sts_multihop = MultihopEmbeddingRetriever(
-        document_store=parm_index,
-        embedding_model=nome_caminho_modelo_sts,
-        model_format="sentence_transformers",
-        pooling_strategy = 'cls_token',
-        progress_bar = False
-    )
+    retriever_sts_multihop = return_multihop_embedding_retriever(parm_index)
     return DocumentSearchPipeline(retriever_sts_multihop)
 
 def return_pipeline_join(parm_index:ElasticsearchDocumentStore,
@@ -118,12 +127,7 @@ def return_pipeline_sts_multihop_reranker(parm_index:ElasticsearchDocumentStore,
                                           parm_ranker_type:str,
                                           parm_limit_query_size:int=350):
     pipe_sts_multihop_ranker = Pipeline()
-    pipe_sts_multihop_ranker.add_node(component= MultihopEmbeddingRetriever(
-                                                            document_store=parm_index,
-                                                            embedding_model=nome_caminho_modelo_sts,
-                                                            model_format="sentence_transformers",
-                                                            pooling_strategy = 'cls_token',
-                                                            progress_bar = False),
+    pipe_sts_multihop_ranker.add_node(component= return_multihop_embedding_retriever(parm_index),
                              name="Retriever", inputs=["Query"])
     if parm_ranker_type == 'MONOT5':
         pipe_sts_multihop_ranker.add_node(component= return_ranker_monot5_3b(parm_limit_query_size=parm_limit_query_size),
@@ -185,12 +189,7 @@ def return_pipeline_join_bm25_sts_multihop_reranker(parm_index:ElasticsearchDocu
     pipe_join_ranker.add_node(component= BM25Retriever(document_store=parm_index,
                                                        all_terms_must_match=False),
                               name="Bm25Retriever", inputs=["Query"])
-    pipe_join_ranker.add_node(component= MultihopEmbeddingRetriever(
-                                                            document_store=parm_index,
-                                                            embedding_model=nome_caminho_modelo_sts,
-                                                            model_format="sentence_transformers",
-                                                            pooling_strategy = 'cls_token',
-                                                            progress_bar = False),
+    pipe_join_ranker.add_node(component= return_multihop_embedding_retriever(parm_index),
                              name="StsRetriever", inputs=["Query"])
     pipe_join_ranker.add_node(component=JoinDocuments(join_mode="concatenate"),
                               name="JoinResults",
@@ -208,12 +207,7 @@ def return_pipeline_join_bm25_sts_multihop(parm_index:ElasticsearchDocumentStore
     pipe_join.add_node(component= BM25Retriever(document_store=parm_index,
                                                        all_terms_must_match=False),
                               name="Bm25Retriever", inputs=["Query"])
-    pipe_join.add_node(component= MultihopEmbeddingRetriever(
-                                                            document_store=parm_index,
-                                                            embedding_model=nome_caminho_modelo_sts,
-                                                            model_format="sentence_transformers",
-                                                            pooling_strategy = 'cls_token',
-                                                            progress_bar = False),
+    pipe_join.add_node(component= return_multihop_embedding_retriever(parm_index),
                              name="StsRetriever", inputs=["Query"])
     pipe_join.add_node(component=JoinDocuments(join_mode="concatenate"),
                               name="JoinResults",
@@ -222,23 +216,29 @@ def return_pipeline_join_bm25_sts_multihop(parm_index:ElasticsearchDocumentStore
     return pipe_join
 
 
-def detail_document_found(parm_doc_returned):
+def detail_document_found(parm_doc_returned, parm_num_doc:int=10):
     if 'params' in parm_doc_returned:
         print(f"Parâmetros usados: {parm_doc_returned['params']}")
         print(f"Consulta: {parm_doc_returned['query']}")
         print(f"Qtd documentos retornados: {len(parm_doc_returned['documents'])}")
-        print(f'Primeiro docto:\n{parm_doc_returned["documents"][0]}\n\nÚltimo ({len(parm_doc_returned["documents"])}):\n{parm_doc_returned["documents"][-1]}')
+        if len(parm_doc_returned['documents']) > 0:
+            print(f'Primeiro docto:\n{parm_doc_returned["documents"][0]}\n\nÚltimo ({len(parm_doc_returned["documents"])}):\n{parm_doc_returned["documents"][-1]}')
 
-        print(f'Seguem os nomes dos termos recuperados em ordem de score')
-        if 'name' in parm_doc_returned['documents'][0].meta: # juris_tcu_index
-            doctos_dict = {ndx:[docto.meta['name'],docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
-        else: # juris_tcu_index
-            doctos_dict = {ndx:[docto.id,docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
-        for key, value in doctos_dict.items():
-            print(key, ":", value)
+            print(f'Seguem os nomes dos termos recuperados em ordem de score')
+            if 'name' in parm_doc_returned['documents'][0].meta: # juris_tcu_index
+                doctos_dict = {ndx:[docto.meta['name'],docto.id, docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
+            else: # juris_tcu_index
+                doctos_dict = {ndx:[docto.id,docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
+            for count, (key, value) in enumerate(doctos_dict.items()):
+                if count > parm_num_doc:
+                    break
+                print(key, ":", value)
     else: # retorno de reranking traz lista com documentos
-        for docto in parm_doc_returned:
-            print(docto.id, docto.score, docto.meta['name'])
+        if len(parm_doc_returned) > 0:
+            for count, docto in enumerate(parm_doc_returned):
+                if count > parm_num_doc:
+                    break
+                print(docto.id, docto.score, docto.meta['name'])
 
 
 
@@ -276,3 +276,4 @@ assert os.path.exists(nome_caminho_modelo_sts), f"Path para {nome_caminho_modelo
 
 ranker_monot5_3b = None
 ranker_minilm = None
+dict_multihop_embedding_retriever = {'indir_juris_tcu': None, 'indir_juris_tcu_index':None}

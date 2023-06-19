@@ -1,0 +1,34 @@
+
+Borela:
+
+TODO
+   comparar últimos experimentos join topk_retriever=600
+   gerar dataset usando pipe definido
+
+
+DOING
+   experimentos com amostra
+   retriever: join (bm25:300 e sts:300)
+   ranker: com e sem
+   todos os critérios
+
+DONE
+    (experimentos com amostra)
+    sem ranker
+      join bm25 sts
+      join bm25 sts_multihop
+
+    com ranker
+      join bm25 sts
+
+      join bm25 sts_multihop
+
+
+atualizar embeddings índice juris_tcu_index (com meta.id)
+criar para índice juris_tcu meta.id
+alterar util_experiment para usar meta['id'] ao invés de int('id')
+
+
+definido pipe:
+  retriever: pipe join (bm25:300 e sts:300)
+  ranker: monot5_3b

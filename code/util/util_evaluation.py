@@ -35,7 +35,8 @@ def invert_dict_with_lists(d):
 def return_consolidate_result(parm_dataset):
     path_search_result_consolidated = f'../data/search/{parm_dataset}/search_result_consolidated_{parm_dataset}.csv'
     df_result = pd.read_csv(path_search_result_consolidated)
-    df_result['LIST_DOCTO_FOUND'] = df_result['LIST_DOCTO_FOUND'].apply(ast.literal_eval)
+    # df_result['LIST_DOCTO_FOUND'] = df_result['LIST_DOCTO_FOUND'].apply(ast.literal_eval)
+    df_result['LIST_DOCTO_FOUND'] = df_result['LIST_DOCTO_FOUND'].apply(lambda x: ast.literal_eval(x) if not pd.isna(x) else [])
     df_result['LIST_RANK'] = df_result['LIST_RANK'].apply(lambda x: ast.literal_eval(x) if not pd.isna(x) else [])
     df_result['QUERY_RELEVANCE_DICT_ID_DOC'] = df_result['QUERY_RELEVANCE_DICT_ID_DOC'].apply(ast.literal_eval)
     df_result['QUERY_RELEVANCE_DICT_TYPE'] = df_result['QUERY_RELEVANCE_DICT_TYPE'].apply(ast.literal_eval)
@@ -44,10 +45,6 @@ def return_consolidate_result(parm_dataset):
     # calculate redundant fields
     df_result['COUNT_DOCTO_RELEVANT_FOUND'] = df_result['LIST_RANK'].apply(len)
     df_result['PERCENT_DOCTO_RELEVANT_FOUND'] = round(100 * df_result['COUNT_DOCTO_RELEVANT_FOUND']  / df_result['COUNT_DOCTO_RELEVANT'], 2)
-    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if 'mt5' in x else 'minilm')
-    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if 'mt5' in x else 'minilm' if 'minilm' in x else 'none' if x is None else 'unknown')
-    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if isinstance(x, str) and 'mt5' in x else 'minilm' if isinstance(x, str) and 'minilm' in x else 'none' if x is None else 'none')
-    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'monot5' if isinstance(x, str) and 'mt5' in x else 'minilm' if isinstance(x, str) and 'minilm' in x else 'none' if pd.isnull(x) else 'none' if x=="" else 'unknown')
     df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
     return df_result
 
