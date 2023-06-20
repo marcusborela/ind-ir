@@ -10,3 +10,4 @@ pylint-report.txt
 temp.properties
 coverage_html_report/
 docs/schedule/~$cronograma.xlsx
+*/internal/*
