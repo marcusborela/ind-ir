@@ -112,7 +112,7 @@ def consolidate_result(parm_dataset):
 
     # saving data
     columns_to_remove = [# about experiment data
-                        'TIME', 'COUNT_QUERY_RUN',
+                        # 'TIME', # 'COUNT_QUERY_RUN',
                          # about query/qrel data
                          'QUERY_TEXT', 'QUERY_TYPE', 'QUERY_REFERENCE_LIST', 'QUERY_AREA_ID_DESCRIPTOR', 'QUERY_NORMATIVE_PROCESS_TYPE', 'QUERY_NORMATIVE_IDENTIFICATION',
                          'QUERY_NORMATIVE_DATE', 'QUERY_NORMATIVE_AUTHOR_TYPE', 'QUERY_NORMATIVE_AUTHOR_NAME',

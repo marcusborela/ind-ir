@@ -183,36 +183,58 @@ def experiment_run(parm_df,  parm_experiment,
     result_search_all_query = []
     total_rank1 = 0 #
     total_ndcg = 0
-    cnt_rank1 = 0 # total de buscas em que se encantrou algum documento relevante na lista retornada
+    total_without_result = 0
+    total_found = 0 # total de buscas em que se encantrou algum documento relevante na lista retornada
+    total_not_found = 0
     time_start_search_run = time.time()
     for cnt, row_query in tqdm(df.iterrows(), mininterval=10, total=count_query_run):
         result_search_one_query = {}
         result_search_one_query['ID_QUERY'] = row_query['ID']
-        dict_ground_truth = calculate_ground_truth(parm_criteria=parm_experiment['CRITERIA'], parm_dict=row_query['RELEVANCE_DICT'])
-        if len(dict_ground_truth) == 0:
-            continue # pode não haver ground truth dependendo do critério, por exemplo, não haver indexação extra
         time_start_search_query = time.time()
         list_id_doc_returned = search_docto_for_experiment(parm_experiment=parm_experiment,  query_data=row_query)
         result_search_one_query['TIME_SPENT'] = round((time.time() - time_start_search_query),4)
-        result_search_one_query['NDCG'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, parm_ndcg_position),2)
-        result_search_one_query['COUNT_DOCTO_FOUND'] = len(list_id_doc_returned) if list_id_doc_returned is not None else 0
-        result_search_one_query['COUNT_DOCTO_RELEVANT'] = len(dict_ground_truth)
-        list_rank = calculate_list_rank_query_result(list_id_doc_returned, dict_ground_truth)
-        result_search_one_query['GROUND_TRUTH'] = str(dict_ground_truth)
-        if list_rank is None or len(list_rank) == 0:
-            result_search_one_query['RANK1'] = 0
-            result_search_one_query['LIST_RANK'] = ""
-        else:
-            result_search_one_query['RANK1'] = min(list_rank)
-            total_rank1 += result_search_one_query['RANK1']
-            result_search_one_query['LIST_RANK'] = str(list_rank)
-            cnt_rank1 += 1
-        # convertendo campos do tipo lista em string
-        result_search_one_query['LIST_DOCTO_FOUND'] = str(list_id_doc_returned) if list_id_doc_returned is not None else ""
         if list_id_doc_returned is None or len(list_id_doc_returned) == 0:
-            print(f"\nDocuments not found in experiment {parm_experiment}")
-            # print(f"With parameters: {search_parameter}")
-            print(f"With query: {row_query['TEXT']}")
+            print(f"\nDocuments not found in experiment {parm_experiment} With query: {row_query['ID']}")
+            result_search_one_query['RANK1'] = 0
+            result_search_one_query['NDCG'] = 0
+            result_search_one_query['COUNT_DOCTO_FOUND'] = 0
+            result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
+            result_search_one_query['LIST_RANK'] = ""
+            result_search_one_query['LIST_DOCTO_RETURNED'] = ""
+            total_without_result += 1
+        else:
+            result_search_one_query['LIST_DOCTO_RETURNED'] = str(list_id_doc_returned)
+            dict_ground_truth = calculate_ground_truth(parm_criteria=parm_experiment['CRITERIA'], parm_dict=row_query['RELEVANCE_DICT'])
+            if len(dict_ground_truth) == 0:
+                if parm_experiment['CRITERIA'] != 'extra':
+                    raise Exception (f"no value for calculate_ground_truth, but parm_experiment['CRITERIA'] {parm_experiment['CRITERIA']} != 'extra'")
+                # pode não haver ground truth dependendo do critério, por exemplo, não haver indexação extra
+                result_search_one_query['RANK1'] = 0
+                result_search_one_query['NDCG'] = 0
+                result_search_one_query['COUNT_DOCTO_FOUND'] = 0
+                result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
+                result_search_one_query['LIST_RANK'] = ""
+                total_not_found += 1
+            else:
+                list_rank = calculate_list_rank_query_result(list_id_doc_returned, dict_ground_truth)
+                if list_rank is None or len(list_rank) == 0:
+                    result_search_one_query['RANK1'] = 0
+                    result_search_one_query['NDCG'] = 0
+                    result_search_one_query['COUNT_DOCTO_FOUND'] = 0
+                    result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
+                    result_search_one_query['LIST_RANK'] = ""
+                    total_not_found += 1
+                else:
+                    result_search_one_query['NDCG'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, parm_ndcg_position),2)
+                    result_search_one_query['COUNT_DOCTO_FOUND'] = len(list_id_doc_returned) if list_id_doc_returned is not None else 0
+                    result_search_one_query['COUNT_DOCTO_RELEVANT'] = len(dict_ground_truth)
+                    result_search_one_query['GROUND_TRUTH'] = str(dict_ground_truth)
+                    result_search_one_query['RANK1'] = min(list_rank)
+                    result_search_one_query['LIST_RANK'] = str(list_rank)
+                    total_found += 1
+        # convertendo campos do tipo lista em string
+
+        total_rank1 += result_search_one_query['RANK1']
         total_ndcg += result_search_one_query['NDCG']
         result_search_all_query.append(result_search_one_query)
         if cnt >= count_query_run - 1:
@@ -226,7 +248,12 @@ def experiment_run(parm_df,  parm_experiment,
     result_search_run['TOPK_RETRIEVER'] = parm_experiment['TOPK_RETRIEVER']
     result_search_run['TOPK_RANKER'] = parm_experiment['TOPK_RANKER']
     result_search_run['COUNT_QUERY_RUN'] = count_query_run
-    result_search_run['RANK1_MEAN'] = round(total_rank1/cnt_rank1,3)
+    result_search_run['COUNT_QUERY_WITHOUT_RESULT'] = total_without_result
+    result_search_run['COUNT_QUERY_NOT_FOUND'] = total_not_found
+    if total_found > 0:
+        result_search_run['RANK1_MEAN'] = round(total_rank1/total_found,3)
+    else:
+        result_search_run['RANK1_MEAN'] = 0
     result_search_run['NDCG_MEAN'] = round(total_ndcg/count_query_run,3)
     result_search_run['NDCG_LIMIT'] = parm_ndcg_position
     result_search_run['TIME_SPENT_MEAN'] = round(total_time/count_query_run,3)
@@ -236,7 +263,7 @@ def experiment_run(parm_df,  parm_experiment,
     result_search_run['RESULT_QUERY'] = result_search_all_query
 
     if parm_print: # print results
-        for key in ['RANK1_MEAN','NDCG_MEAN','TIME_SPENT_MEAN']:
+        for key in ['RANK1_MEAN','NDCG_MEAN','TIME_SPENT_MEAN','COUNT_QUERY_RUN', 'COUNT_QUERY_WITHOUT_RESULT','COUNT_QUERY_NOT_FOUND']:
             print(f"{key:>8}: {result_search_run[key]}")
 
     return result_search_run
@@ -382,7 +409,7 @@ def add_experiment_result(parm_list_result, parm_dataset):
         ## se precisar ajustar a ordem
         # column_order = ["TIME","ID_QUERY","TIME_SPENT","NDCG",
         #            "RANK1","COUNT_DOCTO_FOUND",
-        #            "LIST_RANK","COUNT_DOCTO_RELEVANT","GROUND_TRUTH","LIST_DOCTO_FOUND"]
+        #            "LIST_RANK","COUNT_DOCTO_RELEVANT","GROUND_TRUTH","LIST_DOCTO_RETURNED"]
         df_experiment_result.to_csv(path_search_result, sep = ',', index=False)
 
 dict_criterio = {

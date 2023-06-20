@@ -55,10 +55,10 @@ def return_pipeline_bm25(parm_index:ElasticsearchDocumentStore):
     retriever_bm25 = BM25Retriever(document_store=parm_index,all_terms_must_match=False)
     return DocumentSearchPipeline(retriever_bm25)
 
-def return_pipeline_sts(parm_index:ElasticsearchDocumentStore, parm_path_model:str):
+def return_pipeline_sts(parm_index:ElasticsearchDocumentStore):
     retriever_sts = EmbeddingRetriever(
         document_store=parm_index,
-        embedding_model=parm_path_model,
+        embedding_model=nome_caminho_modelo_sts,
         model_format="sentence_transformers",
         pooling_strategy = 'cls_token',
         progress_bar = False
@@ -69,8 +69,7 @@ def return_pipeline_sts_multihop(parm_index:ElasticsearchDocumentStore):
     retriever_sts_multihop = return_multihop_embedding_retriever(parm_index)
     return DocumentSearchPipeline(retriever_sts_multihop)
 
-def return_pipeline_join(parm_index:ElasticsearchDocumentStore,
-                                  nome_caminho_modelo_sts:str):
+def return_pipeline_join(parm_index:ElasticsearchDocumentStore):
     # doc in https://docs.haystack.deepset.ai/reference/other-api#joinanswers__init__
     pipe_join = Pipeline()
     pipe_join.add_node(component= BM25Retriever(document_store=parm_index,
@@ -89,7 +88,7 @@ def return_pipeline_join(parm_index:ElasticsearchDocumentStore,
 
     return pipe_join
 
-def return_pipeline_bm25_reranker(parm_index:ElasticsearchDocumentStore, parm_ranker_type:str, parm_limit_query_size:int=350):
+def return_pipeline_bm25_reranker(parm_index:ElasticsearchDocumentStore, parm_ranker_type:str='MONOT5', parm_limit_query_size:int=350):
     pipe_bm25_ranker = Pipeline()
     pipe_bm25_ranker.add_node(component= BM25Retriever(document_store=parm_index,all_terms_must_match=False), name="Retriever", inputs=["Query"])
     if parm_ranker_type == 'MONOT5':
@@ -103,7 +102,7 @@ def return_pipeline_bm25_reranker(parm_index:ElasticsearchDocumentStore, parm_ra
     return pipe_bm25_ranker
 
 def return_pipeline_sts_reranker(parm_index:ElasticsearchDocumentStore,
-                                 parm_ranker_type:str,
+                                 parm_ranker_type:str='MONOT5',
                                  parm_limit_query_size:int=350):
     pipe_sts_ranker = Pipeline()
     pipe_sts_ranker.add_node(component= EmbeddingRetriever(
@@ -124,7 +123,7 @@ def return_pipeline_sts_reranker(parm_index:ElasticsearchDocumentStore,
     return pipe_sts_ranker
 
 def return_pipeline_sts_multihop_reranker(parm_index:ElasticsearchDocumentStore,
-                                          parm_ranker_type:str,
+                                          parm_ranker_type:str='MONOT5',
                                           parm_limit_query_size:int=350):
     pipe_sts_multihop_ranker = Pipeline()
     pipe_sts_multihop_ranker.add_node(component= return_multihop_embedding_retriever(parm_index),
@@ -140,7 +139,7 @@ def return_pipeline_sts_multihop_reranker(parm_index:ElasticsearchDocumentStore,
     return pipe_sts_multihop_ranker
 
 def return_pipeline_join_bm25_sts_reranker(parm_index:ElasticsearchDocumentStore,
-                                  parm_ranker_type:str,
+                                  parm_ranker_type:str='MONOT5',
                                   parm_limit_query_size:int=350):
     pipe_join_ranker = Pipeline()
     pipe_join_ranker.add_node(component= BM25Retriever(document_store=parm_index,
@@ -183,7 +182,7 @@ def return_pipeline_join_bm25_sts(parm_index:ElasticsearchDocumentStore):
     return pipe_join
 
 def return_pipeline_join_bm25_sts_multihop_reranker(parm_index:ElasticsearchDocumentStore,
-                                  parm_ranker_type:str,
+                                  parm_ranker_type:str='MONOT5',
                                   parm_limit_query_size:int=350):
     pipe_join_ranker = Pipeline()
     pipe_join_ranker.add_node(component= BM25Retriever(document_store=parm_index,
@@ -228,7 +227,7 @@ def detail_document_found(parm_doc_returned, parm_num_doc:int=10):
             if 'name' in parm_doc_returned['documents'][0].meta: # juris_tcu_index
                 doctos_dict = {ndx:[docto.meta['name'],docto.id, docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
             else: # juris_tcu_index
-                doctos_dict = {ndx:[docto.id,docto.score] for ndx, docto in enumerate(parm_doc_returned['documents'])}
+                doctos_dict = {ndx:[docto.score, docto.id, docto.content] for ndx, docto in enumerate(parm_doc_returned['documents'])}
             for count, (key, value) in enumerate(doctos_dict.items()):
                 if count > parm_num_doc:
                     break
