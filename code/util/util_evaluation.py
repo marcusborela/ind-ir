@@ -35,8 +35,7 @@ def invert_dict_with_lists(d):
 def return_consolidate_result(parm_dataset):
     path_search_result_consolidated = f'../data/search/{parm_dataset}/search_result_consolidated_{parm_dataset}.csv'
     df_result = pd.read_csv(path_search_result_consolidated)
-    # df_result['LIST_DOCTO_FOUND'] = df_result['LIST_DOCTO_FOUND'].apply(ast.literal_eval)
-    df_result['LIST_DOCTO_FOUND'] = df_result['LIST_DOCTO_FOUND'].apply(lambda x: ast.literal_eval(x) if not pd.isna(x) else [])
+    df_result['LIST_DOCTO_RETURNED'] = df_result['LIST_DOCTO_RETURNED'].apply(lambda x: ast.literal_eval(x) if not pd.isna(x) else [])
     df_result['LIST_RANK'] = df_result['LIST_RANK'].apply(lambda x: ast.literal_eval(x) if not pd.isna(x) else [])
     df_result['QUERY_RELEVANCE_DICT_ID_DOC'] = df_result['QUERY_RELEVANCE_DICT_ID_DOC'].apply(ast.literal_eval)
     df_result['QUERY_RELEVANCE_DICT_TYPE'] = df_result['QUERY_RELEVANCE_DICT_TYPE'].apply(ast.literal_eval)
