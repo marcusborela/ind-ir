@@ -6,8 +6,8 @@ Base de enunciados da [Jurisprudência Selecionada do Tribunal de Contas da Uni�
 Arquivos:
 * [doc.csv](juris_tcu/doc.csv) - cada documento contém um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/).
 * [query1.csv](juris_tcu/query1.csv) - 50 queries geradas a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/) (consultas mais executadas)
-* [query2.csv](juris_tcu/query1.csv) - 50 queries geradas a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/)
-* [query3.csv](juris_tcu/query1.csv) - 50 queries, cada qual gerada por LLM a partir de um enunciado, dentre os mais acessados no log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/)
+* [query2.csv](juris_tcu/query2.csv) - 50 queries geradas a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/)
+* [query3.csv](juris_tcu/query3.csv) - 50 queries, cada qual gerada por LLM a partir de um enunciado, dentre os mais acessados no log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/)
 * qrel.csv  ...![WIP](../docs/image/work-in-progress-thumbnail.png)
 
 ## [JURIS_TCU_INDEX](/data/juris_tcu_index/)
@@ -46,4 +46,5 @@ Arquivos:
 * Buscas efetuadas sobre queries do DataSet [JURIS_TCU](/data/juris_tcu/): [JURIS_TCU](/data/search/juris_tcu/).
 
 ## Outros links
-[Página principal do projeto](/README.md)
+* [Página principal do projeto](/README.md)
+* Esta página, [em inglês](./README.md)
