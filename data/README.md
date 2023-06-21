@@ -43,7 +43,7 @@ Files:
 
 ## Results of conducted search experiments
 * Indexing of the [Selected Jurisprudence](https://portal.tcu.gov.br/jurisprudencia/) by terms from the [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm): [JURIS_TCU_INDEX](/data/search/juris_tcu_index/).
-* Executed searches on queries from the [JURIS_TCU](/data/juris_tcu/) Dataset: [JURIS_TCU](/data/search/juris_tcu/).
+* Executed searches on queries from the [JURIS_TCU](/data/juris_tcu/) Dataset: [JURIS_TCU](/data/search/juris_tcu/), for the construction of evaluations (QREL): [JURIS_TCU](/data/search/juris_tcu/).
 
 ## Other links
 * [Project homepage](/README.md)
