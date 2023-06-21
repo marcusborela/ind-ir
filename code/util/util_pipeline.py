@@ -28,12 +28,16 @@ def return_ranker_minilm(parm_limit_query_size:int=350):
 
 def return_ranker_monot5_3b(parm_limit_query_size:int=350):
     # singleton
-    global ranker_monot5_3b
-    if parm_limit_query_size != 350:
+    global ranker_monot5_3b, ranker_limit_query_size_monot5
+    if parm_limit_query_size not in (50, 350):
         raise Exception (f"Invalid parm_limit_query_size {parm_limit_query_size}. Precisa mudar singleton!")
+    if ranker_limit_query_size_monot5 is not None:
+        if parm_limit_query_size != ranker_limit_query_size_monot5:
+            raise Exception (f"Not expected parm_limit_query_size {parm_limit_query_size} for ranker built in singleton {ranker_limit_query_size_monot5} !")
     if ranker_monot5_3b is None:
         ranker_monot5_3b = MonoT5RankerLimit(model_name_or_path=nome_caminho_modelo_monot5_3b,
                                              limit_query_size=parm_limit_query_size)
+        ranker_limit_query_size_monot5 = parm_limit_query_size
     return ranker_monot5_3b
 
 def return_multihop_embedding_retriever(parm_index:ElasticsearchDocumentStore):
@@ -274,5 +278,6 @@ nome_caminho_modelo_sts = "/home/borela/fontes/relevar-busca/modelo/" + nome_mod
 assert os.path.exists(nome_caminho_modelo_sts), f"Path para {nome_caminho_modelo_sts} não existe!"
 
 ranker_monot5_3b = None
+ranker_limit_query_size_monot5 = None
 ranker_minilm = None
 dict_multihop_embedding_retriever = {'indir_juris_tcu': None, 'indir_juris_tcu_index':None}
