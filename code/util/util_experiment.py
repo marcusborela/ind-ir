@@ -176,10 +176,20 @@ def experiment_run(parm_df,  parm_experiment,
     if set(list_pipe_keys_expected) != set(parm_experiment['PIPE'].keys()):
         raise Exception(f"Invalid keys in parm_experiment['PIPE'] {parm_experiment['PIPE'].keys()}. Expected: {list_pipe_keys_expected}")
 
-    count_query_run = min(parm_df.shape[0],parm_limit_query)
-    randomness_fraction = count_query_run/len(parm_df)
-    # print(f"randomness_fraction: {randomness_fraction}")
-    df = parm_df.sample(frac=randomness_fraction, random_state=123).reset_index(drop=True)
+    if parm_limit_query==100:
+        PATH_VALID_DATA = f"../data/train_juris_tcu_index/juris_tcu_index_validation_query_id.csv"
+        df_validation = pd.read_csv(PATH_VALID_DATA)
+        list_query_id_valid = df_validation['QUERY_ID'].to_list()
+        df = parm_df[parm_df['ID'].isin(list_query_id_valid)]
+        print(f"Experimento envolverá {df.shape[0]} registros, queries selecionadas para validação")
+    elif parm_limit_query<parm_df.shape[0]:
+        randomness_fraction = count_query_run/len(parm_df)
+        print(f"Experimento envolverá {df.shape[0]} registros com randomness_fraction: {randomness_fraction}")
+        df = parm_df.sample(frac=randomness_fraction, random_state=123).reset_index(drop=True)
+    else:
+        print(f"Experimento envolverá {df.shape[0]} registros, toda a base de dados")
+        df = parm_df
+    count_query_run = min(df.shape[0],parm_limit_query)
     result_search_all_query = []
     total_rank1 = 0 #
     total_ndcg = 0
@@ -187,7 +197,11 @@ def experiment_run(parm_df,  parm_experiment,
     total_found = 0 # total de buscas em que se encantrou algum documento relevante na lista retornada
     total_not_found = 0
     time_start_search_run = time.time()
-    for cnt, row_query in tqdm(df.iterrows(), mininterval=10, total=count_query_run):
+    count = 0
+    for ndx, row_query in tqdm(df.iterrows(), mininterval=10, total=count_query_run):
+        count += 1
+        if count > count_query_run:
+            raise Exception('Stoped before data end?')
         result_search_one_query = {}
         result_search_one_query['ID_QUERY'] = row_query['ID']
         time_start_search_query = time.time()
@@ -237,8 +251,7 @@ def experiment_run(parm_df,  parm_experiment,
         total_rank1 += result_search_one_query['RANK1']
         total_ndcg += result_search_one_query['NDCG']
         result_search_all_query.append(result_search_one_query)
-        if cnt >= count_query_run - 1:
-            break
+
 
     total_time = time.time() - time_start_search_run
     result_search_run = {}
@@ -268,9 +281,10 @@ def experiment_run(parm_df,  parm_experiment,
 
     return result_search_run
 
-def del_experiment_value_column(column_name, column_value, parm_dataset):
+def del_experiment_value_column(column_name, column_value, parm_dataset, parm_confirm=True):
     # Load the dataframes
 
+    print(f"Excluindo {column_name} = {column_value}")
     path_search_experiment =  f'../data/search/{parm_dataset}/search_experiment_{parm_dataset}.csv'
     path_search_result =  f'../data/search/{parm_dataset}/search_experiment_result_{parm_dataset}.csv'
 
@@ -296,11 +310,12 @@ def del_experiment_value_column(column_name, column_value, parm_dataset):
     print(f"Records to be deleted in df_experiment: {count_filtered_experiment}")
     print(f"Records to be deleted in df_experiment_result: {count_filtered_experiment_result}")
 
-    # Ask for user confirmation
-    confirmation = input("Do you really want to delete the records? (y/n): ")
-    if confirmation.lower() != 'y':
-        print("Operation canceled by the user.")
-        return
+    if parm_confirm:
+        # Ask for user confirmation
+        confirmation = input("Do you really want to delete the records? (y/n): ")
+        if confirmation.lower() != 'y':
+            print("Operation canceled by the user.")
+            return
 
     # Delete the records
     df_experiment = df_experiment[df_experiment[column_name] != column_value]

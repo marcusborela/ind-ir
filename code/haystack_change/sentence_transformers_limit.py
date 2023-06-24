@@ -5,7 +5,7 @@ from pathlib import Path
 import torch
 from torch.nn import DataParallel
 from tqdm.auto import tqdm
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
+from transformers import AutoModelForSequenceClassification, f
 
 from haystack.errors import HaystackError
 from haystack.schema import Document
@@ -181,14 +181,14 @@ class SentenceTransformersRankerLimit(BaseRanker):
         for pos, doc in enumerate(documents_limited_size):
             num_excesso = (lista_num_tokens_docto[pos] + num_tokens_query) - self.max_position_embeddings
             if num_excesso > 0:
-                doc_antes = doc.content
+                # doc_antes = doc.content
                 doc.content = self.return_text_limited_num_token_ultima_pontuacao(doc.content, self.max_position_embeddings-num_tokens_query)
                 # print(f"Doc {doc.id}  passed limit in {num_excesso} tokens")
                 # print(f"Before:  {doc_antes}")
                 # print(f"Now:  {doc.content}")
 
         features = self.transformer_tokenizer(
-            [query for doc in documents],
+            [query_limited for doc in documents],
             [doc.content for doc in documents_limited_size],
             padding=True,
             truncation=True,

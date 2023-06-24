@@ -6,8 +6,8 @@ import os
 import tempfile
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-from haystack.nodes import EmbeddingRetriever, BM25Retriever, \
-                            MonoT5RankerLimit, SentenceTransformersRankerLimit
+from haystack.nodes import EmbeddingRetriever, BM25Retriever
+from haystack.nodes import MonoT5RankerLimit, SentenceTransformersRankerLimit
 from haystack.nodes import MultihopEmbeddingRetriever, JoinDocuments
 from haystack import Pipeline
 from haystack.pipelines import DocumentSearchPipeline
@@ -19,11 +19,16 @@ logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
 
 def return_ranker_minilm(parm_limit_query_size:int=350):
     # singleton
-    global ranker_minilm
-    if parm_limit_query_size != 350:
+    global ranker_minilm, ranker_limit_query_size_minilm
+    if parm_limit_query_size not in (50, 350):
         raise Exception (f"Invalid parm_limit_query_size {parm_limit_query_size}. Precisa mudar singleton!")
+    if ranker_limit_query_size_minilm is not None:
+        if parm_limit_query_size != ranker_limit_query_size_minilm:
+            raise Exception (f"Not expected parm_limit_query_size {parm_limit_query_size} for ranker built in singleton {ranker_limit_query_size_minilm} !")
     if ranker_minilm is None:
+        print(f"Carregado minilm com parm_limit_query_size={parm_limit_query_size}")
         ranker_minilm = SentenceTransformersRankerLimit(model_name_or_path=nome_caminho_modelo_minilm, limit_query_size=parm_limit_query_size)
+        ranker_limit_query_size_minilm = parm_limit_query_size
     return ranker_minilm
 
 def return_ranker_monot5_3b(parm_limit_query_size:int=350):
@@ -37,6 +42,7 @@ def return_ranker_monot5_3b(parm_limit_query_size:int=350):
     if ranker_monot5_3b is None:
         ranker_monot5_3b = MonoT5RankerLimit(model_name_or_path=nome_caminho_modelo_monot5_3b,
                                              limit_query_size=parm_limit_query_size)
+        print(f"Carregado monot5_3b com parm_limit_query_size={parm_limit_query_size}")
         ranker_limit_query_size_monot5 = parm_limit_query_size
     return ranker_monot5_3b
 
@@ -163,6 +169,9 @@ def return_pipeline_join_bm25_sts_reranker(parm_index:ElasticsearchDocumentStore
     if parm_ranker_type == 'MONOT5':
         pipe_join_ranker.add_node(component=return_ranker_monot5_3b(parm_limit_query_size=parm_limit_query_size),
                                         name="Ranker", inputs=["JoinResults"])
+    elif parm_ranker_type == 'MINILM':
+        pipe_join_ranker.add_node(component=return_ranker_minilm(parm_limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["JoinResults"])
     else:
         raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
     return pipe_join_ranker
@@ -200,6 +209,9 @@ def return_pipeline_join_bm25_sts_multihop_reranker(parm_index:ElasticsearchDocu
 
     if parm_ranker_type == 'MONOT5':
         pipe_join_ranker.add_node(component=return_ranker_monot5_3b(parm_limit_query_size=parm_limit_query_size),
+                                        name="Ranker", inputs=["JoinResults"])
+    elif parm_ranker_type == 'MINILM':
+        pipe_join_ranker.add_node(component=return_ranker_minilm(parm_limit_query_size=parm_limit_query_size),
                                         name="Ranker", inputs=["JoinResults"])
     else:
         raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}")
@@ -279,5 +291,8 @@ assert os.path.exists(nome_caminho_modelo_sts), f"Path para {nome_caminho_modelo
 
 ranker_monot5_3b = None
 ranker_limit_query_size_monot5 = None
+
+ranker_limit_query_size_minilm = None
 ranker_minilm = None
+
 dict_multihop_embedding_retriever = {'indir_juris_tcu': None, 'indir_juris_tcu_index':None}

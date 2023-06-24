@@ -382,7 +382,7 @@ class MonoT5RankerLimit(BaseRanker):
         else:
             query_limited = query
 
-        query_obj = Query(text= query)
+        query_obj = Query(text= query_limited)
 
         lista_num_tokens_docto = [self.return_num_token(doc.content) for doc in documents]
         num_doc = len(lista_num_tokens_docto)
@@ -393,7 +393,7 @@ class MonoT5RankerLimit(BaseRanker):
         for pos, doc in enumerate(documents_limited_size):
             num_excesso = (lista_num_tokens_docto[pos] + num_tokens_query) - self.max_position_embeddings
             if num_excesso > 0:
-                doc_antes = doc.content
+                # doc_antes = doc.content
                 doc.content = self.return_text_limited_num_token_ultima_pontuacao(doc.content, self.max_position_embeddings-num_tokens_query)
                 # print(f"Doc {doc.id}  passed limit in {num_excesso} tokens")
                 # print(f"Before:  {doc_antes}")
