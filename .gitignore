@@ -11,3 +11,6 @@ temp.properties
 coverage_html_report/
 docs/schedule/~$cronograma.xlsx
 */internal/*
+*old_*
+*(copy)*
+*train_data_juris_tcu_index.csv*

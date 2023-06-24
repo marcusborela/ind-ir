@@ -422,10 +422,23 @@ def add_experiment_result(parm_list_result, parm_dataset):
 
         # Salvando o dataframe concatenado no arquivo CSV
         ## se precisar ajustar a ordem
-        # column_order = ["TIME","ID_QUERY","TIME_SPENT","NDCG",
-        #            "RANK1","COUNT_DOCTO_FOUND",
-        #            "LIST_RANK","COUNT_DOCTO_RELEVANT","GROUND_TRUTH","LIST_DOCTO_RETURNED"]
-        df_experiment_result.to_csv(path_search_result, sep = ',', index=False)
+        column_order = ["TIME",
+        "COUNT_QUERY_RUN",
+        "COUNT_QUERY_WITHOUT_RESULT",
+        "COUNT_QUERY_NOT_FOUND"
+        "TOPK_RETRIEVER",
+        "TOPK_RANKER",
+        "RANK1_MEAN",
+        "NDCG_LIMIT",
+        "NDCG_MEAN",
+        "TIME_SPENT_MEAN",
+        "CRITERIA",
+        "RETRIEVER_TYPE",
+        "RETRIEVER_MODEL_NAME",
+        "RANKER_MODEL_NAME",
+        ]
+        df_experiment_result[column_order].to_csv(path_search_result, sep = ',', index=False)
+        #df_experiment_result.to_csv(path_search_result, sep = ',', index=False)
 
 dict_criterio = {
     "class_termo" : {"type": "static",
@@ -441,7 +454,7 @@ dict_criterio = {
     "extra" : {"type": "static",
                    "value": {"count_index_extra": {"$gte": 1} }},
     "total_gte_5" : {"type": "static",
-                  "value": {"count_index_area": {"$gte": 5} }},
+                  "value": {"count_index_total": {"$gte": 5} }},
 }
 
 dict_idcg_relevance_fixed = generate_dict_idcg(15)
