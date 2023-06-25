@@ -420,25 +420,7 @@ def add_experiment_result(parm_list_result, parm_dataset):
         # Concatenação dos dataframes
         df_experiment_result = pd.concat([df_experiment_result_save, df_experiment_result], ignore_index=True)
 
-        # Salvando o dataframe concatenado no arquivo CSV
-        ## se precisar ajustar a ordem
-        column_order = ["TIME",
-        "COUNT_QUERY_RUN",
-        "COUNT_QUERY_WITHOUT_RESULT",
-        "COUNT_QUERY_NOT_FOUND"
-        "TOPK_RETRIEVER",
-        "TOPK_RANKER",
-        "RANK1_MEAN",
-        "NDCG_LIMIT",
-        "NDCG_MEAN",
-        "TIME_SPENT_MEAN",
-        "CRITERIA",
-        "RETRIEVER_TYPE",
-        "RETRIEVER_MODEL_NAME",
-        "RANKER_MODEL_NAME",
-        ]
-        df_experiment_result[column_order].to_csv(path_search_result, sep = ',', index=False)
-        #df_experiment_result.to_csv(path_search_result, sep = ',', index=False)
+        df_experiment_result.to_csv(path_search_result, sep = ',', index=False)
 
 dict_criterio = {
     "class_termo" : {"type": "static",

@@ -12,8 +12,9 @@ import pandas as pd
 from tqdm import tqdm
 import math
 from collections import defaultdict
-
 from transformers import AutoTokenizer
+
+from util.util_pipeline_v2 import dict_ranker
 
 sys.path.append('../..')
 sys.path
@@ -32,6 +33,17 @@ def invert_dict_with_lists(d):
     return dict(inverted_dict)
 
 
+
+def find_ranker_type(row):
+    ranker_model_name = row['RANKER_MODEL_NAME']
+    if pd.isnull(ranker_model_name) or ranker_model_name == "":
+        return 'none'
+    for key, value in dict_ranker.items():
+        if isinstance(ranker_model_name, str) and ranker_model_name.lower() in value['model_name'].lower():
+            return key
+    return 'unknown'
+
+
 def return_consolidate_result(parm_dataset):
     path_search_result_consolidated = f'../data/search/{parm_dataset}/search_result_consolidated_{parm_dataset}.csv'
     df_result = pd.read_csv(path_search_result_consolidated)
@@ -44,7 +56,9 @@ def return_consolidate_result(parm_dataset):
     # calculate redundant fields
     df_result['COUNT_DOCTO_RELEVANT_FOUND'] = df_result['LIST_RANK'].apply(len)
     df_result['PERCENT_DOCTO_RELEVANT_FOUND'] = round(100 * df_result['COUNT_DOCTO_RELEVANT_FOUND']  / df_result['COUNT_DOCTO_RELEVANT'], 2)
-    df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
+    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
+    df_result['RANKER_TYPE'] = df_result.apply(find_ranker_type, axis=1)
+
     return df_result
 
 def consolidate_result(parm_dataset):
