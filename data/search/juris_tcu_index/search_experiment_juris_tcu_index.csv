@@ -100,3 +100,5 @@ TIME,COUNT_QUERY_RUN,COUNT_QUERY_WITHOUT_RESULT,COUNT_QUERY_NOT_FOUND,TOPK_RETRI
 2023-Jun-24 21:05:37,100,0.0,0.0,300,0.0,27.49,12,9.568,0.15,total_gte_5,sts,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
 2023-Jun-24 21:05:51,100,0.0,1.0,300,0.0,9.606,12,28.326,0.131,total_gte_5,bm25,,
 2023-Jun-24 21:06:07,100,0.0,1.0,300,0.0,31.465,12,9.629,0.162,total_gte_5,join_sts_bm25,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
+2023-Jun-24 21:35:08,100,0.0,1.0,300,0.0,4.424,12,36.723,17.398,total_gte_5,join_sts_bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-24 22:10:40,100,0.0,1.0,300,0.0,6.899,12,37.573,21.321,total_gte_5,bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
