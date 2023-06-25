@@ -1,5 +1,19 @@
 # IndIR - Datasets e outros arquivos preparados
 
+Datasets finais gerados:
+* [JURIS_TCU](#juris_tcu)
+* [JURIS_TCU_INDEX](#juris_tcu_index)
+
+Pastas com resultados intermediários:
+* [Dados de acesso à pesquisa da Jurisprudência](#dados-de-acesso-à-pesquisa-da-jurisprudência)
+* [Preparação do Dataset JURIS_TCU por LLM](#prepara%C3%A7%C3%A3o-do-dataset-juris_tcu-por-llm)
+* [Resultados dos experimentos de busca - JURIS_TCU](#resultados-dos-experimentos-de-busca---juris_tcu)
+* [Resultados dos experimentos de busca - JURIS_TCU_INDEX](#resultados-dos-experimentos-de-busca---juris_tcu_index)
+
+Outros links:
+* [Página principal do projeto](/README.md)
+* Esta página, [em inglês](./README.md)
+
 ## [JURIS_TCU](/data/juris_tcu/)
 Base de enunciados da [Jurisprudência Selecionada do Tribunal de Contas da União](https://portal.tcu.gov.br/jurisprudencia/), contendo 16.057 documentos, 150 consultas e 2.250 avaliações de relevância.
 
@@ -32,7 +46,7 @@ Arquivos:
 * [query.csv](data/juris_tcu_index/query.csv) - cada query é um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/).
 * [qrel.csv](data/juris_tcu_index/qrel.csv) - cada registro corresponde a uma indexação de um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por um termo do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm). Essa indexação foi realizada por operadores do sistema de Jurisprudência, e pode ser observada na [Pesquisa Integrada do TCU - base de Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada).
 
-## Dados de acesso à pesquisa da Jurisprudência
+## [Dados de acesso à pesquisa da Jurisprudência](/data/log_juris_tcu/)
 Elaborados a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/), entre junho/2022 a maio/2023.
 
 Apenas consultas específicas à base de [Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada), sem o uso de [operadores de proximidade](https://portal.tcu.gov.br/data/files/F4/F4/F0/B2/223648102DFE0FF7F18818A8/Manual_Resumido_Pesquisa_Jurisprudencia_TCU.pdf).
@@ -81,7 +95,3 @@ Arquivos de resultado de execução:
 
 ## Resultados dos experimentos de busca - [JURIS_TCU_INDEX](/data/search/juris_tcu_index/)
 Indexação da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm).
-
-## Outros links
-* [Página principal do projeto](/README.md)
-* Esta página, [em inglês](./README.md)
