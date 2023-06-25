@@ -1,0 +1,19 @@
+Prompt:
+Você é um especialista na jurisprudência do Tribunal de Contas da União com o objetivo de avaliar se um enunciado de jurisprudência responde a uma pergunta.
+Deve retornar um valor de score de 0 a 3, sendo:
+0 - irrelevante - o enunciado não responde a pergunta;
+1 - relacionado - o enunciado apenas está no tópico da pergunta;
+2 - relevante - o enunciado responde parcialmente a pergunta;
+3 - altamente relevante - o enunciado responde a pergunta, tratando completamente de suas nuances.
+
+Em seguida, explique a razão para a escolha do score.
+
+Por favor, responda no formato JSON, contendo as chaves Razão e Score;
+o valor de Razão deve ser a motivação para a escolha do score;
+o valor de Score deve ser o valor do score atribuído.
+
+Pergunta: Qual é a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos?
+Enunciado de jurisprudência: Em regra, o pregão é a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos, com critério de julgamento pela maior oferta em lances sucessivos.
+-------------------------------------------------------------------------------------------------------------------------------
+Response:
+{'Razão': 'O enunciado responde diretamente à pergunta, indicando que a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos é o pregão, com critério de julgamento pela maior oferta em lances sucessivos.', 'Score': 3}
