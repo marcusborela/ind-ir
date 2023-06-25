@@ -1,53 +1,151 @@
-QUERY_ID,SCORE_3,SCORE_2,SCORE_1,SCORE_0,TOTAL
-1,10,0,0,0,10
-2,3,2,2,3,10
-3,6,4,0,0,10
-8,7,2,1,0,10
-9,8,2,0,0,10
-10,9,1,0,0,10
-11,2,8,0,0,10
-14,5,5,0,0,10
-15,4,6,0,0,10
-16,3,7,0,0,10
-17,2,6,2,0,10
-20,3,2,4,1,10
-26,4,5,1,0,10
-28,1,9,0,0,10
-29,5,1,4,0,10
-30,7,3,0,0,10
-31,5,4,1,0,10
-32,8,1,1,0,10
-34,1,6,3,0,10
-37,0,4,6,0,10
-44,7,1,0,2,10
-47,3,5,2,0,10
-55,3,4,3,0,10
-56,2,3,5,0,10
-57,1,3,6,0,10
-62,2,2,6,0,10
-64,9,0,1,0,10
-68,1,0,4,5,10
-69,6,2,2,0,10
-75,3,2,5,0,10
-79,2,4,4,0,10
-81,2,1,6,1,10
-82,1,2,5,2,10
-83,0,9,1,0,10
-84,1,8,1,0,10
-85,3,6,1,0,10
-86,6,3,1,0,10
-91,1,0,9,0,10
-96,1,5,4,0,10
-97,1,2,7,0,10
-98,6,1,3,0,10
-106,1,4,5,0,10
-112,2,4,3,1,10
-129,2,7,0,1,10
-131,3,3,4,0,10
-133,1,7,2,0,10
-141,1,0,6,3,10
-142,2,1,2,5,10
-144,7,1,2,0,10
-145,8,0,2,0,10
-149,4,4,2,0,10
-150,5,3,2,0,10
+QUERY_ID,SCORE_0,SCORE_1,SCORE_2,SCORE_3,TOTAL,QUERY_TEXT
+1,0,0,0,10,10,técnica e preço
+2,3,2,2,3,10,restos a pagar
+3,0,0,4,6,10,aditivo a contrato
+4,0,0,0,10,10,adesão a ata de registro de preços
+5,0,0,0,10,10,sobrepreço e superfaturamento
+6,0,0,0,10,10,restrição a competitividade
+7,0,0,0,10,10,acréscimos e supressões
+8,0,1,2,7,10,obras e serviços de engenharia
+9,0,0,2,8,10,fiscalizacao de contratos
+10,0,0,1,9,10,diarias e passagens
+11,0,0,8,2,10,bens e serviços comuns
+12,0,0,2,8,10,parcelas de maior relevância e valor significativo
+13,0,0,0,10,10,despesa sem cobertura contratual
+14,0,0,5,5,10,decreto-lei 4.657/1942
+15,0,0,6,4,10,contas e materialidade
+16,0,0,7,3,10,inexequibilidade e comprovação
+17,0,2,6,2,10,impedimento de licitar e contratar
+18,0,0,7,3,10,aditivo e obra
+19,0,0,1,9,10,fraude a licitacao
+20,1,4,2,3,10,auditoria interna
+21,0,0,2,8,10,fracionamento de despesas
+22,0,0,2,8,10,novo e improrrogável prazo
+23,0,0,2,8,10,inidoneidade de licitante
+24,0,0,7,3,10,licitações e contratos
+25,0,0,0,10,10,exigência de atestado de capacidade
+26,0,1,5,4,10,contrato com a administração pública
+27,0,0,0,10,10,inexigibilidade e singularidade
+28,0,0,9,1,10,mera participação e epp
+29,0,4,1,5,10,decisão judicial
+30,0,0,3,7,10,fiscal de contrato
+31,0,1,4,5,10,medida cautelar
+32,0,1,1,8,10,é possível a aplicação concomitante
+33,0,0,1,9,10,reajuste de contrato
+34,0,3,6,1,10,publicidade e concurso público
+35,0,0,0,10,10,falecimento e multa
+36,0,0,1,9,10,independência das instâncias
+37,0,6,4,0,10,planejamento estratégico
+38,0,0,6,4,10,sistema s e licitação
+39,0,0,2,8,10,citação e validade
+40,0,0,8,2,10,multa a particulares
+41,0,0,1,9,10,licitação e preço de mercado
+42,0,0,7,3,10,edital modificação
+43,0,1,4,5,10,padronização marca
+44,2,0,1,7,10,interesse recíproco
+45,0,0,0,10,10,pesquisa de preços
+46,0,0,1,9,10,planilha de custos e formação de preços
+47,0,2,5,3,10,publicidade e propaganda
+48,0,0,1,9,10,processo seletivo e sistema s
+49,0,0,3,7,10,modalidade de licitação
+50,0,0,1,9,10,antecipação de pagamento
+51,0,0,5,5,10,concessão remunerada de uso de bens públicos modalidade
+52,0,0,0,10,10,citação válida falecimento
+53,0,0,9,1,10,garantia contratual patrimônio líquido mínimo
+54,0,0,9,1,10,garantia de participação patrimônio líquido mínimo
+55,0,3,4,3,10,despesas sem cobertura contratual multa
+56,0,5,3,2,10,uso de áreas comerciais em aeroportos pregão
+57,0,6,3,1,10,cessão das áreas comerciais de centrais públicas de abastecimento de gêneros alimentícios licitação
+58,0,0,7,3,10,capacidade bens pertinentes e compatíveis com o objeto da licitação comprovação
+59,0,1,5,4,10,extrapolação dos limites para alterações consensuais qualitativas de contratos de obras e serviços
+60,0,0,2,8,10,responsabilidade do gestor sucessor omissão do antecessor
+61,0,6,4,0,10,projeto de parceria público-privada modalidade
+62,0,6,2,2,10,objeto do certame contrato social licitante
+63,0,0,5,5,10,responsabilidade gestão dos recursos Fundo Municipal de Saúde
+64,0,1,0,9,10,pesquisa de mercado orçamento fornecedores
+65,0,1,1,8,10,pesquisa de preços obrigatória em licitações
+66,0,0,1,9,10,vantajosidade adesão à ata
+67,0,0,0,10,10,compensação entre acréscimos e supressões contratos administrativos
+68,5,4,0,1,10,vedado restabelecimento item suprimido
+69,0,2,2,6,10,marca aquisição cartuchos
+70,0,0,1,9,10,SUS recursos União competência do TCU
+71,0,0,6,4,10,preços referenciais sistemas oficiais estimativa de custos
+72,0,0,1,9,10,ponderação técnica e preço
+73,0,0,2,8,10,pontuação desarrazoada licitações técnica e preço
+74,0,0,5,5,10,prorrogação de contrato administrativo término prazo de vigência
+75,0,5,2,3,10,atestado de capacidade técnica serviços advocatícios conselho de fiscalização profissional
+76,0,0,1,9,10,reposição de importâncias indevidamente percebidas boa-fé servidores erro escusável por órgão/entidade
+77,0,3,6,1,10,aquisição direta risco a saúde
+78,0,0,4,6,10,pregão divulgação dos preços estimados no edital
+79,0,4,4,2,10,instrutor treinamento inexigibilidade de licitação
+80,0,0,5,5,10,reajuste de preços e repactuação
+81,1,6,1,2,10,recomposição reajuste
+82,2,5,2,1,10,retenção de pagamentos perda da regularidade fiscal
+83,0,1,9,0,10,irregulares despesas desnecessárias e anteriores à celebração do contrato
+84,0,1,8,1,10,vínculo trabalhista ou societário pré-existente competitividade das licitantes
+85,0,1,6,3,10,técnica e preço profissionais quadro permanente
+86,0,1,3,6,10,erro material desclassificação da proposta
+87,0,5,2,3,10,vedação à inclusão documento habilitação diligência
+88,0,0,4,6,10,exigência comprovação de quantitativos mínimos características semelhantes
+89,0,0,6,4,10,extensão sanção de impedimento de licitar e contratar
+90,0,4,1,5,10,habilitação técnico-operacional obras e serviços de engenharia
+91,0,9,0,1,10,controle adesão
+92,1,6,1,2,10,alvará de funcionamento habilitação jurídica
+93,0,3,6,1,10,acumulação de cargo secretário municipal professor
+94,0,0,2,8,10,prescrição da pretensão punitiva julgamento das contas
+95,0,0,2,8,10,Banco de Preços em Saúde referência medicamentos
+96,0,4,5,1,10,alteração contratual serviços já previstos no edital 
+97,0,7,2,1,10,licitação princípio da legalidade estrita afastado
+98,0,3,1,6,10,renovação de contrato serviços de natureza continuada pesquisa de preços
+99,0,6,3,1,10,contratações de software cartas de exclusividade
+100,0,1,6,3,10,assistência médica a servidores
+101,0,5,3,2,10,Qual é a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos?
+102,0,0,3,7,10,A citação é considerada válida após o falecimento do responsável se a defesa já foi apresentada?
+103,0,0,0,10,10,A prestação de garantia contratual é permitida juntamente com a exigência de patrimônio líquido mínimo?
+104,0,0,0,10,10,A exigência de garantia de participação é permitida juntamente com a exigência de patrimônio líquido mínimo?
+105,0,1,4,5,10,Quais são as consequências para os responsáveis que realizam despesas sem cobertura contratual?
+106,0,5,4,1,10,O pregão é adequado para concessões de uso de áreas comerciais em aeroportos?
+107,2,5,2,1,10,Quais normas devem ser observadas na cessão das áreas comerciais de centrais públicas de abastecimento de gêneros alimentícios?
+108,0,0,8,2,10,É necessário exigir ao licitante comprovar que já forneceu bens pertinentes e compatíveis com o objeto da licitação?
+109,0,1,3,6,10,"É permitido a extrapolar os limites estabelecidos no art. 65, §§ 1º e 2º, da Lei 8.666/1993 para alterações consensuais qualitativas de contratos de obras e serviços?"
+110,0,0,1,9,10,Qual a responsabilidade do gestor sucessor quando o gestor antecessor omitiu o dever de prestar contas?
+111,0,6,3,1,10,Qual é a modalidade de licitação utilizada para contratar serviços técnicos necessários à estruturação de projeto de parceria público-privada relativo a infraestrutura de rede de iluminação pública?
+112,1,3,4,2,10,O que acontece se não houver compatibilidade entre o objeto do certame e as atividades previstas no contrato social da empresa licitante?
+113,0,0,7,3,10,Quem é responsável pela gestão dos recursos do Fundo Municipal de Saúde?
+114,0,0,2,8,10,É obrigatória pesquisa de mercado na elaboração do orçamento-base da licitação?
+115,0,0,6,4,10,A pesquisa de preços correntes no mercado é obrigatória em licitações?
+116,0,0,0,10,10,O que fazer para verificar a vantajosidade da adesão à ata?
+117,0,0,1,9,10,É permitida a compensação entre acréscimos e supressões nos contratos administrativos?
+118,0,5,4,1,10,Quais são as condições para que o restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual não configure compensação vedada pela jurisprudência do TCU?
+119,0,1,3,6,10,A Administração pode indicar preferência por marcas em licitações para aquisição de cartuchos de tinta?
+120,0,0,2,8,10,O TCU é responsável pela fiscalização das ações e serviços de saúde pagos com recursos repassados pela União no âmbito do Sistema Único de Saúde?
+121,0,0,6,4,10,O que deve ser feito se não for possível obter preços referenciais nos sistemas oficiais para estimativa de custos em processos licitatórios?
+122,0,0,0,10,10,É necessária ponderação entre a pontuação técnica e a de preço em uma licitação do tipo técnica e preço?
+123,0,0,4,6,10,Como a pontuação desarrazoada pode limitar a competitividade nas licitações do tipo técnica e preço?
+124,0,2,5,3,10,É possível prorrogar um contrato administrativo fora do término do prazo de vigência?
+125,0,7,2,1,10,Qual é o problema na exigência de atestado de capacidade técnica para contratação de serviços advocatícios por conselho de fiscalização profissional?
+126,0,0,0,10,10,"É necessária reposição de importâncias indevidamente percebidas, de boa-fé, por servidores, em virtude de erro escusável de interpretação de lei por parte do órgão/entidade?"
+127,0,0,3,7,10,É possível aquisição direta quando a falta de produto ou serviço pode colocar em risco a saúde das pessoas?
+128,0,3,6,1,10,É obrigatória a divulgação dos preços estimados no edital nos pregões para aquisição de medicamentos?
+129,1,0,7,2,10,"A contratação de professores, conferencistas ou instrutores para ministrar cursos de treinamento ou aperfeiçoamento de pessoal se enquadra na inexigibilidade de licitação?"
+130,0,4,4,2,10,Qual é a diferença entre reajuste de preços e repactuação?
+131,0,4,3,3,10,É possível a aplicação da recomposição mesmo após a aplicação do reajuste previsto no contrato?
+132,2,5,2,1,10,A retenção de pagamentos é permitida em caso de perda da regularidade fiscal?
+133,0,2,7,1,10,Por que despesas desnecessárias e anteriores à celebração do contrato são consideradas irregulares?
+134,0,0,6,4,10,Como o vínculo trabalhista ou societário pré-existente afeta a competitividade das licitantes no certame licitatório?
+135,0,1,3,6,10,É permitido atribuir pontuação a uma empresa licitante nas licitações de técnica e preço com base na posse de determinados tipos de profissionais em seu quadro permanente?
+136,0,0,4,6,10,Um erro material deve levar à desclassificação antecipada da proposta?
+137,0,2,5,3,10,Há vedação à inclusão de novo documento destinado a atestar condição de habilitação preexistente em sede de diligência?
+138,0,0,0,10,10,A exigência de comprovação de quantitativos mínimos em obras ou serviços com características semelhantes é legal?
+139,0,0,3,7,10,Qual a extensão da sanção de impedimento de licitar e contratar?
+140,0,3,4,3,10,Quais documentos são exigidos para habilitação técnico-operacional em certames de obras e serviços de engenharia?
+141,3,6,0,1,10,Qual a finalidade do controle das autorizações de adesão?
+142,5,2,1,2,10,Em que situações a apresentação do alvará de funcionamento é permitida na habilitação jurídica?
+143,0,0,9,1,10,É permitida a acumulação do cargo de secretário municipal com o cargo de professor?
+144,0,2,1,7,10,A prescrição da pretensão punitiva do TCU afeta o julgamento das contas?
+145,0,2,0,8,10,O Banco de Preços em Saúde é uma referência de preços válida para a aquisição de medicamentos?
+146,0,0,9,1,10,É possível a inclusão de serviços já previstos no edital em uma alteração contratual
+147,0,2,7,1,10,O princípio da legalidade estrita pode ser afastado em favor de outros princípios no procedimento licitatório?
+148,0,1,6,3,10,Quais fontes devem ser prioritárias na pesquisa de preços para a renovação do contrato de serviços de natureza continuada?
+149,0,2,4,4,10,Devem ser aceitas nas contratações de software as cartas de exclusividade emitidas pelos próprios fabricantes?
+150,0,2,3,5,10,Qual é a regra geral para a contratação de entidade para prestação de serviços de assistência médica a servidores?
