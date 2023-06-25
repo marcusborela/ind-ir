@@ -7,7 +7,7 @@ São 15 avaliações de documentos por consulta, das quais:
 * 10 são os [documentos melhor ranqueados](llm_juris_tcu/eval_most_relevants.csv) a partir de pipeline completa de busca: top-300 de busca BM-25, top-300 de busca por similaridade, join (união) de documentos, seguido por rerank (monoT5); 
 * 5 são [documentos escolhidos randomicamente](llm_juris_tcu/eval_least_relevants.csv) de busca BM-25, excetuados os 10 documentos do grupo anterior.
 
-A avaliação de relevância é realizada pelo LLM ChatGPT 4.0, em uma escala de 0 a 3:
+A avaliação de relevância é realizada pelo [LLM ChatGPT 4.0](llm_juris_tcu/prompt_response.txt), em uma escala de 0 a 3:
 * 0 - irrelevante - o enunciado não responde a pergunta;
 * 1 - relacionado - o enunciado apenas está no tópico da pergunta;
 * 2 - relevante - o enunciado responde parcialmente a pergunta;
@@ -47,13 +47,20 @@ Arquivos:
   * Contém identificador (ID), chave de pesquisa (KEY), quantidade de acessos ao documento a partir da consulta (COUNT) e a expressão de busca (QUERY).
   
 ## Preparação do Dataset [JURIS_TCU](/data/juris_tcu/) por LLM
-Arquivos intermediários para formação das queries para o dataset [JURIS_TCU](/data/juris_tcu/), gerados a partir de LLM.
+Arquivos intermediários para formação das queries para o dataset [JURIS_TCU](/data/juris_tcu/), gerados a partir de Large Language Model, mais especificamente ChatGPT 4.0.
 
 Arquivos:
 * [query_llm.txt](llm_juris_tcu/query_llm.txt) - perguntas produzidas pelo [ChatGPT](https://openai.com/chatgpt) a partir dos enunciados mais acessados da [Jurisprudência Selecionada](https://pesquisa.apps.tcu.gov.br/pesquisa/jurisprudencia-selecionada)
 * [query_llm_selecionada.txt](llm_juris_tcu/query_llm_selecionada.txt) - curadoria manual realizada a partir do arquivo anterior, cada registro contém 2 versões de queries:
   * uma pergunta completa
   * uma expressão de pesquisa
+* [evaluations.txt](llm_juris_tcu/evaluations.txt) - relatório das avaliações de relevância realizadas pelo LLM, contendo score e a razão da escolha, para cada uma das 150 consultas da base e 15 enunciados selecionados por consulta, totalizando 2.250 avaliações.
+* [eval_least_relevants.csv](llm_juris_tcu/eval_least_relevants) - seleção dos 10 documentos melhor ranqueados para cada uma das 150 queries, a partir de pipeline completa de busca: top-300 de busca BM-25, top-300 de busca por similaridade, join (união) de documentos, seguido por rerank (monoT5). Totaliza 1.500 documentos, contendo ainda a avaliação de relevância por LLM, contendo score e razão da escolha.
+* [eval_most_relevants.csv](llm_juris_tcu/eval_most_relevants.csv) - seleção de 5 documentos escolhidos randomicamente de busca BM-25, excetuados os 10 documentos do grupo anterior. Totaliza 750 documentos, contendo ainda a avaliação de relevância por LLM, contendo score e razão da escolha.
+* [eval_statistics.csv](llm_juris_tcu/eval_statistics.csv) - estatística de avaliações por query, contendo a quantidade de avaliações para cada score.
+* [eval_statistics_groups.csv](llm_juris_tcu/eval_statistics_groups.csv) - estatística de avaliações por cada grupo de 50 queries.
+* [query-generation.csv](llm_juris_tcu/query-generation.csv) - relação dos enunciados base das queries dos grupos 2 e 3, formada a partir do arquivo [query_llm_selecionada.txt](llm_juris_tcu/query_llm_selecionada.txt) e planilha [Juris-TCU-query-generation.xlsx](/docs/explanation/Juris-TCU-query-generation.xlsx).
+* [prompt_response.txt](llm_juris_tcu/prompt_response.txt) - exemplo de prompt enviado ao LLM e a resposta recebida.
 
 ## Resultados dos experimentos de busca realizados
 * Indexação da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm): [JURIS_TCU_INDEX](/data/search/juris_tcu_index/).
