@@ -62,9 +62,25 @@ Arquivos:
 * [query-generation.csv](llm_juris_tcu/query-generation.csv) - relação dos enunciados base das queries dos grupos 2 e 3, formada a partir do arquivo [query_llm_selecionada.txt](llm_juris_tcu/query_llm_selecionada.txt) e planilha [Juris-TCU-query-generation.xlsx](/docs/explanation/Juris-TCU-query-generation.xlsx).
 * [prompt_response.txt](llm_juris_tcu/prompt_response.txt) - exemplo de prompt enviado ao LLM e a resposta recebida.
 
-## Resultados dos experimentos de busca realizados
-* Indexação da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm): [JURIS_TCU_INDEX](/data/search/juris_tcu_index/).
-* Buscas efetuadas sobre queries do dataset [JURIS_TCU](/data/juris_tcu/), para construção das avaliações (QREL): [JURIS_TCU](/data/search/juris_tcu/).
+## Resultados dos experimentos de busca - [JURIS_TCU](/data/search/juris_tcu/)
+Buscas efetuadas sobre queries do dataset [JURIS_TCU](/data/juris_tcu/), para construção das avaliações (QREL). Passo intermediário para a produção das avaliações para o referidado dataset.
+
+Relatórios de busca - para cada uma das 150 queries do dataset [JURIS_TCU](/data/juris_tcu/), registram os 10 enunciados melhor rankeados por cada pipeline de busca:
+* [results_bm25.txt](search/juris_tcu/results_bm25.txt) - busca BM25;
+* [results_bm25_reranker.txt](search/juris_tcu/results_bm25_reranker.txt) - busca BM25 cujos top-300 são rerankeados por modelo monoT5;
+* [results_sts.txt](search/juris_tcu/results_sts.txt) - busca densa, por similaridade de vetores gerados por modelo monoT5;
+* [results_sts_reranker.txt](search/juris_tcu/results_sts_reranker.txt) - busca por similaridade cujos top-300 são rerankeados por modelo monoT5;
+* [results_join_bm25_sts_reranker.txt](search/juris_tcu/results_join_bm25_sts_reranker.txt) - pipeline formado por 2 retrievers (BM25 e STS), cujos top-300 são juntados (união) e rerankeados por modelo monoT5.
+
+Arquivos de resultado de execução: 
+* [run_bm25.csv](search/juris_tcu/results_bm25) - busca BM25, até 1000 melhores resultados;
+* [run_bm25_reranker.csv](search/juris_tcu/results_bm25_reranker) - busca BM25, até 300 melhores resultados ordenados por reranker monoT5;
+* [run_sts.csv](search/juris_tcu/run_sts) - busca por similaridade de vetores, até 1000 melhores resultados;
+* [run_sts_reranker.csv](search/juris_tcu/results_join_bm25_sts_reranker) - busca por similaridade de vetores, até 300 melhores resultados ordenados por reranker monoT5;
+* [run_join_bm25_sts_reranker.csv](search/juris_tcu/results_sts) - pipeline formado por 2 retrievers (BM25 e STS), cujos top-300 são juntados (união), gerando no máximo 600 resultados ordenados por reranker monoT5.
+
+## Resultados dos experimentos de busca - [JURIS_TCU_INDEX](/data/search/juris_tcu_index/)
+Indexação da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm).
 
 ## Outros links
 * [Página principal do projeto](/README.md)
