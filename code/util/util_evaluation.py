@@ -41,6 +41,7 @@ def find_ranker_type(row):
     for key, value in dict_ranker.items():
         if isinstance(ranker_model_name, str) and ranker_model_name.lower() in value['model_name'].lower():
             return key
+    print(f"Ranker type unknown {ranker_model_name} ")
     return 'unknown'
 
 
@@ -88,12 +89,12 @@ def consolidate_result(parm_dataset):
     df_qrel = pd.read_csv(path_qrel)
     print(f'df_qrel.shape[0] {df_qrel.shape[0]}')
 
-    df_search_data = df_query.merge(df_qrel, how='left', left_on='ID', right_on='ID_QUERY').drop('ID_QUERY', axis=1)
+    df_search_data = df_query.merge(df_qrel, how='left', left_on='ID', right_on='QUERY_ID').drop('QUERY_ID', axis=1)
     print(f'df_search_data.shape[0] {df_search_data.shape[0]}')
-    #df_search_data.rename(columns={'TEXT': 'QUERY_TEXT', 'ID':'ID_QUERY'},inplace=True)
+    #df_search_data.rename(columns={'TEXT': 'QUERY_TEXT', 'ID':'QUERY_ID'},inplace=True)
 
     # consolidate data of queries
-    df_new = df_search_data.groupby('ID').apply(lambda x: dict(zip(x['ID_DOCTO'], x['TYPE']))).reset_index(name='RELEVANCE_DICT_ID_DOC')
+    df_new = df_search_data.groupby('ID').apply(lambda x: dict(zip(x['DOC_ID'], x['TYPE']))).reset_index(name='RELEVANCE_DICT_ID_DOC')
     df_new['RELEVANCE_DICT_TYPE'] = df_new['RELEVANCE_DICT_ID_DOC'].apply(invert_dict_with_lists)
     df_new = pd.merge(df_new, df_search_data.drop_duplicates('ID'), on='ID', how='left')
     df_new = df_new.add_prefix('QUERY_')
@@ -101,7 +102,7 @@ def consolidate_result(parm_dataset):
 
 
     # merge experiment data with queries searched
-    df_experiment_result = df_experiment_result.merge(df_new, how='inner', left_on='ID_QUERY', right_on='QUERY_ID').drop('ID_QUERY', axis=1)
+    df_experiment_result = df_experiment_result.merge(df_new, how='inner', left_on='QUERY_ID', right_on='QUERY_ID').drop('QUERY_ID', axis=1)
 
 
     # adding text lenght info
@@ -267,9 +268,9 @@ def calculate_list_rank_query_result (list_id_doc_returned, dict_doc_relevant:di
 
     if len(list_id_doc_returned) > 0:
         list_rank = []
-        for id_docto in dict_doc_relevant:
-            if id_docto in list_id_doc_returned:
-                list_rank.append(1 + list_id_doc_returned.index(id_docto))  # 1st position of id_docto in the list
+        for doc_id in dict_doc_relevant:
+            if doc_id in list_id_doc_returned:
+                list_rank.append(1 + list_id_doc_returned.index(doc_id))  # 1st position of doc_id in the list
         return list_rank
     else:
         return None

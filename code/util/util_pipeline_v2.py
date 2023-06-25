@@ -289,12 +289,19 @@ dict_ranker = {
     'MT5_TRAINED_7600': {'limit_query_size': None, 'model': None,
                  'inference_type': 'Seq2SeqLM',
                  'model_name': 'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-7600' },
+    'MT5_TRAINED_LIM100_1700': {'limit_query_size': None, 'model': None,
+                 'inference_type': 'Seq2SeqLM',
+                 'model_name': 'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim100-1700' },
+    'MT5_TRAINED_LIM50_800': {'limit_query_size': None, 'model': None,
+                 'inference_type': 'Seq2SeqLM',
+                 'model_name': 'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-800' },
     'MINILM_TRAINED_5500'  : {'limit_query_size': None, 'model': None,
                  'inference_type': 'SeqClassification',
                  'model_name': 'unicamp-dl/mMiniLM-L6-v2-pt-v2-5500'},
     'MINILM_TRAINED_19000'  : {'limit_query_size': None, 'model': None,
                  'inference_type': 'SeqClassification',
                  'model_name': 'unicamp-dl/mMiniLM-L6-v2-pt-v2-19000'},
+
 }
 
 for ranker in dict_ranker:

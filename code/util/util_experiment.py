@@ -89,9 +89,9 @@ def calculate_list_rank_query_result (list_id_doc_returned, dict_doc_relevant:di
 
     if list_id_doc_returned is not None and len(list_id_doc_returned) > 0:
         list_rank = []
-        for id_docto in dict_doc_relevant:
-            if id_docto in list_id_doc_returned:
-                list_rank.append(1 + list_id_doc_returned.index(id_docto))  # 1st position of id_docto in the list
+        for doc_id in dict_doc_relevant:
+            if doc_id in list_id_doc_returned:
+                list_rank.append(1 + list_id_doc_returned.index(doc_id))  # 1st position of doc_id in the list
         return list_rank
     else:
         return None
@@ -203,7 +203,7 @@ def experiment_run(parm_df,  parm_experiment,
         if count > count_query_run:
             raise Exception('Stoped before data end?')
         result_search_one_query = {}
-        result_search_one_query['ID_QUERY'] = row_query['ID']
+        result_search_one_query['QUERY_ID'] = row_query['ID']
         time_start_search_query = time.time()
         list_id_doc_returned = search_docto_for_experiment(parm_experiment=parm_experiment,  query_data=row_query)
         result_search_one_query['TIME_SPENT'] = round((time.time() - time_start_search_query),4)
@@ -385,7 +385,7 @@ def add_experiment_result(parm_list_result, parm_dataset):
             query_search_result['TIME'] = momento
             df_experiment_result = df_experiment_result.append(query_search_result, ignore_index=True)
     del df_experiment['RESULT_QUERY']
-    df_experiment_result['ID_QUERY'] = df_experiment_result['ID_QUERY'].astype(int)
+    df_experiment_result['QUERY_ID'] = df_experiment_result['QUERY_ID'].astype(int)
     df_experiment_result['RANK1'] = df_experiment_result['RANK1'].astype(int)
     df_experiment_result['COUNT_DOCTO_FOUND'] = df_experiment_result['COUNT_DOCTO_FOUND'].astype(int)
     df_experiment_result['COUNT_DOCTO_RELEVANT'] = df_experiment_result['COUNT_DOCTO_RELEVANT'].astype(int)
