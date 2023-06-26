@@ -1,0 +1,152 @@
+ID;TEXT;SOURCE
+1;técnica e preço;search log
+2;restos a pagar;search log
+3;aditivo a contrato;search log
+4;adesão a ata de registro de preços;search log
+5;sobrepreço e superfaturamento;search log
+6;restrição a competitividade;search log
+7;acréscimos e supressões;search log
+8;obras e serviços de engenharia;search log
+9;fiscalizacao de contratos;search log
+10;diarias e passagens;search log
+11;bens e serviços comuns;search log
+12;parcelas de maior relevância e valor significativo;search log
+13;despesa sem cobertura contratual;search log
+14;decreto-lei 4.657/1942;search log
+15;contas e materialidade;search log
+16;inexequibilidade e comprovação;search log
+17;impedimento de licitar e contratar;search log
+18;aditivo e obra;search log
+19;fraude a licitacao;search log
+20;auditoria interna;search log
+21;fracionamento de despesas;search log
+22;novo e improrrogável prazo;search log
+23;inidoneidade de licitante;search log
+24;licitações e contratos;search log
+25;exigência de atestado de capacidade;search log
+26;contrato com a administração pública;search log
+27;inexigibilidade e singularidade;search log
+28;mera participação e epp;search log
+29;decisão judicial;search log
+30;fiscal de contrato;search log
+31;medida cautelar;search log
+32;é possível a aplicação concomitante;search log
+33;reajuste de contrato;search log
+34;publicidade e concurso público;search log
+35;falecimento e multa;search log
+36;independência das instâncias;search log
+37;planejamento estratégico;search log
+38;sistema s e licitação;search log
+39;citação e validade;search log
+40;multa a particulares;search log
+41;licitação e preço de mercado;search log
+42;edital modificação;search log
+43;padronização marca;search log
+44;interesse recíproco;search log
+45;pesquisa de preços;search log
+46;planilha de custos e formação de preços;search log
+47;publicidade e propaganda;search log
+48;processo seletivo e sistema s;search log
+49;modalidade de licitação;search log
+50;antecipação de pagamento;search log
+51;concessão remunerada de uso de bens públicos modalidade;expression from LLM question
+52;citação válida falecimento;expression from LLM question
+53;garantia contratual patrimônio líquido mínimo;expression from LLM question
+54;garantia de participação patrimônio líquido mínimo;expression from LLM question
+55;despesas sem cobertura contratual multa;expression from LLM question
+56;uso de áreas comerciais em aeroportos pregão;expression from LLM question
+57;cessão das áreas comerciais de centrais públicas de abastecimento de gêneros alimentícios licitação;expression from LLM question
+58;capacidade bens pertinentes e compatíveis com o objeto da licitação comprovação;expression from LLM question
+59;extrapolação dos limites para alterações consensuais qualitativas de contratos de obras e serviços;expression from LLM question
+60;responsabilidade do gestor sucessor omissão do antecessor;expression from LLM question
+61;projeto de parceria público-privada modalidade;expression from LLM question
+62;objeto do certame contrato social licitante;expression from LLM question
+63;responsabilidade gestão dos recursos Fundo Municipal de Saúde;expression from LLM question
+64;pesquisa de mercado orçamento fornecedores;expression from LLM question
+65;pesquisa de preços obrigatória em licitações;expression from LLM question
+66;vantajosidade adesão à ata;expression from LLM question
+67;compensação entre acréscimos e supressões contratos administrativos;expression from LLM question
+68;vedado restabelecimento item suprimido;expression from LLM question
+69;marca aquisição cartuchos;expression from LLM question
+70;SUS recursos União competência do TCU;expression from LLM question
+71;preços referenciais sistemas oficiais estimativa de custos;expression from LLM question
+72;ponderação técnica e preço;expression from LLM question
+73;pontuação desarrazoada licitações técnica e preço;expression from LLM question
+74;prorrogação de contrato administrativo término prazo de vigência;expression from LLM question
+75;atestado de capacidade técnica serviços advocatícios conselho de fiscalização profissional;expression from LLM question
+76;reposição de importâncias indevidamente percebidas boa-fé servidores erro escusável por órgão/entidade;expression from LLM question
+77;aquisição direta risco a saúde;expression from LLM question
+78;pregão divulgação dos preços estimados no edital;expression from LLM question
+79;instrutor treinamento inexigibilidade de licitação;expression from LLM question
+80;reajuste de preços e repactuação;expression from LLM question
+81;recomposição reajuste;expression from LLM question
+82;retenção de pagamentos perda da regularidade fiscal;expression from LLM question
+83;irregulares despesas desnecessárias e anteriores à celebração do contrato;expression from LLM question
+84;vínculo trabalhista ou societário pré-existente competitividade das licitantes;expression from LLM question
+85;técnica e preço profissionais quadro permanente;expression from LLM question
+86;erro material desclassificação da proposta;expression from LLM question
+87;vedação à inclusão documento habilitação diligência;expression from LLM question
+88;exigência comprovação de quantitativos mínimos características semelhantes;expression from LLM question
+89;extensão sanção de impedimento de licitar e contratar;expression from LLM question
+90;habilitação técnico-operacional obras e serviços de engenharia;expression from LLM question
+91;controle adesão;expression from LLM question
+92;alvará de funcionamento habilitação jurídica;expression from LLM question
+93;acumulação de cargo secretário municipal professor;expression from LLM question
+94;prescrição da pretensão punitiva julgamento das contas;expression from LLM question
+95;Banco de Preços em Saúde referência medicamentos;expression from LLM question
+96;alteração contratual serviços já previstos no edital ;expression from LLM question
+97;licitação princípio da legalidade estrita afastado;expression from LLM question
+98;renovação de contrato serviços de natureza continuada pesquisa de preços;expression from LLM question
+99;contratações de software cartas de exclusividade;expression from LLM question
+100;assistência médica a servidores;expression from LLM question
+101;Qual é a modalidade de licitação adequada para a concessão remunerada de uso de bens públicos?;LLM
+102;A citação é considerada válida após o falecimento do responsável se a defesa já foi apresentada?;LLM
+103;A prestação de garantia contratual é permitida juntamente com a exigência de patrimônio líquido mínimo?;LLM
+104;A exigência de garantia de participação é permitida juntamente com a exigência de patrimônio líquido mínimo?;LLM
+105;Quais são as consequências para os responsáveis que realizam despesas sem cobertura contratual?;LLM
+106;O pregão é adequado para concessões de uso de áreas comerciais em aeroportos?;LLM
+107;Quais normas devem ser observadas na cessão das áreas comerciais de centrais públicas de abastecimento de gêneros alimentícios?;LLM
+108;É necessário exigir ao licitante comprovar que já forneceu bens pertinentes e compatíveis com o objeto da licitação?;LLM
+109;É permitido a extrapolar os limites estabelecidos no art. 65, §§ 1º e 2º, da Lei 8.666/1993 para alterações consensuais qualitativas de contratos de obras e serviços?;LLM
+110;Qual a responsabilidade do gestor sucessor quando o gestor antecessor omitiu o dever de prestar contas?;LLM
+111;Qual é a modalidade de licitação utilizada para contratar serviços técnicos necessários à estruturação de projeto de parceria público-privada relativo a infraestrutura de rede de iluminação pública?;LLM
+112;O que acontece se não houver compatibilidade entre o objeto do certame e as atividades previstas no contrato social da empresa licitante?;LLM
+113;Quem é responsável pela gestão dos recursos do Fundo Municipal de Saúde?;LLM
+114;É obrigatória pesquisa de mercado na elaboração do orçamento-base da licitação?;LLM
+115;A pesquisa de preços correntes no mercado é obrigatória em licitações?;LLM
+116;O que fazer para verificar a vantajosidade da adesão à ata?;LLM
+117;É permitida a compensação entre acréscimos e supressões nos contratos administrativos?;LLM
+118;Quais são as condições para que o restabelecimento total ou parcial de quantitativo de item anteriormente suprimido por aditivo contratual não configure compensação vedada pela jurisprudência do TCU?;LLM
+119;A Administração pode indicar preferência por marcas em licitações para aquisição de cartuchos de tinta?;LLM
+120;O TCU é responsável pela fiscalização das ações e serviços de saúde pagos com recursos repassados pela União no âmbito do Sistema Único de Saúde?;LLM
+121;O que deve ser feito se não for possível obter preços referenciais nos sistemas oficiais para estimativa de custos em processos licitatórios?;LLM
+122;É necessária ponderação entre a pontuação técnica e a de preço em uma licitação do tipo técnica e preço?;LLM
+123;Como a pontuação desarrazoada pode limitar a competitividade nas licitações do tipo técnica e preço?;LLM
+124;É possível prorrogar um contrato administrativo fora do término do prazo de vigência?;LLM
+125;Qual é o problema na exigência de atestado de capacidade técnica para contratação de serviços advocatícios por conselho de fiscalização profissional?;LLM
+126;É necessária reposição de importâncias indevidamente percebidas, de boa-fé, por servidores, em virtude de erro escusável de interpretação de lei por parte do órgão/entidade?;LLM
+127;É possível aquisição direta quando a falta de produto ou serviço pode colocar em risco a saúde das pessoas?;LLM
+128;É obrigatória a divulgação dos preços estimados no edital nos pregões para aquisição de medicamentos?;LLM
+129;A contratação de professores, conferencistas ou instrutores para ministrar cursos de treinamento ou aperfeiçoamento de pessoal se enquadra na inexigibilidade de licitação?;LLM
+130;Qual é a diferença entre reajuste de preços e repactuação?;LLM
+131;É possível a aplicação da recomposição mesmo após a aplicação do reajuste previsto no contrato?;LLM
+132;A retenção de pagamentos é permitida em caso de perda da regularidade fiscal?;LLM
+133;Por que despesas desnecessárias e anteriores à celebração do contrato são consideradas irregulares?;LLM
+134;Como o vínculo trabalhista ou societário pré-existente afeta a competitividade das licitantes no certame licitatório?;LLM
+135;É permitido atribuir pontuação a uma empresa licitante nas licitações de técnica e preço com base na posse de determinados tipos de profissionais em seu quadro permanente?;LLM
+136;Um erro material deve levar à desclassificação antecipada da proposta?;LLM
+137;Há vedação à inclusão de novo documento destinado a atestar condição de habilitação preexistente em sede de diligência?;LLM
+138;A exigência de comprovação de quantitativos mínimos em obras ou serviços com características semelhantes é legal?;LLM
+139;Qual a extensão da sanção de impedimento de licitar e contratar?;LLM
+140;Quais documentos são exigidos para habilitação técnico-operacional em certames de obras e serviços de engenharia?;LLM
+141;Qual a finalidade do controle das autorizações de adesão?;LLM
+142;Em que situações a apresentação do alvará de funcionamento é permitida na habilitação jurídica?;LLM
+143;É permitida a acumulação do cargo de secretário municipal com o cargo de professor?;LLM
+144;A prescrição da pretensão punitiva do TCU afeta o julgamento das contas?;LLM
+145;O Banco de Preços em Saúde é uma referência de preços válida para a aquisição de medicamentos?;LLM
+146;É possível a inclusão de serviços já previstos no edital em uma alteração contratual;LLM
+147;O princípio da legalidade estrita pode ser afastado em favor de outros princípios no procedimento licitatório?;LLM
+148;Quais fontes devem ser prioritárias na pesquisa de preços para a renovação do contrato de serviços de natureza continuada?;LLM
+149;Devem ser aceitas nas contratações de software as cartas de exclusividade emitidas pelos próprios fabricantes?;LLM
+150;Qual é a regra geral para a contratação de entidade para prestação de serviços de assistência médica a servidores?;LLM
+
