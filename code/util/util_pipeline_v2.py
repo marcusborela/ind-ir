@@ -226,7 +226,7 @@ def detail_document_found(parm_doc_returned, parm_num_doc:int=10):
         print(f"Consulta: {parm_doc_returned['query']}")
         print(f"Qtd documentos retornados: {len(parm_doc_returned['documents'])}")
         if len(parm_doc_returned['documents']) > 0:
-            print(f'Primeiro docto:\n{parm_doc_returned["documents"][0]}\n\nÚltimo ({len(parm_doc_returned["documents"])}):\n{parm_doc_returned["documents"][-1]}')
+            # print(f'Primeiro docto:\n{parm_doc_returned["documents"][0]}\n\nÚltimo ({len(parm_doc_returned["documents"])}):\n{parm_doc_returned["documents"][-1]}')
 
             print(f'Seguem os nomes dos termos recuperados em ordem de score')
             if 'name' in parm_doc_returned['documents'][0].meta: # juris_tcu_index
