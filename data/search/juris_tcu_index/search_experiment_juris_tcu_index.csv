@@ -177,3 +177,6 @@ TIME,COUNT_QUERY_RUN,COUNT_QUERY_WITHOUT_RESULT,COUNT_QUERY_NOT_FOUND,TOPK_RETRI
 2023-Jun-25 17:49:06,100,0.0,0.0,300,0.0,53.28,12,5.203,2.488,total_gte_5,sts,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-800
 2023-Jun-25 18:05:02,100,0.0,0.0,300,0.0,3.75,12,62.094,0.727,area,join_sts_bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
 2023-Jun-25 18:30:39,100,0.0,4.0,300,0.0,20.979,12,52.294,15.359,theme,join_sts_bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-25 18:58:59,100,0.0,29.0,300,0.0,19.324,12,35.174,16.994,subtheme,join_sts_bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-25 19:29:31,100,0.0,17.0,300,0.0,16.084,12,25.596,18.317,extra,join_sts_bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
+2023-Jun-25 20:00:10,100,0.0,1.0,300,0.0,4.838,12,36.957,18.381,total,join_sts_bm25,,unicamp-dl/mt5-3B-mmarco-en-pt
