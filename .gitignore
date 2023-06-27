@@ -19,3 +19,6 @@ docs/schedule/~$cronograma.xlsx
 *train_data_juris_tcu_index_all_data.csv*
 *train_data_juris_tcu_index_limit_100_per_doc.csv*
 *train_data_juris_tcu_index_limit_50_per_doc*
+*model/train*
+*last_ack*
+*last_put*
