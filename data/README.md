@@ -12,7 +12,7 @@ Folders with intermediate results:
 
 Other links:
 * [Project Main Page](/README.md)
-* This page, [in English](./README.md)
+* This page, [in Portuguese](./leiame.md)
 
 ## [JURIS_TCU](/data/juris_tcu/)
 Statement base of the [Selected Jurisprudence of the Federal Court of Accounts](https://portal.tcu.gov.br/jurisprudencia/), containing 16,057 documents, 150 queries, and 2,250 relevance assessments.
