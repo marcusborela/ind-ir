@@ -32,9 +32,9 @@ Além do score, o LLM fornece a razão pela qual escolhe o score. Relatório com
 Arquivos:
 * [doc.csv](juris_tcu/doc.csv) - cada documento contém um enunciado da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/).
 * [query.csv](juris_tcu/query.csv) - 150 queries produzidas. São 3 grupos de 50 queries cada:
-  * Grupo 1 - queries geradas a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/) (consultas mais executadas).
-  * Grupo 2 - transformação das perguntas em query3 para expressão de busca, retirando parte das palavras utilizadas.
-  * Grupo 3 -  queries geradas por LLM a partir de um enunciado, dentre os mais acessados no log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/).
+  * Grupo 1 - expressões de busca geradas a partir do log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/) (consultas mais executadas).
+  * Grupo 2 - transformação das perguntas do grupo 3 para expressão de busca, retirando parte das palavras utilizadas.
+  * Grupo 3 - perguntas geradas por LLM a partir de um enunciado, dentre os mais acessados no log de acessos à [Pesquisa Integrada do TCU](https://pesquisa.apps.tcu.gov.br/).
 * [qrel.csv](juris_tcu/qrel.csv).csv - avaliações de 15 documentos para cada query de [query.csv](juris_tcu/query.csv).
 
 ## [JURIS_TCU_INDEX](/data/juris_tcu_index/)
