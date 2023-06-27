@@ -205,6 +205,10 @@ def experiment_run(parm_df,
             result_search_one_query['NDCG@10'] = 0
             result_search_one_query['NDCG@15'] = 0
             result_search_one_query['NDCG@20'] = 0
+            result_search_one_query['PRECISION@50'] = 0
+            result_search_one_query['RECALL@50'] = 0
+            result_search_one_query['PRECISION@100'] = 0
+            result_search_one_query['RECALL@100'] = 0
             result_search_one_query['COUNT_DOCTO_FOUND'] = 0
             result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
             result_search_one_query['LIST_RANK'] = ""
@@ -222,6 +226,10 @@ def experiment_run(parm_df,
                     result_search_one_query['NDCG@10'] = 0
                     result_search_one_query['NDCG@15'] = 0
                     result_search_one_query['NDCG@20'] = 0
+                    result_search_one_query['PRECISION@50'] = 0
+                    result_search_one_query['RECALL@50'] = 0
+                    result_search_one_query['PRECISION@100'] = 0
+                    result_search_one_query['RECALL@100'] = 0
                     result_search_one_query['COUNT_DOCTO_FOUND'] = 0
                     result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
                     result_search_one_query['LIST_RANK'] = ""

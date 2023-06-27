@@ -304,6 +304,12 @@ dict_ranker = {
     'MINILM_TRAINED_19000'  : {'limit_query_size': None, 'model': None,
                  'inference_type': 'SeqClassification',
                  'model_name': 'unicamp-dl/mMiniLM-L6-v2-pt-v2-19000'},
+    'MINILM_TRAINED_49200'  : {'limit_query_size': None, 'model': None,
+                 'inference_type': 'SeqClassification',
+                 'model_name': 'unicamp-dl/mMiniLM-L6-v2-pt-v2-49200'},
+    'MINILM_INDIR' : {'limit_query_size': None, 'model': None,
+                 'inference_type': 'SeqClassification',
+                 'model_name': 'unicamp-dl/mMiniLM-L6-v2-pt-v2-indir'},
 
 }
 
