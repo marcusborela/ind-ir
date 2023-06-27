@@ -20,40 +20,54 @@ logging.getLogger("haystack").setLevel(logging.WARNING) #WARNING, INFO
 
 GREATEST_INTEGER = sys.maxsize
 
-def generate_dict_idcg(count_qrel_max: int = 15):
+
+def calculate_dict_idcg(dict_doc_relevant:dict, position:int):
     """
-    Generate a dictionary of IDCG (Ideal Discounted Cumulative Gain) values.
-
-    Args:
-        count_qrel_max (int): Maximum value for the IDCG calculation (exclusive).
-
-    Returns:
-        dict: A dictionary where keys represent the position (ranging from 1 to count_qrel_max - 1)
-              and values represent the corresponding IDCG value.
-
-    Obs.: Assumido val_relevance (int) == 1 Relevance value used in the IDCG calculation.
+    calculate IDCG (Ideal Discounted Cumulative Gain) values.
 
     """
-    dict_idcg_relevance_fixed = {}
+    sorted_values = sorted(dict_doc_relevant.values(), reverse=True)
 
-    # Iterate from 1 to count_qrel_max - 1
-    for i in range(1, count_qrel_max):
+    # print(sorted_values)
 
-        idcg = 0
+    idcg = 0
 
-        # Iterate from 0 to i - 1
-        for j in range(i):
+    for i, relevance in enumerate(sorted_values[:position]):
+        if i >= position:
+            raise ValueError('Logic error: more than position????')
+        # relevance = 1 if docid in dict_doc_relevant else 0
+        idcg += (2 ** relevance - 1) / math.log2(i + 2)
 
-            # Calculate the IDCG value based on the provided relevance value
-            # idcg += (2 ** val_relevance - 1) / math.log2(j + 2)
-            idcg +=  1 / math.log2(j + 2)
+    return idcg
 
-        # Store the calculated IDCG value in the dictionary
-        dict_idcg_relevance_fixed[i] = idcg
+def calculate_precision_recall_query_result(list_id_doc_returned, dict_doc_relevant, position):
+    """
+    list_id_doc_returned: list of id of documents returned in search
+    dict_doc_relevant: dict of relevance where id_doc is the key and type relevance (not used) value
+    position: position at which to calculate precision and recall
+    return precision, recall at position
+    """
+    if list_id_doc_returned is not None and len(list_id_doc_returned) > 0:
+        relevant_count = 0
+        for i, docid in enumerate(list_id_doc_returned[:position]):
+            if i >= position:
+                raise ValueError('Logic error: more than position???')
 
-    return dict_idcg_relevance_fixed
+            if docid in dict_doc_relevant:
+                if dict_doc_relevant[docid] >= 2:
+                    relevant_count += 1
 
-def calculate_ndcg_query_result (list_id_doc_returned, dict_doc_relevant:dict, position:int)->list:
+        precision = relevant_count / position
+        recall = relevant_count / len(dict_doc_relevant)
+
+        return precision, recall
+    else:
+        return 0, 0
+
+
+def calculate_ndcg_query_result (list_id_doc_returned,
+                                 dict_doc_relevant:dict,
+                                 position:int)->float:
     """
     list_id_doc_returned: list of id of documents returned in search
     dict_doc_relevant: dict of relevance where id_doc is the key and type relevance (not used) value
@@ -77,7 +91,7 @@ def calculate_ndcg_query_result (list_id_doc_returned, dict_doc_relevant:dict, p
         # if len(dict_doc_relevant) not in dict_idcg_relevance_fixed:
         #     raise Exception(f"len(dict_doc_relevant) {len(dict_doc_relevant)} not in dict_idcg_relevance_fixed {dict_idcg_relevance_fixed}")
         # calculate ndcg for the query (Normalized Discounted Cumulative Gain)
-        ndcg = dcg / dict_idcg_relevance_fixed[len(dict_doc_relevant)]
+        ndcg = dcg / calculate_dict_idcg(dict_doc_relevant, position)
 
         return ndcg
     else:
@@ -92,8 +106,9 @@ def calculate_list_rank_query_result (list_id_doc_returned, dict_doc_relevant:di
     if list_id_doc_returned is not None and len(list_id_doc_returned) > 0:
         list_rank = []
         for doc_id in dict_doc_relevant:
-            if doc_id in list_id_doc_returned:
-                list_rank.append(1 + list_id_doc_returned.index(doc_id))  # 1st position of doc_id in the list
+            if dict_doc_relevant[doc_id] >= 2:
+                if doc_id in list_id_doc_returned:
+                    list_rank.append(1 + list_id_doc_returned.index(doc_id))  # 1st position of doc_id in the list
         return list_rank
     else:
         return None
@@ -136,16 +151,14 @@ def search_docto_for_experiment(parm_experiment, query_data):
 
 def experiment_run(parm_df,
                    parm_experiment,
-                   parm_index_name:str, # just for log
                    parm_limit_query:int=GREATEST_INTEGER,
-                   parm_ndcg_position:int=12,
                    parm_print:bool=False):
     """
     Consider run as search for all queries
     """
 
     # param validation
-    list_experiment_keys_expected = ['TOPK_RETRIEVER', 'TOPK_RANKER', 'PIPE','DONE']
+    list_experiment_keys_expected = ['INDEX_NAME','TOPK_RETRIEVER', 'TOPK_RANKER', 'PIPE','DONE']
     list_pipe_keys_expected = ['PIPE_OBJECT', 'RETRIEVER_TYPE', 'RETRIEVER_MODEL_NAME',
                                'RANKER_MODEL_NAME', 'RANKER_TYPE']
 
@@ -169,7 +182,8 @@ def experiment_run(parm_df,
 
     result_search_all_query = []
     total_rank1 = 0 #
-    total_ndcg = 0
+    total_ndcg5 = total_ndcg10 = total_ndcg15 = total_ndcg20 = 0
+    total_precision_50 = total_precision_100 = total_recall_50 = total_recall_100 = 0
     total_without_result = 0
     total_found = 0 # total de buscas em que se encantrou algum documento relevante na lista retornada
     total_not_found = 0
@@ -187,7 +201,10 @@ def experiment_run(parm_df,
         if list_id_doc_returned is None or len(list_id_doc_returned) == 0:
             print(f"\nDocuments not found in experiment {parm_experiment} With query: {row_query['ID']}")
             result_search_one_query['RANK1'] = 0
-            result_search_one_query['NDCG'] = 0
+            result_search_one_query['NDCG@5'] = 0
+            result_search_one_query['NDCG@10'] = 0
+            result_search_one_query['NDCG@15'] = 0
+            result_search_one_query['NDCG@20'] = 0
             result_search_one_query['COUNT_DOCTO_FOUND'] = 0
             result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
             result_search_one_query['LIST_RANK'] = ""
@@ -201,15 +218,27 @@ def experiment_run(parm_df,
                 list_rank = calculate_list_rank_query_result(list_id_doc_returned, dict_ground_truth)
                 if list_rank is None or len(list_rank) == 0:
                     result_search_one_query['RANK1'] = 0
-                    result_search_one_query['NDCG'] = 0
+                    result_search_one_query['NDCG@5'] = 0
+                    result_search_one_query['NDCG@10'] = 0
+                    result_search_one_query['NDCG@15'] = 0
+                    result_search_one_query['NDCG@20'] = 0
                     result_search_one_query['COUNT_DOCTO_FOUND'] = 0
                     result_search_one_query['COUNT_DOCTO_RELEVANT'] = 0
                     result_search_one_query['LIST_RANK'] = ""
                     total_not_found += 1
                 else:
-                    result_search_one_query['NDCG'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, parm_ndcg_position),2)
+                    result_search_one_query['NDCG@5'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, 5),2)
+                    result_search_one_query['NDCG@10'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, 10),2)
+                    result_search_one_query['NDCG@15'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, 15),2)
+                    result_search_one_query['NDCG@20'] = round(100*calculate_ndcg_query_result(list_id_doc_returned, dict_ground_truth, 20),2)
+                    precision, recall = calculate_precision_recall_query_result(list_id_doc_returned, dict_ground_truth, 50)
+                    result_search_one_query['PRECISION@50'] = round(100*precision,3)
+                    result_search_one_query['RECALL@50'] = round(100*recall,3)
+                    precision, recall = calculate_precision_recall_query_result(list_id_doc_returned, dict_ground_truth, 100)
+                    result_search_one_query['PRECISION@100'] = round(100*precision,3)
+                    result_search_one_query['RECALL@100'] = round(100*recall,3)
                     result_search_one_query['COUNT_DOCTO_FOUND'] = len(list_id_doc_returned) if list_id_doc_returned is not None else 0
-                    result_search_one_query['COUNT_DOCTO_RELEVANT'] = len(dict_ground_truth)
+                    result_search_one_query['COUNT_DOCTO_RELEVANT'] = sum(1 for value in dict_ground_truth.values() if value >= 2)
                     result_search_one_query['GROUND_TRUTH'] = str(dict_ground_truth)
                     result_search_one_query['RANK1'] = min(list_rank)
                     result_search_one_query['LIST_RANK'] = str(list_rank)
@@ -218,13 +247,21 @@ def experiment_run(parm_df,
         # convertendo campos do tipo lista em string
 
         total_rank1 += result_search_one_query['RANK1']
-        total_ndcg += result_search_one_query['NDCG']
+        total_ndcg5 += result_search_one_query['NDCG@5']
+        total_ndcg10 += result_search_one_query['NDCG@10']
+        total_ndcg15 += result_search_one_query['NDCG@15']
+        total_ndcg20 += result_search_one_query['NDCG@20']
+        total_precision_50 += result_search_one_query['PRECISION@50']
+        total_precision_100 += result_search_one_query['PRECISION@100']
+        total_recall_50 += result_search_one_query['RECALL@50']
+        total_recall_100 += result_search_one_query['RECALL@100']
         result_search_all_query.append(result_search_one_query)
 
 
     total_time = time.time() - time_start_search_run
     result_search_run = {}
     result_search_run['TIME'] = time.strftime('%Y-%b-%d %H:%M:%S')
+    result_search_run['INDEX_NAME'] = parm_experiment['INDEX_NAME']
     result_search_run['RETRIEVER_TYPE'] = parm_experiment['PIPE']['RETRIEVER_TYPE']
     result_search_run['COUNT_QUERY_RUN'] = count_query_run
     result_search_run['TOPK_RETRIEVER'] = parm_experiment['TOPK_RETRIEVER']
@@ -236,16 +273,24 @@ def experiment_run(parm_df,
         result_search_run['RANK1_MEAN'] = round(total_rank1/total_found,3)
     else:
         result_search_run['RANK1_MEAN'] = 0
-    result_search_run['NDCG_MEAN'] = round(total_ndcg/count_query_run,3)
-    result_search_run['NDCG_LIMIT'] = parm_ndcg_position
+    result_search_run['NDCG@5_MEAN'] = round(total_ndcg5/count_query_run,3)
+    result_search_run['NDCG@10_MEAN'] = round(total_ndcg10/count_query_run,3)
+    result_search_run['NDCG@15_MEAN'] = round(total_ndcg15/count_query_run,3)
+    result_search_run['NDCG@20_MEAN'] = round(total_ndcg20/count_query_run,3)
+    result_search_run['PRECISION@50_MEAN'] = round(total_precision_50/count_query_run,3)
+    result_search_run['PRECISION@100_MEAN'] = round(total_precision_100/count_query_run,3)
+    result_search_run['RECALL@50_MEAN'] = round(total_recall_50/count_query_run,3)
+    result_search_run['RECALL@100_MEAN'] = round(total_recall_100/count_query_run,3)
     result_search_run['TIME_SPENT_MEAN'] = round(total_time/count_query_run,3)
     result_search_run['RETRIEVER_MODEL_NAME'] = parm_experiment['PIPE']['RETRIEVER_MODEL_NAME']
     result_search_run['RANKER_MODEL_NAME'] = parm_experiment['PIPE']['RANKER_MODEL_NAME']
     result_search_run['RESULT_QUERY'] = result_search_all_query
 
     if parm_print: # print results
-        for key in ['RANK1_MEAN','NDCG_MEAN','TIME_SPENT_MEAN','COUNT_QUERY_RUN', 'COUNT_QUERY_WITHOUT_RESULT','COUNT_QUERY_NOT_FOUND']:
-            print(f"{key:>8}: {result_search_run[key]}")
+        for key in result_search_run.keys():
+            if key not in ['TIME','INDEX_NAME','RETRIEVER_TYPE','TOPK_RETRIEVER',\
+                           'RETRIEVER_MODEL_NAME', "RANKER_MODEL_NAME", 'RESULT_QUERY', 'TOPK_RANKER']:
+                print(f"{key:>8}: {result_search_run[key]}")
 
     return result_search_run
 
@@ -392,8 +437,5 @@ def add_experiment_result(parm_list_result, parm_dataset):
 
 
 
-dict_idcg_relevance_fixed = generate_dict_idcg(50)
-print("calculated dict_idcg until @50")
-# print('dict_idcg_relevance_fixed', dict_idcg_relevance_fixed)
 
 
