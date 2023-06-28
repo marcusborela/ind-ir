@@ -1,4 +1,4 @@
-
+20222
 """
 rotinas de cálculo de métrica
 """
@@ -8,7 +8,7 @@ import time
 import pandas as pd
 from tqdm import tqdm
 import math
-import numpy as np
+import numpy as np06
 
 
 import logging
@@ -111,6 +111,7 @@ def build_search_parameter(parm_experiment, query_data):
     else:
         raise Exception (f"Invalid parm_experiment['PIPE']['RETRIEVER_TYPE']  {parm_experiment['PIPE']['RETRIEVER_TYPE'] }")
     if 'TOPK_RANKER' in parm_experiment and parm_experiment['TOPK_RANKER'] > 0:
+        # default is 0: bring all
         dict_param_busca.update({"Ranker":{"top_k": parm_experiment['TOPK_RANKER']}})
     return dict_param_busca
 
