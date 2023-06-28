@@ -58,7 +58,8 @@ def return_consolidate_result(parm_dataset):
     df_result['COUNT_DOCTO_RELEVANT_FOUND'] = df_result['LIST_RANK'].apply(len)
     df_result['PERCENT_DOCTO_RELEVANT_FOUND'] = round(100 * df_result['COUNT_DOCTO_RELEVANT_FOUND']  / df_result['COUNT_DOCTO_RELEVANT'], 2)
     # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
-    df_result['RANKER_TYPE'] = df_result.apply(find_ranker_type, axis=1)
+    if parm_dataset == 'juris_tcu_index':
+        df_result['RANKER_TYPE'] = df_result.apply(find_ranker_type, axis=1)
 
     return df_result
 
@@ -80,7 +81,7 @@ def consolidate_result(parm_dataset):
     # merge experiment data
     df_experiment_result = df_experiment_result.merge(df_experiment, how='inner', on='TIME')
     print(f'df_experiment_result.shape {df_experiment_result.shape}')
-    df_experiment_result.drop(['RANK1_MEAN', 'NDCG_MEAN','TIME_SPENT_MEAN'], axis=1, inplace=True)
+    df_experiment_result.drop(df_experiment_result.filter(like='_MEAN').columns, axis=1, inplace=True)
 
     # read query/qrel data
     df_query = pd.read_csv(path_query)
@@ -91,18 +92,22 @@ def consolidate_result(parm_dataset):
 
     df_search_data = df_query.merge(df_qrel, how='left', left_on='ID', right_on='QUERY_ID').drop('QUERY_ID', axis=1)
     print(f'df_search_data.shape[0] {df_search_data.shape[0]}')
-    #df_search_data.rename(columns={'TEXT': 'QUERY_TEXT', 'ID':'QUERY_ID'},inplace=True)
+    # df_search_data.rename(columns={'TEXT': 'QUERY_TEXT', 'ID':'QUERY_ID'},inplace=True)
 
     # consolidate data of queries
-    df_new = df_search_data.groupby('ID').apply(lambda x: dict(zip(x['DOC_ID'], x['TYPE']))).reset_index(name='RELEVANCE_DICT_ID_DOC')
+    if parm_dataset == 'juris_tcu_index':
+        df_new = df_search_data.groupby('ID').apply(lambda x: dict(zip(x['DOC_ID'], x['TYPE']))).reset_index(name='RELEVANCE_DICT_ID_DOC')
+    else:
+        df_new = df_search_data.groupby('ID').apply(lambda x: dict(zip(x['DOC_ID'], x['SCORE']))).reset_index(name='RELEVANCE_DICT_ID_DOC')
     df_new['RELEVANCE_DICT_TYPE'] = df_new['RELEVANCE_DICT_ID_DOC'].apply(invert_dict_with_lists)
     df_new = pd.merge(df_new, df_search_data.drop_duplicates('ID'), on='ID', how='left')
+
     df_new = df_new.add_prefix('QUERY_')
     # print('após add prefix', df_new.columns)
 
 
     # merge experiment data with queries searched
-    df_experiment_result = df_experiment_result.merge(df_new, how='inner', left_on='QUERY_ID', right_on='QUERY_ID').drop('QUERY_ID', axis=1)
+    df_experiment_result = df_experiment_result.merge(df_new, how='inner', left_on='QUERY_ID', right_on='QUERY_ID')# .drop('QUERY_ID', axis=1)
 
 
     # adding text lenght info
@@ -128,8 +133,7 @@ def consolidate_result(parm_dataset):
     columns_to_remove = [# about experiment data
                         # 'TIME', # 'COUNT_QUERY_RUN',
                          # about query/qrel data
-                         'QUERY_TEXT', 'QUERY_TYPE', 'QUERY_REFERENCE_LIST', 'QUERY_AREA_ID_DESCRIPTOR', 'QUERY_NORMATIVE_PROCESS_TYPE', 'QUERY_NORMATIVE_IDENTIFICATION',
-                         'QUERY_NORMATIVE_DATE', 'QUERY_NORMATIVE_AUTHOR_TYPE', 'QUERY_NORMATIVE_AUTHOR_NAME',
+                         'QUERY_TEXT',
                          ]
     #print([x for x in columns_to_remove if x not in df_experiment_result.columns])
     df_experiment_result.drop(columns_to_remove, axis=1, inplace=True)
