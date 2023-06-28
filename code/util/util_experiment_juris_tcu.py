@@ -48,17 +48,18 @@ def calculate_precision_recall_query_result(list_id_doc_returned, dict_doc_relev
     return precision, recall at position
     """
     if list_id_doc_returned is not None and len(list_id_doc_returned) > 0:
+        dict_relevant_only = {key: value for key, value in dict_doc_relevant.items() if value >= 2}
+
         relevant_count = 0
         for i, docid in enumerate(list_id_doc_returned[:position]):
             if i >= position:
                 raise ValueError('Logic error: more than position???')
 
-            if docid in dict_doc_relevant:
-                if dict_doc_relevant[docid] >= 2:
-                    relevant_count += 1
+            if docid in dict_relevant_only:
+                relevant_count += 1
 
         precision = relevant_count / position
-        recall = relevant_count / len(dict_doc_relevant)  # AJUSTAR CONSIDERAR SÓ O TOTAL DE RELEVANTES
+        recall = relevant_count / len(dict_relevant_only)  # AJUSTAR CONSIDERAR SÓ O TOTAL DE RELEVANTES
 
         return precision, recall
     else:
@@ -120,7 +121,7 @@ def build_search_parameter(parm_experiment, query_data):
                             "StsRetriever": {"top_k": np.int(parm_experiment['TOPK_RETRIEVER']/2)}}
     else:
         dict_param_busca = {"Retriever":{"top_k": parm_experiment['TOPK_RETRIEVER']}}
-    if 'TOPK_RANKER' in parm_experiment and parm_experiment['TOPK_RANKER'] > 0:
+    if parm_experiment['PIPE']['RANKER_TYPE'] != 'none':
         dict_param_busca.update({"Ranker":{"top_k": parm_experiment['TOPK_RANKER']}})
     return dict_param_busca
 
