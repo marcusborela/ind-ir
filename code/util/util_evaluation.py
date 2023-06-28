@@ -57,10 +57,6 @@ def return_consolidate_result(parm_dataset):
     # calculate redundant fields
     df_result['COUNT_DOCTO_RELEVANT_FOUND'] = df_result['LIST_RANK'].apply(len)
     df_result['PERCENT_DOCTO_RELEVANT_FOUND'] = round(100 * df_result['COUNT_DOCTO_RELEVANT_FOUND']  / df_result['COUNT_DOCTO_RELEVANT'], 2)
-    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
-    if parm_dataset == 'juris_tcu_index':
-        df_result['RANKER_TYPE'] = df_result.apply(find_ranker_type, axis=1)
-
     return df_result
 
 def consolidate_result(parm_dataset):
@@ -129,16 +125,43 @@ def consolidate_result(parm_dataset):
     df_experiment_result['QUERY_NUM_TOKENS_MONOT5_3B_LOG'] = round(np.log(df_experiment_result['QUERY_NUM_TOKENS_MONOT5_3B'])).astype(int)
     df_experiment_result['QUERY_NUM_TOKENS_MINILM_LOG'] = round(np.log(df_experiment_result['QUERY_NUM_TOKENS_MINILM'])).astype(int)
 
+
+    # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
+    if parm_dataset == 'juris_tcu_index':
+        df_experiment_result['RANKER_TYPE'] = df_experiment_result.apply(find_ranker_type, axis=1)
+    else:
+        df_experiment_result['RANKER_TYPE'] = df_experiment_result['RANKER_TYPE'].fillna('none')
+        df_experiment_result['NUM_EXPANSAO'] = df_experiment_result['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
+
+
+    if 'EXPANSOR_CRITERIA' not in df_experiment_result.columns:
+        df_experiment_result['EXPANSOR_CRITERIA'] = None
+
+    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
+    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
+
+
+    if 'EXPANSOR_CRITERIA' not in df_experiment_result.columns:
+        df_experiment_result['EXPANSOR_CRITERIA'] = None
+    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none", inplace=True)
+    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir", inplace=True)
+
+    df_experiment_result['RANKER_TYPE'] = df_experiment_result['RANKER_TYPE'].fillna('none')
+
+
     # saving data
     columns_to_remove = [# about experiment data
                         # 'TIME', # 'COUNT_QUERY_RUN',
                          # about query/qrel data
                          'QUERY_TEXT',
-                         ]
+                         'COUNT_QUERY_WITHOUT_RESULT','COUNT_QUERY_NOT_FOUND']
     #print([x for x in columns_to_remove if x not in df_experiment_result.columns])
     df_experiment_result.drop(columns_to_remove, axis=1, inplace=True)
     df_experiment_result.to_csv(path_search_result_consolidated, index=False)
     print(f"Generated file with {df_experiment_result.shape[0]} records")
+
+
+
 
 
 def return_result_per_doc(parm_dataset):
@@ -206,80 +229,3 @@ def return_result_per_doc(parm_dataset):
 
 
     return df_result_doc
-
-def generate_dict_idcg(count_qrel_max: int = 15, val_relevance: int = 1):
-    """
-    Generate a dictionary of IDCG (Ideal Discounted Cumulative Gain) values.
-
-    Args:
-        count_qrel_max (int): Maximum value for the IDCG calculation (exclusive).
-        val_relevance (int): Relevance value used in the IDCG calculation.
-
-    Returns:
-        dict: A dictionary where keys represent the position (ranging from 1 to count_qrel_max - 1)
-              and values represent the corresponding IDCG value.
-
-    """
-    dict_idcg_relevance_fixed = {}
-
-    # Iterate from 1 to count_qrel_max - 1
-    for i in range(1, count_qrel_max):
-
-        idcg = 0
-
-        # Iterate from 0 to i - 1
-        for j in range(i):
-
-            # Calculate the IDCG value based on the provided relevance value
-            idcg += (2 ** val_relevance - 1) / math.log2(j + 2)
-
-        # Store the calculated IDCG value in the dictionary
-        dict_idcg_relevance_fixed[i] = idcg
-
-    return dict_idcg_relevance_fixed
-
-
-def calculate_ndcg_query_result (list_id_doc_returned, dict_doc_relevant:dict, position:int)->list:
-    """
-    list_id_doc_returned: list of id of documents returned in search
-    dict_doc_relevant: dict of relevance where id_doc is the key and type relevance (not used) value
-    return ndcg at position
-    """
-    if len(list_id_doc_returned) > 0:
-
-        # calculating dcg for the query (Discounted Cumulative Gain)
-        dcg = 0
-        for i, docid in enumerate(list_id_doc_returned[:position]):
-            if i >= position:
-                raise ValueError('Logic error: more than position????')
-            relevance = 1 if docid in dict_doc_relevant else 0
-            dcg += (2 ** relevance - 1) / math.log2(i + 2)
-
-        # calculate ndcg for the query (Normalized Discounted Cumulative Gain)
-        ndcg = dcg / dict_idcg_relevance_fixed[len(dict_doc_relevant)]
-
-        return ndcg
-    else:
-        return 0
-
-def calculate_list_rank_query_result (list_id_doc_returned, dict_doc_relevant:dict)->list:
-    """
-    list_id_doc_returned: list of id of documents returned in search
-    dict_doc_relevant: dict of relevance where id_doc is the key and type relevance (not used) value
-    return min (and mean) rank  of relevant docto
-    """
-
-
-    if len(list_id_doc_returned) > 0:
-        list_rank = []
-        for doc_id in dict_doc_relevant:
-            if doc_id in list_id_doc_returned:
-                list_rank.append(1 + list_id_doc_returned.index(doc_id))  # 1st position of doc_id in the list
-        return list_rank
-    else:
-        return None
-
-
-dict_idcg_relevance_fixed = generate_dict_idcg(15, 1)
-
-# print('dict_idcg_relevance_fixed', dict_idcg_relevance_fixed)

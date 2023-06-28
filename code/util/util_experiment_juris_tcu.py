@@ -268,6 +268,7 @@ def experiment_run(parm_df,
     result_search_run['RETRIEVER_TYPE'] = parm_experiment['PIPE']['RETRIEVER_TYPE']
     result_search_run['COUNT_QUERY_RUN'] = count_query_run
     result_search_run['TOPK_RETRIEVER'] = parm_experiment['TOPK_RETRIEVER']
+    result_search_run['EXPANSOR_CRITERIA'] = parm_experiment['EXPANSOR_CRITERIA']
     result_search_run['TOPK_RANKER'] = parm_experiment['TOPK_RANKER']
     result_search_run['COUNT_QUERY_RUN'] = count_query_run
     result_search_run['COUNT_QUERY_WITHOUT_RESULT'] = total_without_result
