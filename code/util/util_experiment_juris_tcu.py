@@ -58,7 +58,7 @@ def calculate_precision_recall_query_result(list_id_doc_returned, dict_doc_relev
                     relevant_count += 1
 
         precision = relevant_count / position
-        recall = relevant_count / len(dict_doc_relevant)
+        recall = relevant_count / len(dict_doc_relevant)  # AJUSTAR CONSIDERAR SÓ O TOTAL DE RELEVANTES
 
         return precision, recall
     else:
