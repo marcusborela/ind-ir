@@ -131,19 +131,13 @@ def search_docto_for_experiment(parm_experiment, query_data):
     limit_size_text_first_stage = 1024
     search_parameter = build_search_parameter(parm_experiment, query_data)
     # print(f"search_parameter: {search_parameter} ")
-    search_text =  query_data['TEXT'][:limit_size_text_first_stage]
+    search_text =  query_data[parm_experiment['COLUMN_NAME']][:limit_size_text_first_stage]
     docto_found = parm_experiment['PIPE']['PIPE_OBJECT'].run(query=search_text, params=search_parameter)
     if 'documents' in docto_found: # search with pipe
         if len(docto_found['documents']) > 0:
-            #if isinstance(docto_found['documents'][0], dict):
-            #    list_id_doc_returned = [int(docto['id']) for docto in docto_found['documents']]
-            #else:
             list_id_doc_returned = [docto.meta['id'] for docto in docto_found['documents']]
             return list_id_doc_returned #, search_parameter
     elif len(docto_found) > 0: # search with retriever
-        #if isinstance(docto_found[0], dict):
-        #    list_id_doc_returned = [int(docto['id']) for docto in docto_found]
-        #else:
         list_id_doc_returned = [docto.meta['id'] for docto in docto_found]
         return list_id_doc_returned # , search_parameter
     else:
@@ -158,9 +152,8 @@ def experiment_run(parm_df,
     """
 
     # param validation
-    list_experiment_keys_expected = ['INDEX_NAME','TOPK_RETRIEVER', 'TOPK_RANKER', 'PIPE','DONE']
-    list_pipe_keys_expected = ['PIPE_OBJECT', 'RETRIEVER_TYPE', 'RETRIEVER_MODEL_NAME',
-                               'RANKER_MODEL_NAME', 'RANKER_TYPE']
+    list_experiment_keys_expected = ['INDEX_NAME','TOPK_RETRIEVER', 'TOPK_RANKER', 'PIPE', 'COLUMN_NAME', 'EXPANSOR_CRITERIA']
+    list_pipe_keys_expected = ['PIPE_OBJECT', 'RETRIEVER_TYPE', 'RETRIEVER_MODEL_NAME', 'RANKER_TYPE']
 
     # Verificar se todas as chaves de list_keys estão em parm_experiment
     if set(list_experiment_keys_expected) != set(parm_experiment.keys()):
@@ -196,7 +189,7 @@ def experiment_run(parm_df,
         result_search_one_query = {}
         result_search_one_query['QUERY_ID'] = row_query['ID']
         time_start_search_query = time.time()
-        list_id_doc_returned = search_docto_for_experiment(parm_experiment=parm_experiment,  query_data=row_query)
+        list_id_doc_returned = search_docto_for_experiment(parm_experiment=parm_experiment, query_data=row_query)
         result_search_one_query['TIME_SPENT'] = round((time.time() - time_start_search_query),4)
         if list_id_doc_returned is None or len(list_id_doc_returned) == 0:
             print(f"\nDocuments not found in experiment {parm_experiment} With query: {row_query['ID']}")
@@ -270,6 +263,7 @@ def experiment_run(parm_df,
     result_search_run = {}
     result_search_run['TIME'] = time.strftime('%Y-%b-%d %H:%M:%S')
     result_search_run['INDEX_NAME'] = parm_experiment['INDEX_NAME']
+    result_search_run['COLUMN_NAME'] = parm_experiment['COLUMN_NAME']
     result_search_run['RETRIEVER_TYPE'] = parm_experiment['PIPE']['RETRIEVER_TYPE']
     result_search_run['COUNT_QUERY_RUN'] = count_query_run
     result_search_run['TOPK_RETRIEVER'] = parm_experiment['TOPK_RETRIEVER']
@@ -291,13 +285,13 @@ def experiment_run(parm_df,
     result_search_run['RECALL@100_MEAN'] = round(total_recall_100/count_query_run,3)
     result_search_run['TIME_SPENT_MEAN'] = round(total_time/count_query_run,3)
     result_search_run['RETRIEVER_MODEL_NAME'] = parm_experiment['PIPE']['RETRIEVER_MODEL_NAME']
-    result_search_run['RANKER_MODEL_NAME'] = parm_experiment['PIPE']['RANKER_MODEL_NAME']
+    result_search_run['RANKER_TYPE'] = parm_experiment['PIPE']['RANKER_TYPE']
     result_search_run['RESULT_QUERY'] = result_search_all_query
 
     if parm_print: # print results
         for key in result_search_run.keys():
             if key not in ['TIME','INDEX_NAME','RETRIEVER_TYPE','TOPK_RETRIEVER',\
-                           'RETRIEVER_MODEL_NAME', "RANKER_MODEL_NAME", 'RESULT_QUERY', 'TOPK_RANKER']:
+                           'RETRIEVER_MODEL_NAME', 'RANKER_TYPE', 'RESULT_QUERY', 'TOPK_RANKER']:
                 print(f"{key:>8}: {result_search_run[key]}")
 
     return result_search_run
