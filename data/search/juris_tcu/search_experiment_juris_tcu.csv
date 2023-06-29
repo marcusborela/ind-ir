@@ -262,3 +262,13 @@ TIME,INDEX_NAME,COLUMN_NAME,RETRIEVER_TYPE,COUNT_QUERY_RUN,TOPK_RETRIEVER,TOPK_R
 2023-Jun-28 23:27:12,indir_juris_tcu_related_term,7,bm25,150,300,0,0,3,3.361,49.572,47.897,50.623,52.688,12.067,6.807,72.017,80.161,3.858,,PTT5_INDIR_83,join_30_ptt5_indir
 2023-Jun-28 23:37:00,indir_juris_tcu_related_term,8,bm25,150,300,0,0,3,3.946,51.121,48.311,51.258,53.121,12.24,6.787,72.959,80.021,3.9,,PTT5_INDIR_83,join_30_ptt5_indir
 2023-Jun-28 23:46:52,indir_juris_tcu_related_term,9,bm25,150,300,0,0,3,4.537,50.8,47.98,50.996,53.106,12.187,6.78,72.737,79.905,3.931,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-28 23:55:30,indir_juris_tcu_related_term,TEXT,bm25,150,300,0,0,0,1.673,60.798,57.044,60.299,63.202,14.04,7.547,82.02,87.965,3.441,,PTT5_INDIR_83,
+2023-Jun-29 00:06:18,indir_juris_tcu_synonym_related_term,1,bm25,150,300,0,0,0,2.64,51.292,48.953,52.406,55.674,12.88,7.187,75.745,83.694,4.305,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 00:18:02,indir_juris_tcu_synonym_related_term,10,bm25,150,300,0,0,3,3.857,48.084,45.085,48.294,50.818,11.827,6.647,70.722,78.409,4.679,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 00:29:02,indir_juris_tcu_synonym_related_term,2,bm25,150,300,0,0,3,2.639,48.951,47.072,50.359,52.849,12.333,6.927,73.554,81.428,4.389,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 00:40:07,indir_juris_tcu_synonym_related_term,3,bm25,150,300,0,0,3,2.932,49.142,46.8,50.368,53.088,12.373,6.927,73.758,81.685,4.418,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 00:51:17,indir_juris_tcu_synonym_related_term,4,bm25,150,300,0,0,2,2.811,49.986,47.724,50.539,53.188,12.333,6.82,73.429,80.38,4.454,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 01:02:38,indir_juris_tcu_synonym_related_term,5,bm25,150,300,0,0,3,2.789,49.83,47.442,50.107,52.519,12.12,6.787,72.492,80.125,4.521,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 01:14:10,indir_juris_tcu_synonym_related_term,6,bm25,150,300,0,0,2,3.169,49.927,46.729,49.635,52.26,12.0,6.74,71.491,79.421,4.6,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 01:25:51,indir_juris_tcu_synonym_related_term,7,bm25,150,300,0,0,2,3.399,48.402,45.686,49.177,51.814,11.907,6.673,71.059,78.671,4.66,,PTT5_INDIR_83,join_30_ptt5_indir
+2023-Jun-29 01:37:38,indir_juris_tcu_synonym_related_term,8,bm25,150,300,0,0,3,3.333,48.546,45.348,48.997,51.533,11.933,6.667,71.3,78.637,4.699,,PTT5_INDIR_83,join_30_ptt5_indir
