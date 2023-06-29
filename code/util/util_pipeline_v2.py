@@ -280,7 +280,7 @@ dict_ranker = {
     'MT5_3B'  : {'limit_query_size': None, 'model': None,
                  'inference_type': 'Seq2SeqLM',
                  'model_name': 'unicamp-dl/mt5-3B-mmarco-en-pt' },
-    'MT5_BASE': {'limit_query_size': None, 'model': None,
+    'PTT5_BASE': {'limit_query_size': None, 'model': None,
                  'inference_type': 'Seq2SeqLM',
                  'model_name': 'unicamp-dl/ptt5-base-pt-msmarco-100k-v2' },
     'MT5_TRAINED_1400': {'limit_query_size': None, 'model': None,
