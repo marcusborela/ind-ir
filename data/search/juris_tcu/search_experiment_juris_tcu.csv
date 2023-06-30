@@ -339,3 +339,5 @@ TIME,INDEX_NAME,COLUMN_NAME,RETRIEVER_TYPE,COUNT_QUERY_RUN,TOPK_RETRIEVER,TOPK_R
 2023-Jun-29 13:34:35,indir_juris_tcu_synonym_related_term,6,bm25,150,300,0,0,2,1.939,59.451,57.052,60.061,62.869,13.493,7.2,79.605,84.258,4.483,,PTT5_BASE,join_30_ptt5_indir
 2023-Jun-29 13:45:53,indir_juris_tcu_synonym_related_term,7,bm25,150,300,0,0,2,1.919,59.345,57.264,59.968,62.488,13.52,7.173,79.659,84.037,4.503,,PTT5_BASE,join_30_ptt5_indir
 2023-Jun-29 13:57:22,indir_juris_tcu_synonym_related_term,8,bm25,150,300,0,0,3,1.83,60.2,57.247,60.347,63.171,13.533,7.153,79.697,83.791,4.575,,PTT5_BASE,join_30_ptt5_indir
+2023-Jun-29 14:08:53,indir_juris_tcu_synonym_related_term,9,bm25,150,300,0,0,3,1.884,60.052,57.174,60.02,62.832,13.613,7.14,80.159,83.682,4.592,,PTT5_BASE,join_30_ptt5_indir
+2023-Jun-29 14:19:18,indir_juris_tcu_synonym_related_term,TEXT,bm25,150,300,0,0,0,1.5,65.84,62.107,65.561,67.919,14.76,7.713,86.118,89.605,4.147,,PTT5_BASE,
