@@ -238,3 +238,11 @@ TIME,COUNT_QUERY_RUN,COUNT_QUERY_WITHOUT_RESULT,COUNT_QUERY_NOT_FOUND,TOPK_RETRI
 2023-Jun-30 14:30:05,100,0.0,0.0,300,0.0,4.37,12,57.681,0.067,area,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
 2023-Jun-30 14:37:41,100,0.0,4.0,300,0.0,7.406,12,61.374,4.551,theme,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
 2023-Jun-30 14:38:13,100,0.0,4.0,300,0.0,64.729,12,15.113,0.307,theme,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
+2023-Jun-30 14:44:40,100,0.0,34.0,300,0.0,6.939,12,39.538,3.861,subtheme,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 14:45:12,100,0.0,34.0,300,0.0,94.409,12,10.641,0.308,subtheme,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
+2023-Jun-30 14:51:40,100,0.0,27.0,300,0.0,4.247,12,28.303,3.871,extra,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 14:52:12,100,0.0,27.0,300,0.0,96.63,12,3.879,0.311,extra,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
+2023-Jun-30 14:58:35,100,0.0,2.0,300,0.0,1.663,12,46.694,3.826,total,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 14:59:07,100,0.0,2.0,300,0.0,54.673,12,5.107,0.307,total,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
+2023-Jun-30 15:05:33,100,0.0,1.0,300,0.0,2.051,12,47.202,3.852,total_gte_5,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 15:06:05,100,0.0,1.0,300,0.0,38.162,12,7.175,0.302,total_gte_5,sts_multihop,rufimelo/Legal-BERTimbau-sts-large-ma-v3,
