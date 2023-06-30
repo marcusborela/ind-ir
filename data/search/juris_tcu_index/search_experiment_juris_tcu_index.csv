@@ -216,3 +216,7 @@ TIME,COUNT_QUERY_RUN,COUNT_QUERY_WITHOUT_RESULT,COUNT_QUERY_NOT_FOUND,TOPK_RETRI
 2023-Jun-28 20:09:30,100,0.0,14.0,300,0.0,3.779,12,41.964,2.61,extra,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-79-pcte
 2023-Jun-28 20:14:31,100,0.0,1.0,300,0.0,1.576,12,55.755,3.004,total,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-79-pcte
 2023-Jun-28 20:18:56,100,0.0,1.0,300,0.0,1.859,12,55.785,2.636,total_gte_5,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-79-pcte
+2023-Jun-30 12:51:07,100,0.0,0.0,300,0.0,1.48,12,87.261,0.191,area,join_sts_bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 12:51:24,100,0.0,0.0,300,0.0,1.48,12,87.261,0.161,area,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 12:51:44,100,0.0,0.0,300,0.0,1.48,12,87.261,0.191,area,sts,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
+2023-Jun-30 12:56:50,100,0.0,4.0,300,0.0,5.875,12,63.235,3.055,theme,join_sts_bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte
