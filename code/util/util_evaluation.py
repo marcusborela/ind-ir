@@ -44,7 +44,7 @@ def return_experiment(parm_dataset):
 
         # initial experiments did not have this information
         df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
-        df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
+        df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
 
     return df_experiment
 

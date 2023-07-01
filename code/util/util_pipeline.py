@@ -47,19 +47,13 @@ def return_ranker_name(parm_ranker_type:str)->str:
     return dict_ranker[parm_ranker_type]['model_name']
 
 def return_multihop_embedding_retriever(parm_index:ElasticsearchDocumentStore):
-    index_name = parm_index.index
-    if index_name not in dict_multihop_embedding_retriever:
-        raise Exception (f"Invalid parm_index {parm_index} em return_multihop_embedding_retriever. Precisa mudar singleton!")
-    else:
-        if dict_multihop_embedding_retriever[index_name] is None:
-            dict_multihop_embedding_retriever[index_name] = MultihopEmbeddingRetriever(
+    return MultihopEmbeddingRetriever(
                     document_store=parm_index,
                     embedding_model=nome_caminho_modelo_sts,
                     model_format="sentence_transformers",
                     pooling_strategy = 'cls_token',
                     progress_bar = False
                 )
-    return dict_multihop_embedding_retriever[index_name]
 
 def return_pipeline_bm25(parm_index:ElasticsearchDocumentStore):
     retriever_bm25 = BM25Retriever(document_store=parm_index,all_terms_must_match=False)
@@ -340,4 +334,4 @@ for ranker in dict_ranker:
 # ranker_monot5_base = None
 # ranker_limit_query_size_monot5_base = None
 
-dict_multihop_embedding_retriever = {'indir_juris_tcu': None, 'indir_juris_tcu_index':None}
+# dict_multihop_embedding_retriever = {'indir_juris_tcu': None, 'indir_juris_tcu_index':None}
