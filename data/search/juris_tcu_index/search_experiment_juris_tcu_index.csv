@@ -54,7 +54,6 @@ TIME,COUNT_QUERY_RUN,COUNT_QUERY_WITHOUT_RESULT,COUNT_QUERY_NOT_FOUND,TOPK_RETRI
 2023-Jun-24 17:22:52,100,0.0,0.0,300,0.0,13.84,12,20.543,2.886,total,sts,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
 2023-Jun-24 17:28:08,100,0.0,1.0,300,0.0,8.323,12,24.555,3.157,total_gte_5,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
 2023-Jun-24 17:33:00,100,0.0,0.0,300,0.0,12.22,12,22.184,2.915,total_gte_5,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
-2023-Jun-24 17:33:00,100,0.0,0.0,300,0.0,12.22,12,22.184,2.915,total_gte_5,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
 2023-Jun-24 17:56:38,100,0.0,0.0,300,0.0,3.52,12,60.548,0.168,area,join_sts_bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
 2023-Jun-24 18:00:38,100,0.0,4.0,300,0.0,39.271,12,36.121,2.391,theme,join_sts_bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
 2023-Jun-24 18:04:50,100,0.0,29.0,300,0.0,31.718,12,23.135,2.516,subtheme,join_sts_bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2
@@ -198,12 +197,12 @@ TIME,COUNT_QUERY_RUN,COUNT_QUERY_WITHOUT_RESULT,COUNT_QUERY_NOT_FOUND,TOPK_RETRI
 2023-Jun-25 23:50:36,100,0.0,1.0,300,0.0,40.162,12,4.182,2.224,total_gte_5,join_sts_bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-2200
 2023-Jun-25 23:55:02,100,0.0,1.0,300,0.0,39.758,12,6.237,2.653,total_gte_5,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-2200
 2023-Jun-25 23:59:08,100,0.0,0.0,300,0.0,70.7,12,3.844,2.457,total_gte_5,sts,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-2200
-2023-Jun-27 08:15:51,100,0.0,0.0,300,0.0,2.34,12,74.187,0.035,area,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir
-2023-Jun-27 08:17:10,100,0.0,4.0,300,0.0,15.896,12,48.585,0.775,theme,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir
-2023-Jun-27 08:18:31,100,0.0,31.0,300,0.0,14.362,12,29.203,0.799,subtheme,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir
-2023-Jun-27 08:19:53,100,0.0,14.0,300,0.0,6.453,12,33.854,0.809,extra,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir
-2023-Jun-27 08:21:14,100,0.0,1.0,300,0.0,2.364,12,43.711,0.805,total,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir
-2023-Jun-27 08:22:35,100,0.0,1.0,300,0.0,2.455,12,43.492,0.806,total_gte_5,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir
+2023-Jun-27 08:15:51,100,0.0,0.0,300,0.0,2.34,12,74.187,0.035,area,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir-400-pcte
+2023-Jun-27 08:17:10,100,0.0,4.0,300,0.0,15.896,12,48.585,0.775,theme,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir-400-pcte
+2023-Jun-27 08:18:31,100,0.0,31.0,300,0.0,14.362,12,29.203,0.799,subtheme,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir-400-pcte
+2023-Jun-27 08:19:53,100,0.0,14.0,300,0.0,6.453,12,33.854,0.809,extra,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir-400-pcte
+2023-Jun-27 08:21:14,100,0.0,1.0,300,0.0,2.364,12,43.711,0.805,total,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir-400-pcte
+2023-Jun-27 08:22:35,100,0.0,1.0,300,0.0,2.455,12,43.492,0.806,total_gte_5,bm25,,unicamp-dl/mMiniLM-L6-v2-pt-v2-indir-400-pcte
 2023-Jun-27 21:19:24,100,0.0,0.0,300,0.0,1.6,12,85.662,0.158,area,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-5200
 2023-Jun-27 21:25:22,100,0.0,4.0,300,0.0,5.854,12,60.771,3.573,theme,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-5200
 2023-Jun-27 21:29:40,100,0.0,31.0,300,0.0,4.565,12,43.483,2.572,subtheme,bm25,,unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-5200

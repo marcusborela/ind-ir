@@ -14,7 +14,7 @@ import math
 from collections import defaultdict
 from transformers import AutoTokenizer
 
-from util.util_pipeline_v2 import dict_ranker
+from util import util_pipeline
 
 sys.path.append('../..')
 sys.path
@@ -32,17 +32,31 @@ def invert_dict_with_lists(d):
         inverted_dict[v].append(k)
     return dict(inverted_dict)
 
+def return_experiment(parm_dataset):
+    path_search_experiment =  f'../data/search/{parm_dataset}/search_experiment_{parm_dataset}.csv'
+    df_experiment = pd.read_csv(path_search_experiment)
+    # consolidate data of queries
+    if parm_dataset == 'juris_tcu_index':
+        df_experiment['RANKER_TYPE'] = df_experiment.apply(find_ranker_type, axis=1)
+    else:
+        df_experiment['RANKER_TYPE'] = df_experiment['RANKER_TYPE'].fillna('none')
+        df_experiment['NUM_EXPANSAO'] = df_experiment['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
 
+        # initial experiments did not have this information
+        df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
+        df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
+
+    return df_experiment
 
 def find_ranker_type(row):
     ranker_model_name = row['RANKER_MODEL_NAME']
     if pd.isnull(ranker_model_name) or ranker_model_name == "":
         return 'none'
-    for key, value in dict_ranker.items():
-        if isinstance(ranker_model_name, str) and ranker_model_name.lower() in value['model_name'].lower():
-            return key
-    print(f"Ranker type unknown {ranker_model_name} ")
-    return 'unknown'
+    elif ranker_model_name in dict_ranker_dado_nome:
+        return dict_ranker_dado_nome[ranker_model_name]
+    else:
+        print(f"Ranker type unknown {ranker_model_name} ")
+        return 'unknown'
 
 
 def return_consolidate_result(parm_dataset):
@@ -69,7 +83,7 @@ def consolidate_result(parm_dataset):
 
 
     # read experiment data
-    df_experiment = pd.read_csv(path_search_experiment)
+    df_experiment = return_experiment(parm_dataset)
     df_experiment_result = pd.read_csv(path_search_result)
     print(f'df_experiment.shape[0] {df_experiment.shape[0]}')
     print(f'df_experiment_result.shape[0] {df_experiment_result.shape[0]}')
@@ -127,26 +141,13 @@ def consolidate_result(parm_dataset):
 
 
     # df_result['RANKER_TYPE'] = df_result['RANKER_MODEL_NAME'].apply(lambda x: 'none' if pd.isnull(x) else 'none' if x=="" else 'monot5' if isinstance(x, str) and 'mt5' in x.lower() else 'minilm' if isinstance(x, str) and 'minilm' in x.lower() else 'unknown')
-    if parm_dataset == 'juris_tcu_index':
-        df_experiment_result['RANKER_TYPE'] = df_experiment_result.apply(find_ranker_type, axis=1)
-    else:
-        df_experiment_result['RANKER_TYPE'] = df_experiment_result['RANKER_TYPE'].fillna('none')
-        df_experiment_result['NUM_EXPANSAO'] = df_experiment_result['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
+    # if parm_dataset == 'juris_tcu_index':
+    #     df_experiment_result['RANKER_TYPE'] = df_experiment_result.apply(find_ranker_type, axis=1)
+    # else:
+    #     df_experiment_result['RANKER_TYPE'] = df_experiment_result['RANKER_TYPE'].fillna('none')
+    #     df_experiment_result['NUM_EXPANSAO'] = df_experiment_result['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
 
 
-    if 'EXPANSOR_CRITERIA' not in df_experiment_result.columns:
-        df_experiment_result['EXPANSOR_CRITERIA'] = None
-
-    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
-    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
-
-
-    if 'EXPANSOR_CRITERIA' not in df_experiment_result.columns:
-        df_experiment_result['EXPANSOR_CRITERIA'] = None
-    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none", inplace=True)
-    df_experiment_result.loc[df_experiment_result['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir", inplace=True)
-
-    df_experiment_result['RANKER_TYPE'] = df_experiment_result['RANKER_TYPE'].fillna('none')
 
 
     # saving data
@@ -161,10 +162,9 @@ def consolidate_result(parm_dataset):
     print(f"Generated file with {df_experiment_result.shape[0]} records")
 
 
-
-
-
 def return_result_per_doc(parm_dataset):
+    if parm_dataset == 'juris_tcu':
+        raise Exception(f"The actual code only expect juris_tcu_index dataset! ")
     path_doc = f'../data/{parm_dataset}/doc.csv'
     df_result = return_consolidate_result(parm_dataset)
 
@@ -229,3 +229,6 @@ def return_result_per_doc(parm_dataset):
 
 
     return df_result_doc
+
+
+dict_ranker_dado_nome = {v['model_name']: k for k, v in util_pipeline.dict_ranker.items()}
