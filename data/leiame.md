@@ -7,8 +7,9 @@ Datasets finais gerados:
 Pastas com resultados intermediários:
 * [Dados de acesso à pesquisa da Jurisprudência](#dados-de-acesso-à-pesquisa-da-jurisprudência)
 * [Preparação do Dataset JURIS_TCU por LLM](#prepara%C3%A7%C3%A3o-do-dataset-juris_tcu-por-llm)
-* [Resultados dos experimentos de busca - JURIS_TCU](#resultados-dos-experimentos-de-busca---juris_tcu)
+* [Resultados da busca para selecionar enunciados - JURIS_TCU_BASIC](#resultados-da-busca-para-selecionar-enunciados---juris_tcu_basic)
 * [Resultados dos experimentos de busca - JURIS_TCU_INDEX](#resultados-dos-experimentos-de-busca---juris_tcu_index)
+* [Resultados dos experimentos de busca - JURIS_TCU](#resultados-dos-experimentos-de-busca---juris_tcu)
 
 Outros links:
 * [Página principal do projeto](/README.md)
@@ -75,7 +76,7 @@ Arquivos:
 * [query-generation.csv](llm_juris_tcu/query-generation.csv) - relação dos enunciados base das queries dos grupos 2 e 3, formada a partir do arquivo [query_llm_selecionada.txt](llm_juris_tcu/query_llm_selecionada.txt) e planilha [Juris-TCU-query-generation.xlsx](/docs/explanation/Juris-TCU-query-generation.xlsx).
 * [prompt_response.txt](llm_juris_tcu/prompt_response.txt) - exemplo de prompt enviado ao LLM e a resposta recebida.
 
-## Resultados dos experimentos de busca - [JURIS_TCU](/data/search/juris_tcu/)
+## Resultados da busca para selecionar enunciados - [JURIS_TCU_BASIC](/data/search/juris_tcu_basic/)
 Buscas efetuadas sobre queries do dataset [JURIS_TCU](/data/juris_tcu/), para construção das avaliações (QREL). Passo intermediário para a produção das avaliações para o referidado dataset.
 
 Relatórios de busca - para cada uma das 150 queries do dataset [JURIS_TCU](/data/juris_tcu/), registram os 10 enunciados melhor rankeados por cada pipeline de busca:
@@ -94,3 +95,6 @@ Arquivos de resultado de execução:
 
 ## Resultados dos experimentos de busca - [JURIS_TCU_INDEX](/data/search/juris_tcu_index/)
 Indexação da [Jurisprudência Selecionada](https://portal.tcu.gov.br/jurisprudencia/) por termos do [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm).
+
+## Resultados dos experimentos de busca - [JURIS_TCU](/data/search/juris_tcu/)
+Resultados de busca sobre dataset [JURIS_TCU](/data/juris_tcu/), para avaliação final de resultados. 
