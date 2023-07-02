@@ -6,7 +6,7 @@ Generated final datasets:
 
 Folders with intermediate results:
 * [Jurisprudence Research Access Data](#jurisprudence-research-access-data)
-* [LLM Preparation of the JURIS_TCU Dataset](#llm-preparation-of-the-juris_tcu-dataset)
+* [LLM Preparation of the JURIS_TCU Dataset](#preparation-of-the-juris_tcu-dataset-by-llm)
 * [Search Results for Statements Selection - JURIS_TCU_BASIC](#search-results-for-statements-selection---juris_tcu_basic)
 * [Search Experiment Results - JURIS_TCU_INDEX](#search-experiment-results---juris_tcu_index)
 * [Search Experiment Results - JURIS_TCU](#search-experiment-results---juris_tcu)
