@@ -7,8 +7,9 @@ Generated final datasets:
 Folders with intermediate results:
 * [Jurisprudence Research Access Data](#jurisprudence-research-access-data)
 * [LLM Preparation of the JURIS_TCU Dataset](#llm-preparation-of-the-juris_tcu-dataset)
-* [Search Experiment Results - JURIS_TCU](#search-experiment-results---juris_tcu)
+* [Search Results for Statements Selection - JURIS_TCU_BASIC](#search-results-for-statement-selection---juris_tcu_basic)
 * [Search Experiment Results - JURIS_TCU_INDEX](#search-experiment-results---juris_tcu_index)
+* [Search Experiment Results - JURIS_TCU](#search-experiment-results---juris_tcu)
 
 Other links:
 * [Project Main Page](/README.md)
@@ -75,7 +76,7 @@ Files:
 * [query-generation.csv](llm_juris_tcu/query-generation.csv) - list of base statements for queries in groups 2 and 3, created from the file [query_llm_selecionada.txt](llm_juris_tcu/query_llm_selecionada.txt) and the spreadsheet [Juris-TCU-query-generation.xlsx](/docs/explanation/Juris-TCU-query-generation.xlsx).
 * [prompt_response.txt](llm_juris_tcu/prompt_response.txt) - example of a prompt sent to LLM and the received response.
 
-## Search Experiment Results - [JURIS_TCU](/data/search/juris_tcu/)
+## Search Results for Statements Selection - [JURIS_TCU_BASIC](/data/search/juris_tcu_basic/)
 Searches performed on queries from the [JURIS_TCU](/data/juris_tcu/) dataset to construct the evaluations (QREL). An intermediate step in the production of evaluations for the mentioned dataset.
 
 Search reports - for each of the 150 queries from the [JURIS_TCU](/data/juris_tcu/) dataset, they record the top 10 ranked statements for each search pipeline:
@@ -94,3 +95,6 @@ Execution result files:
 
 ## Search Experiment Results - [JURIS_TCU_INDEX](/data/search/juris_tcu_index/)
 Indexing of the [Selected Jurisprudence](https://portal.tcu.gov.br/jurisprudencia/) by terms from the [VCE](https://portal.tcu.gov.br/vocabulario-de-controle-externo-do-tribunal-de-contas-da-uniao-vce.htm).
+
+## Search Experiment Results - [JURIS_TCU](/data/search/juris_tcu/)
+Search Results over [JURIS_TCU](/data/juris_tcu/) dataset, for final results evaluation. 
