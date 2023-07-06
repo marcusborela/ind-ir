@@ -1,3 +1,7 @@
+"""
+Code created by Marcus Vinícius Borela de Castro in the context of IND-IR project
+https://github.com/marcusborela/ind-ir
+"""
 from typing import List, Optional, Union, Tuple, Iterator, Any
 import logging
 from pathlib import Path
@@ -5,7 +9,7 @@ from pathlib import Path
 import torch
 from torch.nn import DataParallel
 from tqdm.auto import tqdm
-from transformers import AutoModelForSequenceClassification, f
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 from haystack.errors import HaystackError
 from haystack.schema import Document
@@ -173,7 +177,7 @@ class SentenceTransformersRankerLimit(BaseRanker):
             query_limited = query
 
         lista_num_tokens_docto = [self.return_num_token(doc.content) for doc in documents]
-        num_doc = len(lista_num_tokens_docto)
+        # num_doc = len(lista_num_tokens_docto)
         # print(f"num_tokens_query {num_tokens_query}")
         # print(f"{num_doc} documentos em {lista_num_tokens_docto}")
 
@@ -186,6 +190,9 @@ class SentenceTransformersRankerLimit(BaseRanker):
                 # print(f"Doc {doc.id}  passed limit in {num_excesso} tokens")
                 # print(f"Before:  {doc_antes}")
                 # print(f"Now:  {doc.content}")
+
+        # updated 2023-06-23
+        # before: [query for doc in documents],
 
         features = self.transformer_tokenizer(
             [query_limited for doc in documents],

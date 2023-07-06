@@ -1,3 +1,7 @@
+"""
+Code created by Marcus Vinícius Borela de Castro in the context of IND-IR project
+https://github.com/marcusborela/ind-ir
+"""
 from typing import List, Optional, Union, Any, Iterable, Mapping, Tuple
 import logging
 from pathlib import Path
@@ -48,6 +52,17 @@ prediction_tokens = {
         'unicamp-dl/ptt5-base-pt-msmarco-10k-v2': ['▁no'  , '▁yes'],
         # a confirmar
         'unicamp-dl/ptt5-base-en-pt-msmarco-100k-v2': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-1400': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-2200': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-7600': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim100-1700': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-800': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-2200': ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-41-pcte':  ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-73-pcte':  ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-79-pcte':  ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-83-pcte':  ['▁não'  , '▁sim'],
+        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte':  ['▁não'  , '▁sim'],
         }
 
 
@@ -131,7 +146,9 @@ class QueryDocumentBatchTokenizer(TokenizerEncodeMixin): # pylint: disable=missi
         self.tokenizer = tokenizer
         self.batch_size = batch_size
         self.tokenizer_kwargs = tokenizer_kwargs
-        self.pattern = pattern
+        # alterado para ajuste da relevância
+        self.pattern = "Query: {query} Document: {document} Relevant:"
+        # self.pattern = pattern
 
     def traverse_query_document( # pylint: disable=missing-function-docstring # código de origem externa
             self,
@@ -382,10 +399,12 @@ class MonoT5RankerLimit(BaseRanker):
         else:
             query_limited = query
 
+        # updated 2023-06-23
+        # before: text= query
         query_obj = Query(text= query_limited)
 
         lista_num_tokens_docto = [self.return_num_token(doc.content) for doc in documents]
-        num_doc = len(lista_num_tokens_docto)
+        # num_doc = len(lista_num_tokens_docto)
         # print(f"num_tokens_query {num_tokens_query}")
         # print(f"{num_doc} documentos em {lista_num_tokens_docto}")
 
