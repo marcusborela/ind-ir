@@ -41,10 +41,6 @@ prediction_tokens = {
         'unicamp-dl/mt5-base-en-pt-msmarco-v2':   ['▁no'   , '▁yes'],
         'unicamp-dl/mt5-base-mmarco-v1':          ['▁no'   , '▁yes'],
         'unicamp-dl/mt5-base-mmarco-v2':          ['▁no'   , '▁yes'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v1': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-10k-v1':    ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-10k-v2':    ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2':   ['▁não'  , '▁sim'],
         'unicamp-dl/ptt5-base-en-pt-msmarco-10k-v1': ['▁não'  , '▁sim'],
         'unicamp-dl/mt5-3B-mmarco-en-pt':   ['▁'  , '▁true'],
         'unicamp-dl/mt5-13b-mmarco-100k':            ['▁', '▁true'],
@@ -52,17 +48,6 @@ prediction_tokens = {
         'unicamp-dl/ptt5-base-pt-msmarco-10k-v2': ['▁no'  , '▁yes'],
         # a confirmar
         'unicamp-dl/ptt5-base-en-pt-msmarco-100k-v2': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-1400': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-2200': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-7600': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim100-1700': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-800': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-lim50-2200': ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-41-pcte':  ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-73-pcte':  ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-79-pcte':  ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-83-pcte':  ['▁não'  , '▁sim'],
-        'unicamp-dl/ptt5-base-pt-msmarco-100k-v2-indir-106-pcte':  ['▁não'  , '▁sim'],
         }
 
 
@@ -217,12 +202,14 @@ def get_prediction_tokens(pretrained_model_name_or_path: str, # pylint: disable=
     if not (token_false and token_true):
         if model_name in prediction_tokens:
             token_false, token_true = prediction_tokens[model_name]
-            token_false_id = tokenizer.tokenizer.get_vocab()[token_false]
-            token_true_id  = tokenizer.tokenizer.get_vocab()[token_true]
-            return token_false_id, token_true_id
+        elif "ptt5-base-pt-msmarco-" in model_name:
+            token_false, token_true = ['▁não'  , '▁sim']
         else:
             raise Exception("We don't know the indexes for the non-relevant/relevant tokens for\
                     the checkpoint {model_name} and you did not provide any.")
+        token_false_id = tokenizer.tokenizer.get_vocab()[token_false]
+        token_true_id  = tokenizer.tokenizer.get_vocab()[token_true]
+        return token_false_id, token_true_id
     else:
         token_false_id = tokenizer.tokenizer.get_vocab()[token_false]
         token_true_id  = tokenizer.tokenizer.get_vocab()[token_true]
