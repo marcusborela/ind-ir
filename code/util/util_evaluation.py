@@ -22,6 +22,20 @@ sys.path
 
 GREATEST_INTEGER = sys.maxsize
 
+mapping_expansor_criteria = {
+    'none': '----',
+    'join_30_ptt5_base': 'BASE',
+    'join_30_ptt5_indir_400': 'INDIR',
+}
+
+mapping_ranker = {
+    'none': '-----',
+    'PTT5_INDIR_106':'INDIR',
+    'PTT5_BASE':'BASE'
+}
+
+
+
 def retorna_num_tokens(parm_texto:str, parm_tokenizador:AutoTokenizer):
     return len(parm_tokenizador.tokenize(parm_texto))
 
@@ -40,13 +54,59 @@ def return_experiment(parm_dataset):
         df_experiment['RANKER_TYPE'] = df_experiment.apply(find_ranker_type, axis=1)
     else:
         df_experiment['RANKER_TYPE'] = df_experiment['RANKER_TYPE'].fillna('none')
-        df_experiment['NUM_EXPANSAO'] = df_experiment['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
+        df_experiment['EXPANSION_QUERY_COUNT'] = df_experiment['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
+
+        df_experiment['EXPD_VAL'] = df_experiment.apply(define_expansion_doc_value, axis=1)
+        df_experiment['EXPD_TYPE'] = df_experiment.apply(define_expansion_doc_type, axis=1)
 
         # initial experiments did not have this information
-        df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
-        df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
+        #df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
+        #df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
+
+        df_experiment['RANKER_TYPE'] = df_experiment['RANKER_TYPE'].replace(mapping_ranker)
+        df_experiment['EXPQ_TYPE'] = df_experiment['EXPANSOR_CRITERIA'].replace(mapping_expansor_criteria)
+        del df_experiment['EXPANSOR_CRITERIA']
+        del df_experiment['INDEX_NAME']
+        df_experiment = df_experiment.rename(columns=lambda x: x.replace('_MEAN', '') if x.endswith('_MEAN') else x)
+        df_experiment = df_experiment.rename(columns=lambda x: x.replace('_TYPE', '') if x.endswith('_TYPE') else x)
+
+        df_experiment.rename(columns={'EXPANSION_QUERY_COUNT':'EXPQ_CNT'},inplace=True)
 
     return df_experiment
+
+def define_expansion_doc_value(row):
+    index_name = row['INDEX_NAME']
+
+    if 'tcu_term_exp' in index_name:
+        return 'term'
+    elif 'tcu_synonym_exp' in index_name:
+        return '+syn'
+    elif 'tcu_related_term_exp' in index_name:
+        return '+rel'
+    elif 'tcu_synonym_related_term_exp' in index_name:
+        return '+syn+rel'
+    elif index_name == 'indir_juris_tcu':
+        return '----'
+    else:
+        raise Exception(f"Expansion_doc_value unknown for index name: {index_name} ")
+
+def define_expansion_doc_type(row):
+    index_name = row['INDEX_NAME']
+
+    if 'exp_1_ptt5_indir' in index_name:
+        return 'indir-1'
+    elif 'exp_3_ptt5_indir' in index_name:
+        return 'indir-3'
+    elif 'exp_5_ptt5_indir' in index_name:
+        return 'indir-5'
+    elif 'exp_user' in index_name:
+        return 'user'
+    elif index_name == 'indir_juris_tcu':
+        return '----'
+    else:
+        raise Exception(f"Expansion_doc_criteria unknown for index name: {index_name} ")
+
+
 
 def find_ranker_type(row):
     ranker_model_name = row['RANKER_MODEL_NAME']
