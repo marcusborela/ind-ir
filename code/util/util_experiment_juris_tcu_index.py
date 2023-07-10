@@ -101,6 +101,11 @@ def build_search_parameter(parm_experiment, query_data):
     dict_param_busca = {}
     criteria_type = dict_criterio[parm_experiment['CRITERIA']]['type']
     criteria_value = dict_criterio[parm_experiment['CRITERIA']]['value']
+    # alterado temporariamente para simular busca em toda a base de dados
+    # alterado critério de busca
+    #  sem alterar critério para ground truth diferente para cada critério
+    # criteria_value = dict_criterio['class_termo']['value']
+
     if  'join' in parm_experiment['PIPE']['RETRIEVER_TYPE']:
         dict_param_busca = {"Bm25Retriever":{"top_k": np.int(parm_experiment['TOPK_RETRIEVER']/2), "filters": criteria_value},
                             "StsRetriever": {"top_k": np.int(parm_experiment['TOPK_RETRIEVER']/2), "filters": criteria_value}}

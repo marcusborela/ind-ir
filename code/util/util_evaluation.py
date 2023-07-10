@@ -24,14 +24,14 @@ GREATEST_INTEGER = sys.maxsize
 
 mapping_expansor_criteria = {
     'none': '----',
-    'join_30_ptt5_base': 'BASE',
-    'join_30_ptt5_indir_400': 'INDIR',
+    'join_30_ptt5_base': 'base',
+    'join_30_ptt5_indir_400': 'indir',
 }
 
 mapping_ranker = {
-    'none': '-----',
-    'PTT5_INDIR_106':'INDIR',
-    'PTT5_BASE':'BASE'
+    'none': '----',
+    'PTT5_INDIR_400':'indir',
+    'PTT5_BASE':'base'
 }
 
 
@@ -57,21 +57,24 @@ def return_experiment(parm_dataset):
         df_experiment['EXPANSION_QUERY_COUNT'] = df_experiment['COLUMN_NAME'].apply(lambda x: x if x != 'TEXT' else '0').astype(int)
 
         df_experiment['EXPD_VAL'] = df_experiment.apply(define_expansion_doc_value, axis=1)
-        df_experiment['EXPD_TYPE'] = df_experiment.apply(define_expansion_doc_type, axis=1)
 
         # initial experiments did not have this information
         #df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] == 'TEXT', 'EXPANSOR_CRITERIA'].fillna("none")
         #df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'] = df_experiment.loc[df_experiment['COLUMN_NAME'] != 'TEXT', 'EXPANSOR_CRITERIA'].fillna("join_30_minilm_indir")
 
         df_experiment['RANKER_TYPE'] = df_experiment['RANKER_TYPE'].replace(mapping_ranker)
-        df_experiment['EXPQ_TYPE'] = df_experiment['EXPANSOR_CRITERIA'].replace(mapping_expansor_criteria)
-        del df_experiment['EXPANSOR_CRITERIA']
-        del df_experiment['INDEX_NAME']
         df_experiment = df_experiment.rename(columns=lambda x: x.replace('_MEAN', '') if x.endswith('_MEAN') else x)
         df_experiment = df_experiment.rename(columns=lambda x: x.replace('_TYPE', '') if x.endswith('_TYPE') else x)
-
+        df_experiment['EXPD_TYPE'] = df_experiment.apply(define_expansion_doc_type, axis=1)
+        df_experiment['EXPQ_TYPE'] = df_experiment['EXPANSOR_CRITERIA'].replace(mapping_expansor_criteria)
         df_experiment.rename(columns={'EXPANSION_QUERY_COUNT':'EXPQ_CNT'},inplace=True)
-
+        del df_experiment['EXPANSOR_CRITERIA']
+        del df_experiment['INDEX_NAME']
+        df_experiment['EXPQ_CNT'] = df_experiment['EXPQ_CNT'].astype(str).replace('0', '----')
+        # Verificar as colunas com valores NaN
+        columns_with_nan = df_experiment.columns[df_experiment.isna().any()].tolist()
+        assert ['RETRIEVER_MODEL_NAME', 'EXPQ_TYPE'] == columns_with_nan, f"Review treatment of columns_with_nan. Expected: ['RETRIEVER_MODEL_NAME', 'EXPQ_TYPE'], found {columns_with_nan}"
+        df_experiment = df_experiment.fillna("----")
     return df_experiment
 
 def define_expansion_doc_value(row):
