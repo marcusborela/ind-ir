@@ -25,13 +25,16 @@ GREATEST_INTEGER = sys.maxsize
 mapping_expansor_criteria = {
     'none': '----',
     'join_30_ptt5_base': 'base',
-    'join_30_ptt5_indir_400': 'indir',
+    'join_60_ptt5_indir_400': 'indir',
+    'join_10_30_syn_or_rel_ptt5_indir_400': 'indir_extra',
 }
 
 mapping_ranker = {
     'none': '----',
     'PTT5_INDIR_400':'indir',
-    'PTT5_BASE':'base'
+    'PTT5_INDIR_400_INV':'indiri',
+    'PTT5_BASE':'base',
+    'PTT5_BASE_INV':'basei'
 }
 
 
@@ -75,6 +78,25 @@ def return_experiment(parm_dataset):
         columns_with_nan = df_experiment.columns[df_experiment.isna().any()].tolist()
         assert ['RETRIEVER_MODEL_NAME', 'EXPQ_TYPE'] == columns_with_nan, f"Review treatment of columns_with_nan. Expected: ['RETRIEVER_MODEL_NAME', 'EXPQ_TYPE'], found {columns_with_nan}"
         df_experiment = df_experiment.fillna("----")
+
+        # adjust columns order by category
+
+        list_expq_cnt_order = ['----', '1',  '2',  '3',  '4',  '5',  '6',  '7',  '8',  '9', '10']
+        df_experiment['EXPQ_CNT'] = df_experiment['EXPQ_CNT'].astype(pd.CategoricalDtype(categories=list_expq_cnt_order, ordered=True))
+        list_expq_type_order = ['----', 'base', 'indir', 'indir_extra']
+        df_experiment['EXPQ_TYPE'] = df_experiment['EXPQ_TYPE'].astype(pd.CategoricalDtype(categories=list_expq_type_order, ordered=True))
+        list_expd_val_order = ['----', 'term', '+syn', '+rel', '+syn+rel']
+        df_experiment['EXPD_VAL'] = df_experiment['EXPD_VAL'].astype(pd.CategoricalDtype(categories=list_expd_val_order, ordered=True))
+        list_expd_type_order = ['----', 'user', 'indir-1', 'indir-3', 'indir-5' ]
+        df_experiment['EXPD_TYPE'] = df_experiment['EXPD_TYPE'].astype(pd.CategoricalDtype(categories=list_expd_type_order, ordered=True))
+        list_retriever_order = [  'bm25', 'sts', 'join']
+        df_experiment['RETRIEVER'] = df_experiment['RETRIEVER'].astype(pd.CategoricalDtype(categories=list_retriever_order, ordered=True))
+        list_ranker_order = ['----', 'indir', 'indiri', 'base', 'basei']
+        df_experiment['RANKER'] = df_experiment['RANKER'].astype(pd.CategoricalDtype(categories=list_ranker_order, ordered=True))
+
+
+
+
     return df_experiment
 
 def define_expansion_doc_value(row):

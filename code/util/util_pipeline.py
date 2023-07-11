@@ -21,7 +21,7 @@ def return_ranker(parm_ranker_type:str, parm_limit_query_size:int=350):
     global dict_ranker
     if parm_ranker_type not in dict_ranker:
         raise Exception (f"Invalid parm_ranker_type {parm_ranker_type}. Must be in {dict_ranker.keys()}")
-    elif parm_limit_query_size not in (50, 100, 350):
+    elif parm_limit_query_size not in (50, 100, 200, 350, 400):
         raise Exception (f"Invalid parm_limit_query_size {parm_limit_query_size} for singleton code!")
     else:
         if dict_ranker[parm_ranker_type]['limit_query_size'] is not None:
