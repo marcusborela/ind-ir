@@ -1,0 +1,3 @@
+Ideas for leveraging the results:
+
+Adjust order of metadata in text of a VCE term (doc.csv) according to parts that more influence the metrics. It is being done to normas_tcu_index.
