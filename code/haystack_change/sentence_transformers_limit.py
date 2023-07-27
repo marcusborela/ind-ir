@@ -129,7 +129,8 @@ class SentenceTransformersRankerLimit(BaseRanker):
         return text_limited
 
 
-    def return_text_limited_num_token_ultima_pontuacao(self, parm_texto: str, parm_num_limite_token: int):
+    def return_text_limited_num_token_last_punctuation(self, parm_texto: str, parm_num_limite_token: int):
+        PUNCTUATION = "!),.;>?]}"
         tokens = self.transformer_tokenizer.tokenize(parm_texto)
 
         if len(tokens) <= parm_num_limite_token:
@@ -141,7 +142,7 @@ class SentenceTransformersRankerLimit(BaseRanker):
             ultimo_token_pontuacao = None
             pos_ultima_pontuacao = len(tokens)
             for i, token in enumerate(reversed(tokens)):
-                if token in "!),.:;>?]}" :
+                if has_common_letters(token, PUNCTUATION):   # There are tokens like '".'
                     ultimo_token_pontuacao = token
                     pos_ultima_pontuacao -= (i + 1)
                     break
@@ -168,7 +169,7 @@ class SentenceTransformersRankerLimit(BaseRanker):
 
         num_tokens_query = self.return_num_token(query)
         if num_tokens_query > self.limit_query_size:
-            query_limited = self.return_text_limited_num_token_ultima_pontuacao(query, self.limit_query_size)
+            query_limited = self.return_text_limited_num_token_last_punctuation(query, self.limit_query_size)
             # print(f"Query passed limit in {num_tokens_query - self.limit_query_size} tokens")
             # print(f"Before:  {query}")
             # print(f"Now:  {query_limited}")
@@ -186,7 +187,7 @@ class SentenceTransformersRankerLimit(BaseRanker):
             num_excesso = (lista_num_tokens_docto[pos] + num_tokens_query) - self.max_position_embeddings
             if num_excesso > 0:
                 # doc_antes = doc.content
-                doc.content = self.return_text_limited_num_token_ultima_pontuacao(doc.content, self.max_position_embeddings-num_tokens_query)
+                doc.content = self.return_text_limited_num_token_last_punctuation(doc.content, self.max_position_embeddings-num_tokens_query)
                 # print(f"Doc {doc.id}  passed limit in {num_excesso} tokens")
                 # print(f"Before:  {doc_antes}")
                 # print(f"Now:  {doc.content}")
