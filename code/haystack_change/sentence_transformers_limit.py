@@ -146,7 +146,7 @@ class SentenceTransformersRankerLimit(BaseRanker):
                     pos_ultima_pontuacao -= (i + 1)
                     break
             if ultimo_token_pontuacao is not None:
-                tokens = tokens[:pos_ultima_pontuacao]
+                tokens = tokens[:pos_ultima_pontuacao + 1]
             text_limited = self.transformer_tokenizer.convert_tokens_to_string(tokens)
             return text_limited
 
